@@ -8,24 +8,44 @@
 body {
     font-family: Arial, sans-serif;
     margin: 40px;
+    max-width: 800px;
 }
 
 h1 {
-    margin-bottom: 20px;
+    margin-bottom: 8px;
+}
+
+p.lede {
+    color: #555;
+    margin-bottom: 24px;
+}
+
+h2 {
+    margin-top: 32px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
 }
 
 ul {
-    line-height: 2;
+    line-height: 1.9;
+    padding-left: 20px;
 }
 
 a {
-    font-size: 18px;
+    font-size: 17px;
     text-decoration: none;
     color: #1a73e8;
 }
 
 a:hover {
     text-decoration: underline;
+}
+
+.muted {
+    color: #888;
+    font-size: 14px;
+    margin-left: 6px;
 }
 </style>
 
@@ -34,13 +54,23 @@ a:hover {
 <body>
 
 <h1>Conversations on Dance Explorer</h1>
+<p class="lede">Browse the Conversations on Dance archive by guest, role, or theme.</p>
 
-<p>Select a way to browse:</p>
-
+<h2>Browse by person</h2>
 <ul>
-  <li><a href="guest_list.html">Browse by Guest</a></li>
-  <li><a href="company_list.html">Browse by Company</a></li>
-  <li><a href="episode_list.html">Browse by Episode</a></li>
+  <li><a href="guest_list.html">All Guests</a></li>
+  <li><a href="choreographer_list.html">Choreographers</a></li>
+</ul>
+
+<h2>Vail Dance Festival</h2>
+<ul>
+  <li><a href="vail_guest_list.html">Vail — by Guest</a></li>
+  <li><a href="vail_by_year.html">Vail — by Year</a></li>
+</ul>
+
+<h2>Works</h2>
+<ul>
+  <li><a href="works_list.html">Dances, Books &amp; Films</a></li>
 </ul>
 
 </body>
