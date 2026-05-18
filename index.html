@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     margin: 40px;
-    max-width: 800px;
+    max-width: 1060px;
 }
 
 h1 {
@@ -17,14 +17,36 @@ h1 {
 
 p.lede {
     color: #555;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+}
+
+.two-col {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+}
+
+.col-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.col-right {
+    width: 240px;
+    flex-shrink: 0;
+    border-left: 1px solid #ddd;
+    padding-left: 32px;
 }
 
 h2 {
-    margin-top: 32px;
+    margin-top: 28px;
     margin-bottom: 8px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 4px;
+}
+
+.col-right h2 {
+    margin-top: 0;
 }
 
 ul {
@@ -47,6 +69,12 @@ a:hover {
     font-size: 14px;
     margin-left: 6px;
 }
+
+.soon {
+    font-size: 14px;
+    color: #aaa;
+    font-style: italic;
+}
 </style>
 
 </head>
@@ -54,30 +82,41 @@ a:hover {
 <body>
 
 <h1>Conversations on Dance Explorer</h1>
-<p class="lede">Browse the Conversations on Dance archive by guest, role, or theme.</p>
+<p class="lede">Browse the Conversations on Dance archive and the 2026–27 dance season.</p>
 
-<h2>Browse by person</h2>
-<ul>
-  <li><a href="guest_list.html">All Guests</a></li>
-  <li><a href="artistic_director_list.html">Artistic Directors</a></li>
-  <li><a href="choreographer_list.html">Choreographers</a></li>
-</ul>
+<div class="two-col">
 
-<h2>Browse by company</h2>
-<ul>
-  <li><a href="company_list.html">Tracked Companies</a></li>
-</ul>
+  <div class="col-left">
+    <h2>All episodes</h2>
+    <ul>
+      <li><a href="guest_list.html">Browse by Guest</a></li>
+    </ul>
 
-<h2>Vail Dance Festival</h2>
-<ul>
-  <li><a href="vail_guest_list.html">Vail — by Guest</a></li>
-  <li><a href="vail_by_year.html">Vail — by Year</a></li>
-</ul>
+    <h2>Themes</h2>
+    <ul>
+      <li><a href="vail_guest_list.html">Vail Dance Festival — by Guest</a></li>
+      <li><a href="vail_by_year.html">Vail Dance Festival — by Year</a></li>
+    </ul>
 
-<h2>Works</h2>
-<ul>
-  <li><a href="works_list.html">Dances, Books &amp; Films</a></li>
-</ul>
+    <h2>Works &amp; People</h2>
+    <ul>
+      <li><a href="works_list.html">Dances, Books &amp; Films</a></li>
+      <li><a href="choreographer_list.html">Choreographers</a></li>
+    </ul>
+  </div>
+
+  <div class="col-right">
+    <h2>2026–27 Season</h2>
+    <ul>
+      <li><a href="performances_agenda.html">Agenda — by Date</a></li>
+      <li><a href="performances_choreographer.html">By Choreographer</a></li>
+      <li><span class="soon">By Work</span></li>
+      <li><span class="soon">By Company</span></li>
+      <li><span class="soon">Calendar Grid</span></li>
+    </ul>
+  </div>
+
+</div>
 
 </body>
 </html>
