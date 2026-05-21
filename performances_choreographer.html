@@ -56,12 +56,31 @@ h1 { margin-bottom: 6px; }
 /* ---- choreographer block ---- */
 .choreo-block {
     margin-bottom: 28px;
+    scroll-margin-top: 50px;
 }
 .choreo-name {
     font-size: 17px;
     font-weight: bold;
     color: #222;
     margin-bottom: 8px;
+}
+
+/* ---- cross-page link badge ---- */
+.cross-link {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 7px;
+    border: 1px solid #1a73e8;
+    border-radius: 3px;
+    color: #1a73e8;
+    text-decoration: none;
+    vertical-align: middle;
+}
+.cross-link:hover {
+    background: #e8f0fe;
+    text-decoration: none;
 }
 .choreo-count {
     font-size: 13px;
@@ -128,8 +147,8 @@ h1 { margin-bottom: 6px; }
 <p class="lede">Works in this season's programs, organized alphabetically by choreographer.</p>
 <div class="alpha-nav"><a href="index.html" class="home-link">← Home</a> <a href="#letter-A">A</a> <a href="#letter-B">B</a> <a href="#letter-C">C</a> <a href="#letter-D">D</a> <a href="#letter-E">E</a> <a href="#letter-F">F</a> <a href="#letter-G">G</a> <a href="#letter-H">H</a> <a href="#letter-I">I</a> <a href="#letter-J">J</a> <a href="#letter-K">K</a> <a href="#letter-L">L</a> <a href="#letter-M">M</a> <a href="#letter-N">N</a> <a href="#letter-O">O</a> <a href="#letter-P">P</a> <a href="#letter-R">R</a> <a href="#letter-S">S</a> <a href="#letter-T">T</a> <a href="#letter-V">V</a> <a href="#letter-W">W</a> <a href="#letter-Y">Y</a></div>
 <h2 class="letter-heading" id="letter-A">A</h2>
-<div class="choreo-block">
-  <div class="choreo-name">Kyle Abraham<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-kyle-abraham">
+  <div class="choreo-name">Kyle Abraham<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-kyle-abraham">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Kyle Abraham World Premiere</span>
     <span class="badge" style="background:#00695c"><a href="performances_agenda.html#PNB" class="badge-link">Pacific Northwest Ballet</a></span>
@@ -137,7 +156,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 19–28, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-shannon-alvis">
   <div class="choreo-name">Shannon Alvis<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#ATLANTA" class="badge-link">ATLANTA</a></span>
@@ -145,7 +164,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-matthew-archibald">
   <div class="choreo-name">Matthew Archibald<span class="choreo-count">(3 works)</span></div>
   <div class="work-entry">
     <span class="work-title">New Archibald</span>
@@ -166,7 +185,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 6–27, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-alba-castillo-bryan-arias">
   <div class="choreo-name">Alba Castillo, Bryan Arias<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#2d6a4f"><a href="performances_agenda.html#CHARLOTTE" class="badge-link">Charlotte Ballet</a></span>
@@ -174,7 +193,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 7–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-omar-rom-n-de-jes-s-and-pbt-artists">
   <div class="choreo-name">Omar Román de Jesús and PBT Artists<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#PITTSBURGH" class="badge-link">PITTSBURGH</a></span>
@@ -182,7 +201,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 9–11, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-frederick-ashton">
   <div class="choreo-name">Frederick Ashton<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#b71c1c"><a href="performances_agenda.html#ABT" class="badge-link">American Ballet Theatre</a></span>
@@ -196,7 +215,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-B">B</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-george-balanchine">
   <div class="choreo-name">George Balanchine<span class="choreo-count">(54 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Symphonie Concertante</span>
@@ -514,7 +533,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 25–30, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-mauro-bigonzetti">
   <div class="choreo-name">Mauro Bigonzetti<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Oltremare</span>
@@ -523,7 +542,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 11–22, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-nicolas-blanc">
   <div class="choreo-name">Nicolas Blanc<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">All that Remains</span>
@@ -538,7 +557,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 4–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-robert-bondara">
   <div class="choreo-name">Robert Bondara<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -546,7 +565,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Sep 18–27, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jean-pierre-bonnefoux">
   <div class="choreo-name">Jean-Pierre Bonnefoux<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#2d6a4f"><a href="performances_agenda.html#CHARLOTTE" class="badge-link">Charlotte Ballet</a></span>
@@ -554,8 +573,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Dec 4–23, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Christopher Bruce<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-christopher-bruce">
+  <div class="choreo-name">Christopher Bruce<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-christopher-bruce">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Rooster</span>
     <span class="badge" style="background:#37474f"><a href="performances_agenda.html#B_WEST" class="badge-link">Ballet West</a></span>
@@ -564,7 +583,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-C">C</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-devon-carney">
   <div class="choreo-name">Devon Carney<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#KCB" class="badge-link">KCB</a></span>
@@ -577,8 +596,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 12–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Alejandro Cerrudo<span class="choreo-count">(5 works)</span></div>
+<div class="choreo-block" id="choreo-alejandro-cerrudo">
+  <div class="choreo-name">Alejandro Cerrudo<span class="choreo-count">(5 works)</span> <a class="cross-link" href="guest_list.html#choreo-alejandro-cerrudo">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Dos y Dos y Dos</span>
     <span class="badge" style="background:#2d6a4f"><a href="performances_agenda.html#CHARLOTTE" class="badge-link">Charlotte Ballet</a></span>
@@ -610,7 +629,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 11–13, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-sidi-larbi-cherkaoui">
   <div class="choreo-name">Sidi Larbi Cherkaoui<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Faun</span>
@@ -619,7 +638,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 8–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-willam-christensen">
   <div class="choreo-name">Willam Christensen<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#37474f"><a href="performances_agenda.html#B_WEST" class="badge-link">Ballet West</a></span>
@@ -627,7 +646,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Dec 4–12, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-angel-corella">
   <div class="choreo-name">Angel Corella<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#PHILADELPHIA" class="badge-link">PHILADELPHIA</a></span>
@@ -635,7 +654,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 29 – May 9, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-john-cranko">
   <div class="choreo-name">John Cranko<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#b71c1c"><a href="performances_agenda.html#ABT" class="badge-link">American Ballet Theatre</a></span>
@@ -648,7 +667,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Jan 29 – Feb 7, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-norbert-de-la-cruz">
   <div class="choreo-name">Norbert De La Cruz<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#e65100"><a href="performances_agenda.html#MEMPHIS" class="badge-link">Ballet Memphis</a></span>
@@ -657,7 +676,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-D">D</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-charlotte-ballet-dancers">
   <div class="choreo-name">Charlotte Ballet dancers<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#2d6a4f"><a href="performances_agenda.html#CHARLOTTE" class="badge-link">Charlotte Ballet</a></span>
@@ -665,7 +684,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Jun 10–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-kyle-davis">
   <div class="choreo-name">Kyle Davis<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">The Raven</span>
@@ -674,8 +693,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Nov 6–15, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Patricia Delgado<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-patricia-delgado">
+  <div class="choreo-name">Patricia Delgado<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-patricia-delgado">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">New Delgado (world premiere)</span>
     <span class="badge" style="background:#00838f"><a href="performances_agenda.html#MCB" class="badge-link">Miami City Ballet</a></span>
@@ -683,7 +702,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 16–25, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-ulysses-dove">
   <div class="choreo-name">Ulysses Dove<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Dancing on the Front Porch of Heaven</span>
@@ -693,7 +712,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-E">E</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-alexander-ekman">
   <div class="choreo-name">Alexander Ekman<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Cacti</span>
@@ -702,7 +721,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Sep 10–20, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jorma-elo">
   <div class="choreo-name">Jorma Elo<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Brake the Eyes</span>
@@ -712,8 +731,8 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-F">F</h2>
-<div class="choreo-block">
-  <div class="choreo-name">Silas Farley<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-silas-farley">
+  <div class="choreo-name">Silas Farley<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-silas-farley">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">World Premiere</span>
     <span class="badge" style="background:#555"><a href="performances_agenda.html#TEXAS" class="badge-link">TEXAS</a></span>
@@ -721,7 +740,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 19–28, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-eliot-feld">
   <div class="choreo-name">Eliot Feld<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Variations on &#x27;America&#x27;</span>
@@ -730,7 +749,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 8–11, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-flock">
   <div class="choreo-name">FLOCK<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">New work (FLOCK)</span>
@@ -739,7 +758,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 2–17, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-nicolo-fonte">
   <div class="choreo-name">Nicolo Fonte<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Carmina Burana</span>
@@ -748,7 +767,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 9–17, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-william-forsythe">
   <div class="choreo-name">William Forsythe<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Herman Schmerman</span>
@@ -758,8 +777,8 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-G">G</h2>
-<div class="choreo-block">
-  <div class="choreo-name">Amy Hall Garner<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-amy-hall-garner">
+  <div class="choreo-name">Amy Hall Garner<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-amy-hall-garner">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">The Rite of Spring</span>
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CAROLINA" class="badge-link">CAROLINA</a></span>
@@ -767,7 +786,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 22–25, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-alexander-gorsky">
   <div class="choreo-name">Alexander Gorsky<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#b71c1c"><a href="performances_agenda.html#ABT" class="badge-link">American Ballet Theatre</a></span>
@@ -777,7 +796,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-H">H</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-anna-marie-holmes">
   <div class="choreo-name">Anna-Marie Holmes<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#37474f"><a href="performances_agenda.html#B_WEST" class="badge-link">Ballet West</a></span>
@@ -786,7 +805,7 @@ h1 { margin-bottom: 6px; }
     <span class="credit-note">(Anna-Marie Holmes, after Marius Petipa)</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-melissa-hough">
   <div class="choreo-name">Melissa Hough<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Plagued Houses</span>
@@ -801,7 +820,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–23, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-young-soon-hue">
   <div class="choreo-name">Young Soon Hue<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -810,7 +829,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-I">I</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-brett-ishida">
   <div class="choreo-name">Brett Ishida<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">World Premiere</span>
@@ -819,7 +838,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 19–28, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-lev-ivanov">
   <div class="choreo-name">Lev Ivanov<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#b71c1c"><a href="performances_agenda.html#ABT" class="badge-link">American Ballet Theatre</a></span>
@@ -829,7 +848,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-J">J</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-anne-jung">
   <div class="choreo-name">Anne Jung<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -838,7 +857,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-K">K</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-darian-kane">
   <div class="choreo-name">Darian Kane<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Dr. Rainbow&#x27;s Infinity Mirror</span>
@@ -847,8 +866,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Akram Khan<span class="choreo-count">(2 works)</span></div>
+<div class="choreo-block" id="choreo-akram-khan">
+  <div class="choreo-name">Akram Khan<span class="choreo-count">(2 works)</span> <a class="cross-link" href="guest_list.html#choreo-akram-khan">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Vertical Road (Reimagined) 2023</span>
     <span class="badge" style="background:#0277bd"><a href="performances_agenda.html#BOSTON" class="badge-link">Boston Ballet</a></span>
@@ -862,7 +881,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 16–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jiri-kylian">
   <div class="choreo-name">Jiri Kylian<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Sinfonietta</span>
@@ -872,7 +891,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-L">L</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jessica-lang">
   <div class="choreo-name">Jessica Lang<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Jessica Lang World Premiere</span>
@@ -887,15 +906,15 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Nov 20–21, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Edwaard Liang<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-edwaard-liang">
+  <div class="choreo-name">Edwaard Liang<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-edwaard-liang">COD Interviews</a></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
     <a class="prog-link" href="https://cballet.org/performances/romeo-and-juliet/" target="_blank" rel="noopener noreferrer">Romeo and Juliet</a>
     <span class="date-range">Feb 12–20, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-harper-long">
   <div class="choreo-name">Harper Long<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">World Premiere</span>
@@ -904,8 +923,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 27 – Jun 6, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Lar Lubovitch<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-lar-lubovitch">
+  <div class="choreo-name">Lar Lubovitch<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-lar-lubovitch">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Meadow</span>
     <span class="badge" style="background:#2e7d32"><a href="performances_agenda.html#HOUSTON" class="badge-link">Houston Ballet</a></span>
@@ -914,7 +933,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-M">M</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-kenneth-macmillan">
   <div class="choreo-name">Kenneth MacMillan<span class="choreo-count">(3 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#2e7d32"><a href="performances_agenda.html#HOUSTON" class="badge-link">Houston Ballet</a></span>
@@ -933,7 +952,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 23 – May 2, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-natalia-makarova">
   <div class="choreo-name">Natalia Makarova<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">The Kingdom of the Shades</span>
@@ -942,7 +961,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 26–27, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-hans-van-manen">
   <div class="choreo-name">Hans van Manen<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Grosse Fuge</span>
@@ -951,7 +970,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 16–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-wayne-mcgregor">
   <div class="choreo-name">Wayne McGregor<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Chroma</span>
@@ -960,8 +979,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 15–18, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Trey McIntyre<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-trey-mcintyre">
+  <div class="choreo-name">Trey McIntyre<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-trey-mcintyre">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">In Dreams</span>
     <span class="badge" style="background:#e65100"><a href="performances_agenda.html#MEMPHIS" class="badge-link">Ballet Memphis</a></span>
@@ -969,7 +988,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 16–18, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-steven-mcmahon">
   <div class="choreo-name">Steven McMahon<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Unapologetic</span>
@@ -983,7 +1002,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 9–11, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-stephen-mills">
   <div class="choreo-name">Stephen Mills<span class="choreo-count">(5 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#AUSTIN" class="badge-link">AUSTIN</a></span>
@@ -1014,7 +1033,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 19–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-victoria-morgan">
   <div class="choreo-name">Victoria Morgan<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -1022,7 +1041,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Dec 17–27, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-david-morse">
   <div class="choreo-name">David Morse<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -1031,15 +1050,15 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-N">N</h2>
-<div class="choreo-block">
-  <div class="choreo-name">Matthew Neenan<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-matthew-neenan">
+  <div class="choreo-name">Matthew Neenan<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-matthew-neenan">COD Interviews</a></div>
   <div class="work-entry">
     <span class="badge" style="background:#e65100"><a href="performances_agenda.html#MEMPHIS" class="badge-link">Ballet Memphis</a></span>
     <a class="prog-link" href="https://balletmemphis.org/celebration" target="_blank" rel="noopener noreferrer">Winter Mix: Celebration</a>
     <span class="date-range">Feb 19–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-john-neumeier">
   <div class="choreo-name">John Neumeier<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#bf360c"><a href="performances_agenda.html#JOFFREY" class="badge-link">Joffrey Ballet</a></span>
@@ -1047,7 +1066,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Sep 17–27, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-julie-niekrasz">
   <div class="choreo-name">Julie Niekrasz<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#e65100"><a href="performances_agenda.html#MEMPHIS" class="badge-link">Ballet Memphis</a></span>
@@ -1055,15 +1074,15 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 19–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Mikko Nissinen<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-mikko-nissinen">
+  <div class="choreo-name">Mikko Nissinen<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-mikko-nissinen">COD Interviews</a></div>
   <div class="work-entry">
     <span class="badge" style="background:#0277bd"><a href="performances_agenda.html#BOSTON" class="badge-link">Boston Ballet</a></span>
     <a class="prog-link" href="https://www.bostonballet.org/performances/the-nutcracker/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
     <span class="date-range">Nov 27 – Dec 31, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-mthuthuzeli-november">
   <div class="choreo-name">Mthuthuzeli November<span class="choreo-count">(3 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -1083,7 +1102,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-O">O</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-terrence-s-orr">
   <div class="choreo-name">Terrence S. Orr<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#PITTSBURGH" class="badge-link">PITTSBURGH</a></span>
@@ -1092,7 +1111,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-P">P</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-ashley-page">
   <div class="choreo-name">Ashley Page<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">The Pump Room</span>
@@ -1107,8 +1126,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Dec 18–19, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Justin Peck<span class="choreo-count">(9 works)</span></div>
+<div class="choreo-block" id="choreo-justin-peck">
+  <div class="choreo-name">Justin Peck<span class="choreo-count">(9 works)</span> <a class="cross-link" href="guest_list.html#choreo-justin-peck">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Pulcinella Variations</span>
     <span class="badge" style="background:#1a237e"><a href="performances_agenda.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -1162,8 +1181,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 27 – Jun 6, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Tiler Peck<span class="choreo-count">(4 works)</span></div>
+<div class="choreo-block" id="choreo-tiler-peck">
+  <div class="choreo-name">Tiler Peck<span class="choreo-count">(4 works)</span> <a class="cross-link" href="guest_list.html#choreo-tiler-peck">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Concerto for Two Pianos</span>
     <span class="badge" style="background:#1a237e"><a href="performances_agenda.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -1189,7 +1208,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 8–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jean-coralli-jules-perrot">
   <div class="choreo-name">Jean Coralli &amp; Jules Perrot<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#AUSTIN" class="badge-link">AUSTIN</a></span>
@@ -1197,7 +1216,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 7–9, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-zalman-raffael-after-coralli-perrot">
   <div class="choreo-name">Zalman Raffael (after Coralli &amp; Perrot)<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CAROLINA" class="badge-link">CAROLINA</a></span>
@@ -1205,7 +1224,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 4–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jean-coralli-and-jules-perrot-with-later-revisions-by-marius-petipa">
   <div class="choreo-name">Jean Coralli and Jules Perrot, with later revisions by Marius Petipa<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#PITTSBURGH" class="badge-link">PITTSBURGH</a></span>
@@ -1213,7 +1232,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 23–25, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-marius-petipa">
   <div class="choreo-name">Marius Petipa<span class="choreo-count">(4 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#b71c1c"><a href="performances_agenda.html#ABT" class="badge-link">American Ballet Theatre</a></span>
@@ -1238,7 +1257,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 7–9, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-zalman-raffael-after-marius-petipa">
   <div class="choreo-name">Zalman Raffael (after Marius Petipa)<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CAROLINA" class="badge-link">CAROLINA</a></span>
@@ -1246,7 +1265,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 13–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-filipe-portugal-pires">
   <div class="choreo-name">Filipe Portugal Pires<span class="choreo-count">(3 works)</span></div>
   <div class="work-entry">
     <span class="work-title">New Pires</span>
@@ -1267,7 +1286,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 11–22, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-crystal-pite">
   <div class="choreo-name">Crystal Pite<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Emergence</span>
@@ -1282,7 +1301,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 11–13, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-yuri-possokhov">
   <div class="choreo-name">Yuri Possokhov<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#ATLANTA" class="badge-link">ATLANTA</a></span>
@@ -1297,7 +1316,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-R">R</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-zalman-raffael">
   <div class="choreo-name">Zalman Raffael<span class="choreo-count">(4 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CAROLINA" class="badge-link">CAROLINA</a></span>
@@ -1321,8 +1340,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 22–25, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Alexei Ratmansky<span class="choreo-count">(7 works)</span></div>
+<div class="choreo-block" id="choreo-alexei-ratmansky">
+  <div class="choreo-name">Alexei Ratmansky<span class="choreo-count">(7 works)</span> <a class="cross-link" href="guest_list.html#choreo-alexei-ratmansky">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Pictures at an Exhibition</span>
     <span class="badge" style="background:#00695c"><a href="performances_agenda.html#PNB" class="badge-link">Pacific Northwest Ballet</a></span>
@@ -1364,8 +1383,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 8–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Gianna Reisen<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-gianna-reisen">
+  <div class="choreo-name">Gianna Reisen<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-gianna-reisen">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Ophelia</span>
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CAROLINA" class="badge-link">CAROLINA</a></span>
@@ -1373,7 +1392,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 22–25, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-jerome-robbins">
   <div class="choreo-name">Jerome Robbins<span class="choreo-count">(8 works)</span></div>
   <div class="work-entry">
     <span class="work-title">The Concert</span>
@@ -1424,7 +1443,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–23, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-pamela-robinson-harris">
   <div class="choreo-name">Pamela Robinson-Harris<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#37474f"><a href="performances_agenda.html#B_WEST" class="badge-link">Ballet West</a></span>
@@ -1433,7 +1452,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-S">S</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-andr-santos">
   <div class="choreo-name">André Santos<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#PITTSBURGH" class="badge-link">PITTSBURGH</a></span>
@@ -1441,7 +1460,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 12–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-liam-scarlett">
   <div class="choreo-name">Liam Scarlett<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Hummingbird</span>
@@ -1450,7 +1469,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 4–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-or-schraiber">
   <div class="choreo-name">Or Schraiber<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Smith / Schraiber World Premiere</span>
@@ -1460,8 +1479,8 @@ h1 { margin-bottom: 6px; }
     <span class="credit-note">(Bobbi Jene Smith / Or Schraiber)</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Claudia Schreier<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-claudia-schreier">
+  <div class="choreo-name">Claudia Schreier<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-claudia-schreier">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Fauna</span>
     <span class="badge" style="background:#555"><a href="performances_agenda.html#ATLANTA" class="badge-link">ATLANTA</a></span>
@@ -1469,7 +1488,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–16, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-amy-seiwert">
   <div class="choreo-name">Amy Seiwert<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Renaissance</span>
@@ -1478,7 +1497,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 19–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-bobbi-jene-smith">
   <div class="choreo-name">Bobbi Jene Smith<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Smith / Schraiber World Premiere</span>
@@ -1488,7 +1507,7 @@ h1 { margin-bottom: 6px; }
     <span class="credit-note">(Bobbi Jene Smith / Or Schraiber)</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-yusha-marie-sorzano">
   <div class="choreo-name">Yusha-Marie Sorzano<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#e65100"><a href="performances_agenda.html#MEMPHIS" class="badge-link">Ballet Memphis</a></span>
@@ -1496,7 +1515,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 16–18, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-ben-stevenson">
   <div class="choreo-name">Ben Stevenson<span class="choreo-count">(5 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#37474f"><a href="performances_agenda.html#B_WEST" class="badge-link">Ballet West</a></span>
@@ -1525,7 +1544,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">May 14–23, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-eva-stone">
   <div class="choreo-name">Eva Stone<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">F O I L</span>
@@ -1534,7 +1553,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 19–28, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-kent-stowell">
   <div class="choreo-name">Kent Stowell<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#00695c"><a href="performances_agenda.html#PNB" class="badge-link">Pacific Northwest Ballet</a></span>
@@ -1542,7 +1561,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 5–21, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-susan-stroman">
   <div class="choreo-name">Susan Stroman<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">TAKE FIVE...More or Less</span>
@@ -1552,8 +1571,8 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-T">T</h2>
-<div class="choreo-block">
-  <div class="choreo-name">Pam Tanowitz<span class="choreo-count">(1 work)</span></div>
+<div class="choreo-block" id="choreo-pam-tanowitz">
+  <div class="choreo-name">Pam Tanowitz<span class="choreo-count">(1 work)</span> <a class="cross-link" href="guest_list.html#choreo-pam-tanowitz">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">New Tanowitz</span>
     <span class="badge" style="background:#1a237e"><a href="performances_agenda.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -1561,7 +1580,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Oct 18, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-paul-taylor">
   <div class="choreo-name">Paul Taylor<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Mercuric Tidings</span>
@@ -1570,7 +1589,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Dec 18–19, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-lynne-taylor-corbett">
   <div class="choreo-name">Lynne Taylor-Corbett<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Chiaroscuro</span>
@@ -1579,7 +1598,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Apr 9–18, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-twyla-tharp">
   <div class="choreo-name">Twyla Tharp<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">In the Upper Room</span>
@@ -1594,7 +1613,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Jun 4–13, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-houston-thomas">
   <div class="choreo-name">Houston Thomas<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Dear Chicago: A Love Letter</span>
@@ -1603,7 +1622,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Feb 4–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-kenneth-tindall">
   <div class="choreo-name">Kenneth Tindall<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#TEXAS" class="badge-link">TEXAS</a></span>
@@ -1616,8 +1635,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Nov 6–7, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Helgi Tomasson<span class="choreo-count">(2 works)</span></div>
+<div class="choreo-block" id="choreo-helgi-tomasson">
+  <div class="choreo-name">Helgi Tomasson<span class="choreo-count">(2 works)</span> <a class="cross-link" href="guest_list.html#choreo-helgi-tomasson">COD Interviews</a></div>
   <div class="work-entry">
     <span class="badge" style="background:#6a1b9a"><a href="performances_agenda.html#SFB" class="badge-link">San Francisco Ballet</a></span>
     <a class="prog-link" href="https://www.sfballet.org/productions/nutcracker/" target="_blank" rel="noopener noreferrer">Nutcracker</a>
@@ -1630,7 +1649,7 @@ h1 { margin-bottom: 6px; }
     <span class="credit-note">(Helgi Tomasson after Marius Petipa)</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-antony-tudor">
   <div class="choreo-name">Antony Tudor<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Gala Performance</span>
@@ -1640,7 +1659,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-V">V</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-ninette-de-valois">
   <div class="choreo-name">Ninette de Valois<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">The Rake&#x27;s Progress</span>
@@ -1650,7 +1669,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-W">W</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-melody-walsh">
   <div class="choreo-name">Melody Walsh<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#CINCINNATI" class="badge-link">CINCINNATI</a></span>
@@ -1658,7 +1677,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Sep 18–27, 2026</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-septime-webre">
   <div class="choreo-name">Septime Webre<span class="choreo-count">(3 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#KCB" class="badge-link">KCB</a></span>
@@ -1676,8 +1695,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 5–14, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Stanton Welch AM<span class="choreo-count">(6 works)</span></div>
+<div class="choreo-block" id="choreo-stanton-welch-am">
+  <div class="choreo-name">Stanton Welch AM<span class="choreo-count">(6 works)</span> <a class="cross-link" href="guest_list.html#choreo-stanton-welch">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Pecos Bill</span>
     <span class="badge" style="background:#2e7d32"><a href="performances_agenda.html#HOUSTON" class="badge-link">Houston Ballet</a></span>
@@ -1711,7 +1730,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Jun 10–27, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-bruce-wells">
   <div class="choreo-name">Bruce Wells<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_agenda.html#KCB" class="badge-link">KCB</a></span>
@@ -1724,8 +1743,8 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Mar 27 – Apr 4, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
-  <div class="choreo-name">Christopher Wheeldon<span class="choreo-count">(11 works)</span></div>
+<div class="choreo-block" id="choreo-christopher-wheeldon">
+  <div class="choreo-name">Christopher Wheeldon<span class="choreo-count">(11 works)</span> <a class="cross-link" href="guest_list.html#choreo-christopher-wheeldon">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Love Letter (on shuffle)</span>
     <span class="badge" style="background:#1a237e"><a href="performances_agenda.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -1790,7 +1809,7 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Jun 4–13, 2027</span>
   </div>
 </div>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-remi-w-rtmeyer">
   <div class="choreo-name">Remi Wörtmeyer<span class="choreo-count">(2 works)</span></div>
   <div class="work-entry">
     <span class="work-title">Significant Others</span>
@@ -1805,7 +1824,7 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <h2 class="letter-heading" id="letter-Y">Y</h2>
-<div class="choreo-block">
+<div class="choreo-block" id="choreo-lila-york">
   <div class="choreo-name">Lila York<span class="choreo-count">(1 work)</span></div>
   <div class="work-entry">
     <span class="work-title">Celts</span>
