@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Episodes with Video</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+    max-width: 1000px;
+}
+
+h1 {
+    margin-bottom: 12px;
+}
+
+.index {
+    position: sticky;
+    top: 0;
+    background: white;
+    padding: 8px 0;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.index a {
+    margin-right: 10px;
+    font-size: 13px;
+    color: #1a73e8;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.index a:hover {
+    text-decoration: underline;
+}
+
+.index-sep {
+    margin-right: 10px;
+    color: #bbb;
+    font-size: 13px;
+    font-weight: normal;
+}
+
+.letter-heading,
+.year-heading {
+    margin-top: 40px;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    scroll-margin-top: 60px;
+}
+
+.guest-block {
+    margin-top: 18px;
+    margin-bottom: 24px;
+    scroll-margin-top: 60px;
+}
+
+.guest-line {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.appearance,
+.episode-block {
+    margin-left: 20px;
+    margin-bottom: 12px;
+}
+
+.row2 {
+    color: #444;
+    line-height: 1.4;
+}
+
+.desc-button {
+    margin-left: 8px;
+    font-size: 12px;
+    padding: 2px 6px;
+    cursor: pointer;
+}
+
+.description {
+    display: none;
+    margin-top: 6px;
+    padding: 8px 10px;
+    background: #f5f5f5;
+    border-left: 3px solid #ccc;
+    color: #333;
+    line-height: 1.4;
+    white-space: pre-wrap;
+}
+
+a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.profile-badge {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 7px;
+    border: 1px solid #1a73e8;
+    border-radius: 3px;
+    color: #1a73e8;
+    vertical-align: middle;
+}
+
+.profile-badge:hover {
+    background: #e8f0fe;
+    text-decoration: none;
+}
+
+.patreon-badge {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 7px;
+    border: 1px solid #f96854;
+    border-radius: 3px;
+    color: #f96854;
+    vertical-align: middle;
+}
+
+.patreon-badge:hover {
+    background: #fff0ee;
+    text-decoration: none;
+}
+
+.youtube-badge {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 12px;
+    font-weight: normal;
+    padding: 2px 7px;
+    border: 1px solid #cc0000;
+    border-radius: 3px;
+    color: #cc0000;
+    vertical-align: middle;
+}
+
+.youtube-badge:hover {
+    background: #fff0f0;
+    text-decoration: none;
+}
+</style>
+<script>
+function toggleDescription(id, btn) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const isOpen = el.style.display === "block";
+    el.style.display = isOpen ? "none" : "block";
+    btn.textContent = isOpen ? "Show description" : "Hide description";
+    btn.setAttribute("aria-expanded", String(!isOpen));
+}
+</script>
+</head>
+<body>
+<h1>Episodes with Video</h1>
+
+<div class="index">
+<a href="index.html">Home</a>
+<span class="index-sep">|</span>
+<a href="#year-2026">2026</a>
+<a href="#year-2025">2025</a>
+<a href="#year-2020">2020</a>
+</div>
+<h2 id="year-2026" class="year-heading">2026</h2>
+<div class="episode-block">
+<div class="row2">Feb 11, 2026 — (480) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/480-live-with-alexei-ratmansky-amp-gonzalo-garcia-works-amp-process-at-the-guggenheim-with-miami-city-ballet" target="_blank" rel="noopener noreferrer">LIVE with <strong>Alexei Ratmansky</strong> &amp; <strong>Gonzalo Garcia</strong>, Works &amp; Process at the Guggenheim with Miami City Ballet</a>
+ <a class="youtube-badge" href="https://www.youtube.com/watch?v=oFt-FjXGGNA&amp;t=43s" target="_blank" rel="noopener noreferrer">YouTube Video</a>
+ <a class="patreon-badge" href="https://www.patreon.com/posts/480-live-with-at-150529836" target="_blank" rel="noopener noreferrer">Patreon</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-vid-1', this)">Show description</button>
+</div>
+<div id="desc-vid-1" class="description">WATCH the program on YouTube here.On February 7, 2026, Miami City Ballet presented a first look of world-renowned choreographer Alexei Ratmanskys new commission celebrating MCB founder Toby Lerner Ansins 85th birthday, before its February premiere in Florida. This work blends history, tradition, and forward-thinking creativity, with a score by Johann Strauss. Ratmansky and Miami City Ballets new artistic director Gonzalo Garcia will participate in the discussion, and MCB dancers perform excerpts.Miami City Ballet&#x27;s &#x27;Into The Magic City&#x27; program runs February 20th - March 1 in Miami and West Palm Beach. The program includes the World Premiere of &#x27;Roses from the South, Three Waltzes for Toby&#x27; as discussed here, as well as George Balanchine&#x27;s &#x27;Serenade&#x27; and &#x27;Tarantella&#x27;. Tickets available here.Works &amp; Process at the Guggenheim is a non-profit organization dedicated to championing the creative process from studio to stage, with programs just like this one. Find more information and ways to support on their website: https://www.worksandprocess.org/.Listen to Conversations on Dance ad-free on Patreon: https://www.patreon.com/cw/conversationsondance</div>
+</div>
+<h2 id="year-2025" class="year-heading">2025</h2>
+<div class="episode-block">
+<div class="row2">Oct 29, 2025 — (471) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/471-live-from-miami-city-ballet-with-justin-peck-and-gonzalo-garcia" target="_blank" rel="noopener noreferrer">LIVE from Miami City Ballet with <strong>Justin Peck</strong> and <strong>Gonzalo Garcia</strong></a>
+ <a class="youtube-badge" href="https://www.youtube.com/watch?v=je6FADBH-eQ" target="_blank" rel="noopener noreferrer">YouTube Video</a>
+ <a class="patreon-badge" href="https://www.patreon.com/posts/471-live-from-142415635" target="_blank" rel="noopener noreferrer">Patreon</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-vid-2', this)">Show description</button>
+</div>
+<div id="desc-vid-2" class="description">This episode was recorded live on October 18, 2025 at The Adrienne Arsht Center for the Performing Arts in Miami before the opening of Miami City Ballet&#x27;s 40th anniversary season. Guests in this episode are is Tony Award winning choreographer, Justin Peck, and Miami City Ballet Artistic Director, Gonzalo Garcia. The pre-performance talk coordinated with the all Peck program that the company opened their season with, which included &quot;Year of The Rabbit,&quot; &quot;Chutes and Ladders,&quot; and &quot;Heatscape.&quot; WATCH this episode on YouTube! Click here: https://www.youtube.com/watch?v=je6FADBH-eQListen to Conversations on Dance ad-free on Patreon: https://www.patreon.com/cw/conversationsondance</div>
+</div>
+<h2 id="year-2020" class="year-heading">2020</h2>
+<div class="episode-block">
+<div class="row2">Aug 13, 2020 — (196) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a558" target="_blank" rel="noopener noreferrer"><strong>Calvin Royal III</strong>, Soloist with American Ballet Theatre</a>
+ <a class="youtube-badge" href="https://www.youtube.com/watch?v=jVcSp0lGI5w" target="_blank" rel="noopener noreferrer">YouTube Video</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-vid-3', this)">Show description</button>
+</div>
+<div id="desc-vid-3" class="description">Today, on the Conversations on Dance podcast, we are sharing our chat with American Ballet Theatre Soloist, Calvin Royal III, that was recorded as a part of the 2020 Vail Dance Festival: Digital Edition. Through August 15th, you can watch our Zoom chat with Calvin on the Vail Dance Festival Facebook page or on their YouTube Channel. While you are there, we encourage you to explore the incredible 8 evenings of content that truly highlights what makes this festival so special! But hurry, videos are only available through August 15th. Conversations on Dance is generously supported by Yumiko (yumiko.com). The post (196) Calvin Royal III, Soloist with American Ballet Theatre appeared first on tendusunderapalmtree.com.</div>
+</div>
+<div class="episode-block">
+<div class="row2">Aug 10, 2020 — (195) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a559" target="_blank" rel="noopener noreferrer"><strong>Isabella Boylston</strong> and James Whiteside  2020 Vail Dance Festival</a>
+ <a class="youtube-badge" href="https://www.youtube.com/watch?v=foN4IS-7_NU" target="_blank" rel="noopener noreferrer">YouTube Video</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-vid-4', this)">Show description</button>
+</div>
+<div id="desc-vid-4" class="description">Today, on the Conversations on Dance podcast, we are sharing our chat with American Ballet Theatre Principal Dancers, Isabella Boylston and James Whiteside, that was recorded as a part of the 2020 Vail Dance Festival: Digital Edition. Through August 15th, you can watch our Zoom chat with James and Bella on the Vail Dance Festival Facebook page or on their YouTube Channel. While you are there, we encourage you to explore the incredible 8 evenings of content that truly highlights what makes this festival so special! But hurry, videos are only available through August 15th. Conversations on Dance is generously supported by Yumiko (yumiko.com). The post (195) Isabella Boylston and James Whiteside 2020 Vail Dance Festival appeared first on tendusunderapalmtree.com.</div>
+</div>
+</body>
+</html>
