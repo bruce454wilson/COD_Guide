@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Dance Companies — Dance Explorer</title>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+    color: #222;
+}
+
+.site-header {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 28px 48px 22px;
+    border-bottom: 4px solid #1a73e8;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+}
+
+.site-header .home-link {
+    font-size: 13px;
+    color: #b0b8cc;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.site-header .home-link:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.02em;
+}
+
+.content {
+    max-width: 480px;
+    margin: 36px auto;
+    padding: 0 32px 48px;
+}
+
+.card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 24px 28px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.card-header {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #1a73e8;
+    margin: 0 0 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8f0fe;
+}
+
+h2 {
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #888;
+    margin: 22px 0 6px;
+    padding: 0;
+    border: none;
+}
+
+h2:first-of-type {
+    margin-top: 2px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 4px;
+}
+
+ul li {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+ul li a,
+ul li span.soon {
+    display: block;
+    padding: 8px 4px 8px 10px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #1a1a2e;
+    border-left: 3px solid transparent;
+    transition: background 0.12s, color 0.12s;
+}
+
+ul li a:hover {
+    background: #f0f5ff;
+    color: #1a73e8;
+    border-left-color: #1a73e8;
+    text-decoration: none;
+}
+
+span.soon {
+    color: #bbb;
+    font-style: italic;
+    font-size: 14px;
+    cursor: default;
+}
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="home-link">← Dance Explorer</a>
+  <h1>Dance Companies</h1>
+</header>
+
+<div class="content">
+  <div class="card">
+    <div class="card-header">2026–27 Season</div>
+
+    <h2>Performances</h2>
+    <ul>
+      <li><a href="performances_agenda.html">By Date</a></li>
+      <li><a href="performances_choreographer.html">By Choreographer</a></li>
+      <li><span class="soon">By Work</span></li>
+      <li><a href="performances_company.html">By Company</a></li>
+      <li><a href="performances_calendar.html">Calendar Grid</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
