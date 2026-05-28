@@ -100,19 +100,44 @@ h1 { margin-bottom: 6px; }
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
     padding: 0 6px; pointer-events: none;
 }
+
+/* --- home nav dropdown --- */
+.home-nav { position: relative; display: inline-block; vertical-align: middle; }
+.home-nav-arrow {
+    background: none; border: none; padding: 0 1px 0 3px; cursor: pointer;
+    font-size: 9px; color: currentColor; opacity: 0.55; vertical-align: middle;
+    line-height: 1; font-family: inherit;
+}
+.home-nav-arrow:hover { opacity: 1; }
+.home-nav-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: white; border: 1px solid #ddd; border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    white-space: nowrap; z-index: 500; min-width: 145px;
+}
+.home-nav-dropdown.open { display: block; }
+.home-nav-dropdown a {
+    display: block; padding: 8px 14px;
+    color: #333 !important; font-weight: normal !important;
+    text-decoration: none; font-size: 13px;
+}
+.home-nav-dropdown a:first-child { border-radius: 5px 5px 0 0; }
+.home-nav-dropdown a:last-child  { border-radius: 0 0 5px 5px; }
+.home-nav-dropdown a:hover { background: #f5f5f5; color: #1a73e8 !important; }
 </style>
 </head>
 <body>
 <h1>2026–27 Dance Season</h1>
 <p class="lede">Month-by-month calendar. Hover any bar for the program title. Click to see the full agenda entry.</p>
-<div class="month-jump"><a href="index.html"               class="slink">&#8592; Home</a> <span class="sep">|</span> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <a href="#July-2027">Jul&nbsp;27</a> <a href="#August-2027">Aug&nbsp;27</a> <span class="sep">|</span> <a href="performances_agenda.html" class="slink">Agenda view &#8594;</a></div>
+<div class="month-jump"><span class="home-nav"><a href="danceexplorer.html" class="slink">&#8592;&nbsp;Home</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="podcasts.html">Podcasts</a><a href="performances.html">Performances</a></div></span> <span class="sep">|</span> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <a href="#July-2027">Jul&nbsp;27</a> <a href="#August-2027">Aug&nbsp;27</a> <span class="sep">|</span> <a href="performances_agenda.html" class="slink">Agenda view &#8594;</a></div>
 <div class="legend"><div class="legend-item"><div class="legend-swatch" style="background:#555"></div> Austin</div><div class="legend-item"><div class="legend-swatch" style="background:#e65100"></div> Memphis</div><div class="legend-item"><div class="legend-swatch" style="background:#b71c1c"></div>ABT</div><div class="legend-item"><div class="legend-swatch" style="background:#8B0000"></div>Ailey</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Atlanta </div><div class="legend-item"><div class="legend-swatch" style="background:#37474f"></div>Ballet West</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>BalletMet</div><div class="legend-item"><div class="legend-swatch" style="background:#0277bd"></div>Boston </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Carolina </div><div class="legend-item"><div class="legend-swatch" style="background:#2d6a4f"></div>Charlotte </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Cincinnati </div><div class="legend-item"><div class="legend-swatch" style="background:#1B4F8A"></div>Colorado </div><div class="legend-item"><div class="legend-swatch" style="background:#2e7d32"></div>Houston </div><div class="legend-item"><div class="legend-swatch" style="background:#bf360c"></div>Joffrey </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Kansas City </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Louisville </div><div class="legend-item"><div class="legend-swatch" style="background:#00838f"></div>Miami City </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Milwaukee </div><div class="legend-item"><div class="legend-swatch" style="background:#1a237e"></div>NYCB</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Nashville </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Nevada</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>New Jersey </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Oklahoma City </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Oregon</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Orlando </div><div class="legend-item"><div class="legend-swatch" style="background:#00695c"></div>PNB</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Philadelphia </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Pittsburgh  Theatre</div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Richmond </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Sacramento </div><div class="legend-item"><div class="legend-swatch" style="background:#6a1b9a"></div>San Francisco </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Sarasota </div><div class="legend-item"><div class="legend-swatch" style="background:#555"></div>Texas</div></div>
 <p class="legend-note">Company and program shown at start of run. Hover any bar for the program title. Faded = date range only; exact dates TBD. Mon–Wed column hidden for date-range programs (except Nutcracker).</p>
 <div class="month-section" id="September-2026">
 <div class="month-heading">September 2026</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px;">
 <div class="dn dn-mw in-mo" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Aug</span>31&thinsp;·&thinsp;<span class="dn-lbl">Sep</span>1&thinsp;·&thinsp;2</div>
 <div class="dn in-mo" style="grid-column:2;grid-row:1;">3</div>
 <div class="dn in-mo" style="grid-column:3;grid-row:1;">4</div>
@@ -121,7 +146,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo" style="grid-column:1;grid-row:1;">7&thinsp;·&thinsp;8&thinsp;·&thinsp;9</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">10</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">11</div>
@@ -174,7 +199,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">October 2026</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Sep</span>28&thinsp;·&thinsp;29&thinsp;·&thinsp;30</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;"><span class="dn-lbl">Oct</span>1</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">2</div>
@@ -194,7 +219,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">5&thinsp;·&thinsp;6&thinsp;·&thinsp;7</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">8</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">9</div>
@@ -207,8 +232,8 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts" href="performances_agenda.html#prog-OREGON-swan-lake" title="Swan Lake" style="grid-row:6;grid-column:4/6;background:#555;"><span class="ev-name">Oregon — Swan Lake</span></a>
 <a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-COLORADO-don-quixote" title="Don Quixote" style="grid-row:8;grid-column:1/6;background:#1B4F8A;"><span class="ev-name">Colorado  — Don Quixote</span></a>
-<a class="ev" href="performances_agenda.html#prog-NYCB-contemporary-choreography-i" title="Contemporary Choreography I" style="grid-row:10;grid-column:1/6;background:#1a237e;"><span class="ev-name">NYCB — Contemporary Choreography I</span></a>
-<a class="ev" href="performances_agenda.html#prog-CHARLOTTE-black-box-series" title="Black Box Series" style="grid-row:11;grid-column:1/6;background:#2d6a4f;"><span class="ev-name">Charlotte  — Black Box Series</span></a>
+<a class="ev" href="performances_agenda.html#prog-NYCB-contemporary-choreography-i" title="Contemporary Choreography I" style="grid-row:9;grid-column:1/6;background:#1a237e;"><span class="ev-name">NYCB — Contemporary Choreography I</span></a>
+<a class="ev" href="performances_agenda.html#prog-CHARLOTTE-black-box-series" title="Black Box Series" style="grid-row:10;grid-column:1/6;background:#2d6a4f;"><span class="ev-name">Charlotte  — Black Box Series</span></a>
 </div>
 </div>
 <div class="week-block">
@@ -235,7 +260,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">19&thinsp;·&thinsp;20&thinsp;·&thinsp;21</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">22</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">23</div>
@@ -248,9 +273,9 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts" href="performances_agenda.html#prog-B_WEST-dracula" title="Dracula" style="grid-row:6;grid-column:3/6;background:#37474f;"><span class="ev-name">Ballet West — Dracula</span></a>
 <a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 <a class="ev" href="performances_agenda.html#prog-CAROLINA-dracula" title="Dracula" style="grid-row:8;grid-column:1/6;background:#555;"><span class="ev-name">Carolina  — Dracula</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-BALLETMET-marilyn" title="Marilyn" style="grid-row:10;grid-column:1/5;background:#555;"><span class="ev-name">BalletMet — Marilyn</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-MCB-fall-mix" title="Fall Mix" style="grid-row:12;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — Fall Mix</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-KCB-the-wizard-of-oz" title="The Wizard of Oz" style="grid-row:13;grid-column:1/6;background:#555;"><span class="ev-name">Kansas City  — The Wizard of Oz</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-BALLETMET-marilyn" title="Marilyn" style="grid-row:9;grid-column:1/5;background:#555;"><span class="ev-name">BalletMet — Marilyn</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-MCB-fall-mix" title="Fall Mix" style="grid-row:10;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — Fall Mix</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-KCB-the-wizard-of-oz" title="The Wizard of Oz" style="grid-row:11;grid-column:1/6;background:#555;"><span class="ev-name">Kansas City  — The Wizard of Oz</span></a>
 </div>
 </div>
 </div>
@@ -258,7 +283,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">November 2026</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Oct</span>26&thinsp;·&thinsp;27&thinsp;·&thinsp;28</div>
 <div class="dn has-ev" style="grid-column:2;grid-row:1;">29</div>
 <div class="dn has-ev" style="grid-column:3;grid-row:1;">30</div>
@@ -267,13 +292,13 @@ h1 { margin-bottom: 6px; }
 <a class="ev ends" href="performances_agenda.html#prog-RICHMOND-elevation-moving-art-two" title="Elevation / Moving Art Two" style="grid-row:2;grid-column:1/6;background:#555;"><span class="ev-name">Richmond  — Elevation / Moving Art Two</span></a>
 <a class="ev starts ends approx" href="performances_agenda.html#prog-NASHVILLE-dia-de-los-muertos" title="Dia de los Muertos" style="grid-row:3;grid-column:2/6;background:#555;"><span class="ev-name">Nashville  — Dia de los Muertos</span></a>
 <a class="ev starts ends" href="performances_agenda.html#prog-LOUISVILLE-frankenstein" title="Frankenstein" style="grid-row:4;grid-column:3/5;background:#555;"><span class="ev-name">Louisville  — Frankenstein</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-B_WEST-dracula" title="Dracula" style="grid-row:6;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Dracula</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-CAROLINA-dracula" title="Dracula" style="grid-row:8;grid-column:1/6;background:#555;"><span class="ev-name">Carolina  — Dracula</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-B_WEST-dracula" title="Dracula" style="grid-row:5;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Dracula</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:6;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-CAROLINA-dracula" title="Dracula" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Carolina  — Dracula</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">2&thinsp;·&thinsp;3&thinsp;·&thinsp;4</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">5</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">6</div>
@@ -283,24 +308,24 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends" href="performances_agenda.html#prog-MILWAUKEE-mirror-mirror" title="Mirror Mirror" style="grid-row:3;grid-column:3/6;background:#555;"><span class="ev-name">Milwaukee  — Mirror Mirror</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-B_WEST-rolling-with-the-stones" title="Rolling with the Stones" style="grid-row:4;grid-column:3/6;background:#37474f;"><span class="ev-name">Ballet West — Rolling with the Stones</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-PNB-ghost-stories" title="Ghost Stories" style="grid-row:5;grid-column:3/6;background:#00695c;"><span class="ev-name">PNB — Ghost Stories</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:6;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">9&thinsp;·&thinsp;10&thinsp;·&thinsp;11</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">12</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">13</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">14</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">15</div>
 <a class="ev starts ends" href="performances_agenda.html#prog-NEW_JERSEY-fall-2026-program-tba" title="Fall 2026 Program (TBA)" style="grid-row:2;grid-column:3/4;background:#555;"><span class="ev-name">New Jersey  — Fall 2026 Program (TBA)</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-B_WEST-rolling-with-the-stones" title="Rolling with the Stones" style="grid-row:4;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Rolling with the Stones</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-PNB-ghost-stories" title="Ghost Stories" style="grid-row:5;grid-column:1/6;background:#00695c;"><span class="ev-name">PNB — Ghost Stories</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-B_WEST-rolling-with-the-stones" title="Rolling with the Stones" style="grid-row:3;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Rolling with the Stones</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-PNB-ghost-stories" title="Ghost Stories" style="grid-row:4;grid-column:1/6;background:#00695c;"><span class="ev-name">PNB — Ghost Stories</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:5;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">16&thinsp;·&thinsp;17&thinsp;·&thinsp;18</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">19</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">20</div>
@@ -308,7 +333,7 @@ h1 { margin-bottom: 6px; }
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">22</div>
 <a class="ev starts ends" href="performances_agenda.html#prog-CAROLINA-jewels" title="Jewels" style="grid-row:2;grid-column:2/6;background:#555;"><span class="ev-name">Carolina  — Jewels</span></a>
 <a class="ev starts ends approx" href="performances_agenda.html#prog-SARASOTA-program-two" title="Program Two" style="grid-row:3;grid-column:3/5;background:#555;"><span class="ev-name">Sarasota  — Program Two</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:4;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
@@ -334,7 +359,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">December 2026</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Nov</span>30&thinsp;·&thinsp;<span class="dn-lbl">Dec</span>1&thinsp;·&thinsp;2</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">3</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">4</div>
@@ -365,7 +390,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">7&thinsp;·&thinsp;8&thinsp;·&thinsp;9</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">10</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">11</div>
@@ -444,7 +469,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">21&thinsp;·&thinsp;22&thinsp;·&thinsp;23</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">24</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">25</div>
@@ -478,8 +503,8 @@ h1 { margin-bottom: 6px; }
 <a class="ev ends" href="performances_agenda.html#prog-OK_CITY-the-nutcracker" title="The Nutcracker" style="grid-row:26;grid-column:1/2;background:#555;"><span class="ev-name">Oklahoma City  — The Nutcracker</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-LOUISVILLE-the-brown-forman-nutcracker" title="The Brown-Forman Nutcracker" style="grid-row:27;grid-column:1/2;background:#555;"><span class="ev-name">Louisville  — The Brown-Forman Nutcracker</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-MCB-george-balanchine-s-the-nutcracker" title="George Balanchine&#x27;s The Nutcracker" style="grid-row:28;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — George Balanchine&#x27;s The Nutcracker</span></a>
-<a class="ev ends approx" href="performances_agenda.html#prog-SACRAMENTO-the-nutcracker" title="The Nutcracker" style="grid-row:30;grid-column:1/3;background:#555;"><span class="ev-name">Sacramento  — The Nutcracker</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-NEVADA-george-balanchine-s-the-nutcracker" title="George Balanchine&#x27;s The Nutcracker" style="grid-row:31;grid-column:1/6;background:#555;"><span class="ev-name">Nevada — George Balanchine&#x27;s The Nutcracker</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-SACRAMENTO-the-nutcracker" title="The Nutcracker" style="grid-row:29;grid-column:1/3;background:#555;"><span class="ev-name">Sacramento  — The Nutcracker</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-NEVADA-george-balanchine-s-the-nutcracker" title="George Balanchine&#x27;s The Nutcracker" style="grid-row:30;grid-column:1/6;background:#555;"><span class="ev-name">Nevada — George Balanchine&#x27;s The Nutcracker</span></a>
 </div>
 </div>
 </div>
@@ -487,42 +512,42 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">January 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Dec</span>28&thinsp;·&thinsp;29&thinsp;·&thinsp;30</div>
 <div class="dn has-ev" style="grid-column:2;grid-row:1;">31</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;"><span class="dn-lbl">Jan</span>1</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">2</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">3</div>
-<a class="ev ends approx" href="performances_agenda.html#prog-HOUSTON-the-nutcracker" title="The Nutcracker" style="grid-row:4;grid-column:1/2;background:#2e7d32;"><span class="ev-name">Houston  — The Nutcracker</span></a>
-<a class="ev ends approx" href="performances_agenda.html#prog-PNB-the-nutcracker" title="The Nutcracker" style="grid-row:5;grid-column:1/2;background:#00695c;"><span class="ev-name">PNB — The Nutcracker</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-BOSTON-the-nutcracker" title="The Nutcracker" style="grid-row:6;grid-column:1/3;background:#0277bd;"><span class="ev-name">Boston  — The Nutcracker</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
-<a class="ev ends approx" href="performances_agenda.html#prog-AILEY-ailey-at-new-york-city-center" title="Ailey at New York City Center" style="grid-row:11;grid-column:2/6;background:#8B0000;"><span class="ev-name">Ailey — Ailey at New York City Center</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-PHILADELPHIA-george-balanchine-s-the-nutcracker" title="George Balanchine&#x27;s The Nutcracker" style="grid-row:19;grid-column:1/3;background:#555;"><span class="ev-name">Philadelphia  — George Balanchine&#x27;s The Nutcracker</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-HOUSTON-the-nutcracker" title="The Nutcracker" style="grid-row:2;grid-column:1/2;background:#2e7d32;"><span class="ev-name">Houston  — The Nutcracker</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-PNB-the-nutcracker" title="The Nutcracker" style="grid-row:3;grid-column:1/2;background:#00695c;"><span class="ev-name">PNB — The Nutcracker</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-BOSTON-the-nutcracker" title="The Nutcracker" style="grid-row:4;grid-column:1/3;background:#0277bd;"><span class="ev-name">Boston  — The Nutcracker</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:5;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-AILEY-ailey-at-new-york-city-center" title="Ailey at New York City Center" style="grid-row:6;grid-column:2/6;background:#8B0000;"><span class="ev-name">Ailey — Ailey at New York City Center</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-PHILADELPHIA-george-balanchine-s-the-nutcracker" title="George Balanchine&#x27;s The Nutcracker" style="grid-row:7;grid-column:1/3;background:#555;"><span class="ev-name">Philadelphia  — George Balanchine&#x27;s The Nutcracker</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">4&thinsp;·&thinsp;5&thinsp;·&thinsp;6</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">7</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">8</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">9</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">10</div>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:2;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">11&thinsp;·&thinsp;12&thinsp;·&thinsp;13</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">14</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">15</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">16</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">17</div>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:2;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">18&thinsp;·&thinsp;19&thinsp;·&thinsp;20</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">21</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">22</div>
@@ -530,11 +555,11 @@ h1 { margin-bottom: 6px; }
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">24</div>
 <a class="ev starts" href="performances_agenda.html#prog-NYCB-romeo-juliet" title="Romeo &amp; Juliet" style="grid-row:2;grid-column:1/6;background:#1a237e;"><span class="ev-name">NYCB — Romeo &amp; Juliet</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-MILWAUKEE-mke-mix-art-moves" title="MKE MIX: Art Moves" style="grid-row:3;grid-column:3/6;background:#555;"><span class="ev-name">Milwaukee  — MKE MIX: Art Moves</span></a>
-<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
+<a class="ev" href="performances_agenda.html#prog-ORLANDO-uncorked" title="Uncorked" style="grid-row:4;grid-column:1/6;background:#555;"><span class="ev-name">Orlando  — Uncorked</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">25&thinsp;·&thinsp;26&thinsp;·&thinsp;27</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">28</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">29</div>
@@ -553,7 +578,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">February 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">1&thinsp;·&thinsp;2&thinsp;·&thinsp;3</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">4</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">5</div>
@@ -570,7 +595,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">8&thinsp;·&thinsp;9&thinsp;·&thinsp;10</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">11</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">12</div>
@@ -623,7 +648,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">22&thinsp;·&thinsp;23&thinsp;·&thinsp;24</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">25</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">26</div>
@@ -640,8 +665,8 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends approx" href="performances_agenda.html#prog-NASHVILLE-cinderella" title="Cinderella" style="grid-row:8;grid-column:3/6;background:#555;"><span class="ev-name">Nashville  — Cinderella</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-NYCB-contemporary-choreography-ii" title="Contemporary Choreography II" style="grid-row:9;grid-column:1/5;background:#1a237e;"><span class="ev-name">NYCB — Contemporary Choreography II</span></a>
 <a class="ev starts approx" href="performances_agenda.html#prog-SARASOTA-program-five" title="Program Five" style="grid-row:10;grid-column:3/6;background:#555;"><span class="ev-name">Sarasota  — Program Five</span></a>
-<a class="ev ends approx" href="performances_agenda.html#prog-TEXAS-unbound" title="Unbound" style="grid-row:12;grid-column:2/6;background:#555;"><span class="ev-name">Texas — Unbound</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-TEXAS-unbound" title="Unbound" style="grid-row:11;grid-column:2/6;background:#555;"><span class="ev-name">Texas — Unbound</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:12;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 </div>
@@ -649,7 +674,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">March 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">1&thinsp;·&thinsp;2&thinsp;·&thinsp;3</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">4</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">5</div>
@@ -664,11 +689,11 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends" href="performances_agenda.html#prog-MILWAUKEE-dorian-gray" title="Dorian Gray" style="grid-row:8;grid-column:3/6;background:#555;"><span class="ev-name">Milwaukee  — Dorian Gray</span></a>
 <a class="ev starts ends" href="performances_agenda.html#prog-SACRAMENTO-wild-sweet-love" title="Wild Sweet Love" style="grid-row:9;grid-column:3/6;background:#555;"><span class="ev-name">Sacramento  — Wild Sweet Love</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-COLORADO-the-wizard-of-oz" title="The Wizard of Oz" style="grid-row:10;grid-column:3/6;background:#1B4F8A;"><span class="ev-name">Colorado  — The Wizard of Oz</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:11;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">8&thinsp;·&thinsp;9&thinsp;·&thinsp;10</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">11</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">12</div>
@@ -685,11 +710,11 @@ h1 { margin-bottom: 6px; }
 <a class="ev ends" href="performances_agenda.html#prog-COLORADO-the-wizard-of-oz" title="The Wizard of Oz" style="grid-row:10;grid-column:1/6;background:#1B4F8A;"><span class="ev-name">Colorado  — The Wizard of Oz</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-KCB-romeo-juliet" title="Romeo &amp; Juliet" style="grid-row:11;grid-column:3/6;background:#555;"><span class="ev-name">Kansas City  — Romeo &amp; Juliet</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-OK_CITY-future-voices-a-choreographic-showcase" title="Future Voices: A Choreographic Showcase" style="grid-row:12;grid-column:3/6;background:#555;"><span class="ev-name">Oklahoma City  — Future Voices: A Choreographic Showcase</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:13;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">15&thinsp;·&thinsp;16&thinsp;·&thinsp;17</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">18</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">19</div>
@@ -706,11 +731,11 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts" href="performances_agenda.html#prog-PNB-director-s-choice" title="Director&#x27;s Choice" style="grid-row:10;grid-column:3/6;background:#00695c;"><span class="ev-name">PNB — Director&#x27;s Choice</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-KCB-romeo-juliet" title="Romeo &amp; Juliet" style="grid-row:11;grid-column:1/6;background:#555;"><span class="ev-name">Kansas City  — Romeo &amp; Juliet</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-OK_CITY-future-voices-a-choreographic-showcase" title="Future Voices: A Choreographic Showcase" style="grid-row:12;grid-column:1/6;background:#555;"><span class="ev-name">Oklahoma City  — Future Voices: A Choreographic Showcase</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:13;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">22&thinsp;·&thinsp;23&thinsp;·&thinsp;24</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">25</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">26</div>
@@ -719,9 +744,9 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends approx" href="performances_agenda.html#prog-SARASOTA-program-six" title="Program Six" style="grid-row:2;grid-column:3/5;background:#555;"><span class="ev-name">Sarasota  — Program Six</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-MCB-spring-mix" title="Spring Mix" style="grid-row:3;grid-column:3/6;background:#00838f;"><span class="ev-name">Miami City  — Spring Mix</span></a>
 <a class="ev starts approx" href="performances_agenda.html#prog-PNB-snow-white" title="Snow White" style="grid-row:4;grid-column:4/6;background:#00695c;"><span class="ev-name">PNB — Snow White</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-SFB-a-midsummer-night-s-dream" title="A Midsummer Night&#x27;s Dream" style="grid-row:7;grid-column:1/5;background:#6a1b9a;"><span class="ev-name">San Francisco  — A Midsummer Night&#x27;s Dream</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-PNB-director-s-choice" title="Director&#x27;s Choice" style="grid-row:10;grid-column:1/6;background:#00695c;"><span class="ev-name">PNB — Director&#x27;s Choice</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-SFB-a-midsummer-night-s-dream" title="A Midsummer Night&#x27;s Dream" style="grid-row:5;grid-column:1/5;background:#6a1b9a;"><span class="ev-name">San Francisco  — A Midsummer Night&#x27;s Dream</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-PNB-director-s-choice" title="Director&#x27;s Choice" style="grid-row:6;grid-column:1/6;background:#00695c;"><span class="ev-name">PNB — Director&#x27;s Choice</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 </div>
@@ -729,7 +754,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">April 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Mar</span>29&thinsp;·&thinsp;30&thinsp;·&thinsp;31</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;"><span class="dn-lbl">Apr</span>1</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">2</div>
@@ -743,11 +768,11 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends" href="performances_agenda.html#prog-ORLANDO-director-s-collection" title="Director&#x27;s Collection" style="grid-row:7;grid-column:3/6;background:#555;"><span class="ev-name">Orlando  — Director&#x27;s Collection</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-OREGON-madcap" title="MADCAP" style="grid-row:8;grid-column:3/6;background:#555;"><span class="ev-name">Oregon — MADCAP</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-BALLETMET-for-the-love-of-dance-2-0" title="For the Love of Dance 2.0" style="grid-row:9;grid-column:3/6;background:#555;"><span class="ev-name">BalletMet — For the Love of Dance 2.0</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:10;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">5&thinsp;·&thinsp;6&thinsp;·&thinsp;7</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">8</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">9</div>
@@ -765,11 +790,11 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts" href="performances_agenda.html#prog-COLORADO-masterworks" title="Masterworks" style="grid-row:11;grid-column:3/6;background:#1B4F8A;"><span class="ev-name">Colorado  — Masterworks</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-NEVADA-alice-in-wonderland" title="Alice (in Wonderland)" style="grid-row:12;grid-column:3/6;background:#555;"><span class="ev-name">Nevada — Alice (in Wonderland)</span></a>
 <a class="ev starts ends" href="performances_agenda.html#prog-OREGON-annual-school-performance" title="Annual School Performance" style="grid-row:13;grid-column:4/6;background:#555;"><span class="ev-name">Oregon — Annual School Performance</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:14;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">12&thinsp;·&thinsp;13&thinsp;·&thinsp;14</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">15</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">16</div>
@@ -779,14 +804,14 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts" href="performances_agenda.html#prog-PNB-a-midsummer-night-s-dream" title="A Midsummer Night&#x27;s Dream" style="grid-row:2;grid-column:3/6;background:#00695c;"><span class="ev-name">PNB — A Midsummer Night&#x27;s Dream</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-MCB-spring-mix" title="Spring Mix" style="grid-row:3;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — Spring Mix</span></a>
 <a class="ev starts ends" href="performances_agenda.html#prog-BALLETMET-my-first-sleeping-beauty" title="My First Sleeping Beauty" style="grid-row:4;grid-column:4/6;background:#555;"><span class="ev-name">BalletMet — My First Sleeping Beauty</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-B_WEST-carmina-burana" title="Carmina Burana" style="grid-row:10;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Carmina Burana</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-COLORADO-masterworks" title="Masterworks" style="grid-row:11;grid-column:1/6;background:#1B4F8A;"><span class="ev-name">Colorado  — Masterworks</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-NEVADA-alice-in-wonderland" title="Alice (in Wonderland)" style="grid-row:12;grid-column:1/6;background:#555;"><span class="ev-name">Nevada — Alice (in Wonderland)</span></a>
-<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-B_WEST-carmina-burana" title="Carmina Burana" style="grid-row:5;grid-column:1/5;background:#37474f;"><span class="ev-name">Ballet West — Carmina Burana</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-COLORADO-masterworks" title="Masterworks" style="grid-row:6;grid-column:1/6;background:#1B4F8A;"><span class="ev-name">Colorado  — Masterworks</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-NEVADA-alice-in-wonderland" title="Alice (in Wonderland)" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Nevada — Alice (in Wonderland)</span></a>
+<a class="ev" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:8;grid-column:1/6;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">19&thinsp;·&thinsp;20&thinsp;·&thinsp;21</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">22</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">23</div>
@@ -798,7 +823,7 @@ h1 { margin-bottom: 6px; }
 <a class="ev starts ends" href="performances_agenda.html#prog-CAROLINA-the-rite-of-spring" title="The Rite of Spring" style="grid-row:5;grid-column:2/6;background:#555;"><span class="ev-name">Carolina  — The Rite of Spring</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-SFB-manon" title="Manon" style="grid-row:6;grid-column:3/6;background:#6a1b9a;"><span class="ev-name">San Francisco  — Manon</span></a>
 <a class="ev starts" href="performances_agenda.html#prog-MILWAUKEE-a-midsummer-night-s-dream" title="A Midsummer Night&#x27;s Dream" style="grid-row:7;grid-column:3/6;background:#555;"><span class="ev-name">Milwaukee  — A Midsummer Night&#x27;s Dream</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:19;grid-column:1/5;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-NEW_JERSEY-spring-2027-program-tba" title="Spring 2027 Program (TBA)" style="grid-row:8;grid-column:1/5;background:#555;"><span class="ev-name">New Jersey  — Spring 2027 Program (TBA)</span></a>
 </div>
 </div>
 </div>
@@ -806,7 +831,7 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">May 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">Apr</span>26&thinsp;·&thinsp;27&thinsp;·&thinsp;28</div>
 <div class="dn has-ev" style="grid-column:2;grid-row:1;">29</div>
 <div class="dn has-ev" style="grid-column:3;grid-row:1;">30</div>
@@ -824,7 +849,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">3&thinsp;·&thinsp;4&thinsp;·&thinsp;5</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">6</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">7</div>
@@ -870,7 +895,7 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">17&thinsp;·&thinsp;18&thinsp;·&thinsp;19</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">20</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">21</div>
@@ -879,17 +904,17 @@ h1 { margin-bottom: 6px; }
 <a class="ev ends" href="performances_agenda.html#prog-NYCB-copland-dance-episodes" title="Copland Dance Episodes" style="grid-row:2;grid-column:1/6;background:#1a237e;"><span class="ev-name">NYCB — Copland Dance Episodes</span></a>
 <a class="ev ends" href="performances_agenda.html#prog-NYCB-eclectic-nycb-iii" title="Eclectic NYCB III" style="grid-row:3;grid-column:1/5;background:#1a237e;"><span class="ev-name">NYCB — Eclectic NYCB III</span></a>
 <a class="ev starts ends" href="performances_agenda.html#prog-LOUISVILLE-momentum" title="Momentum" style="grid-row:4;grid-column:3/6;background:#555;"><span class="ev-name">Louisville  — Momentum</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-BOSTON-spring-experience-2027" title="Spring Experience 2027" style="grid-row:6;grid-column:1/6;background:#0277bd;"><span class="ev-name">Boston  — Spring Experience 2027</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-JOFFREY-the-sleeping-beauty" title="The Sleeping Beauty" style="grid-row:7;grid-column:1/6;background:#bf360c;"><span class="ev-name">Joffrey  — The Sleeping Beauty</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-RICHMOND-director-s-choice-moving-art-four" title="Director&#x27;s Choice / Moving Art Four" style="grid-row:8;grid-column:1/6;background:#555;"><span class="ev-name">Richmond  — Director&#x27;s Choice / Moving Art Four</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-MCB-alexei-ratmansky-s-swan-lake" title="Alexei Ratmansky&#x27;s Swan Lake" style="grid-row:9;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — Alexei Ratmansky&#x27;s Swan Lake</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-BALLETMET-carmen-maquia" title="CARMEN.maquia" style="grid-row:11;grid-column:1/5;background:#555;"><span class="ev-name">BalletMet — CARMEN.maquia</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-KCB-pulse" title="PULSE" style="grid-row:13;grid-column:1/6;background:#555;"><span class="ev-name">Kansas City  — PULSE</span></a>
-<a class="ev ends approx" href="performances_agenda.html#prog-TEXAS-coppelia" title="Coppelia" style="grid-row:14;grid-column:2/6;background:#555;"><span class="ev-name">Texas — Coppelia</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-BOSTON-spring-experience-2027" title="Spring Experience 2027" style="grid-row:5;grid-column:1/6;background:#0277bd;"><span class="ev-name">Boston  — Spring Experience 2027</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-JOFFREY-the-sleeping-beauty" title="The Sleeping Beauty" style="grid-row:6;grid-column:1/6;background:#bf360c;"><span class="ev-name">Joffrey  — The Sleeping Beauty</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-RICHMOND-director-s-choice-moving-art-four" title="Director&#x27;s Choice / Moving Art Four" style="grid-row:7;grid-column:1/6;background:#555;"><span class="ev-name">Richmond  — Director&#x27;s Choice / Moving Art Four</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-MCB-alexei-ratmansky-s-swan-lake" title="Alexei Ratmansky&#x27;s Swan Lake" style="grid-row:8;grid-column:1/6;background:#00838f;"><span class="ev-name">Miami City  — Alexei Ratmansky&#x27;s Swan Lake</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-BALLETMET-carmen-maquia" title="CARMEN.maquia" style="grid-row:9;grid-column:1/5;background:#555;"><span class="ev-name">BalletMet — CARMEN.maquia</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-KCB-pulse" title="PULSE" style="grid-row:10;grid-column:1/6;background:#555;"><span class="ev-name">Kansas City  — PULSE</span></a>
+<a class="ev ends approx" href="performances_agenda.html#prog-TEXAS-coppelia" title="Coppelia" style="grid-row:11;grid-column:2/6;background:#555;"><span class="ev-name">Texas — Coppelia</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">24&thinsp;·&thinsp;25&thinsp;·&thinsp;26</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">27</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">28</div>
@@ -905,14 +930,14 @@ h1 { margin-bottom: 6px; }
 <div class="month-heading">June 2027</div>
 <div class="dow-row"><div class="dow-cell">MON–WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;"><span class="dn-lbl">May</span>31&thinsp;·&thinsp;<span class="dn-lbl">Jun</span>1&thinsp;·&thinsp;2</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">3</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">4</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">5</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">6</div>
 <a class="ev starts" href="performances_agenda.html#prog-PNB-ballet-on-broadway" title="Ballet on Broadway" style="grid-row:2;grid-column:3/6;background:#00695c;"><span class="ev-name">PNB — Ballet on Broadway</span></a>
-<a class="ev ends" href="performances_agenda.html#prog-HOUSTON-the-rite-of-spring" title="The Rite of Spring" style="grid-row:4;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — The Rite of Spring</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-HOUSTON-the-rite-of-spring" title="The Rite of Spring" style="grid-row:3;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — The Rite of Spring</span></a>
 </div>
 </div>
 <div class="week-block">
@@ -929,24 +954,24 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">14&thinsp;·&thinsp;15&thinsp;·&thinsp;16</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">17</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">18</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">19</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">20</div>
-<a class="ev ends" href="performances_agenda.html#prog-CHARLOTTE-flip" title="FLIP" style="grid-row:4;grid-column:1/2;background:#2d6a4f;"><span class="ev-name">Charlotte  — FLIP</span></a>
-<a class="ev" href="performances_agenda.html#prog-HOUSTON-swan-lake" title="Swan Lake" style="grid-row:5;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — Swan Lake</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-CHARLOTTE-flip" title="FLIP" style="grid-row:2;grid-column:1/2;background:#2d6a4f;"><span class="ev-name">Charlotte  — FLIP</span></a>
+<a class="ev" href="performances_agenda.html#prog-HOUSTON-swan-lake" title="Swan Lake" style="grid-row:3;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — Swan Lake</span></a>
 </div>
 </div>
 <div class="week-block">
-<div class="week-grid" style="grid-template-rows:26px 22px 22px 22px 22px;">
+<div class="week-grid" style="grid-template-rows:26px 22px;">
 <div class="dn dn-mw in-mo has-ev" style="grid-column:1;grid-row:1;">21&thinsp;·&thinsp;22&thinsp;·&thinsp;23</div>
 <div class="dn in-mo has-ev" style="grid-column:2;grid-row:1;">24</div>
 <div class="dn in-mo has-ev" style="grid-column:3;grid-row:1;">25</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:4;grid-row:1;">26</div>
 <div class="dn in-mo wknd has-ev" style="grid-column:5;grid-row:1;">27</div>
-<a class="ev ends" href="performances_agenda.html#prog-HOUSTON-swan-lake" title="Swan Lake" style="grid-row:5;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — Swan Lake</span></a>
+<a class="ev ends" href="performances_agenda.html#prog-HOUSTON-swan-lake" title="Swan Lake" style="grid-row:2;grid-column:1/6;background:#2e7d32;"><span class="ev-name">Houston  — Swan Lake</span></a>
 </div>
 </div>
 </div>
@@ -1039,5 +1064,25 @@ h1 { margin-bottom: 6px; }
 </div>
 </div>
 </div>
+<script>
+function toggleHomeNav(btn) {
+    var dd = btn.nextElementSibling;
+    var opening = !dd.classList.contains('open');
+    document.querySelectorAll('.home-nav-dropdown.open').forEach(function(el) {
+        el.classList.remove('open');
+    });
+    if (opening) {
+        dd.classList.add('open');
+        setTimeout(function () {
+            document.addEventListener('click', function closeDD(e) {
+                if (!btn.closest('.home-nav').contains(e.target)) {
+                    dd.classList.remove('open');
+                    document.removeEventListener('click', closeDD);
+                }
+            });
+        }, 0);
+    }
+}
+</script>
 </body>
 </html>

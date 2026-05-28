@@ -192,12 +192,37 @@ h1 { margin-bottom: 6px; }
     white-space: nowrap;
 }
 .nav-all-btn:hover { background: #f5f5f5; }
+
+/* --- home nav dropdown --- */
+.home-nav { position: relative; display: inline-block; vertical-align: middle; }
+.home-nav-arrow {
+    background: none; border: none; padding: 0 1px 0 3px; cursor: pointer;
+    font-size: 9px; color: currentColor; opacity: 0.55; vertical-align: middle;
+    line-height: 1; font-family: inherit;
+}
+.home-nav-arrow:hover { opacity: 1; }
+.home-nav-dropdown {
+    display: none;
+    position: absolute; top: calc(100% + 6px); left: 0;
+    background: white; border: 1px solid #ddd; border-radius: 5px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    white-space: nowrap; z-index: 500; min-width: 145px;
+}
+.home-nav-dropdown.open { display: block; }
+.home-nav-dropdown a {
+    display: block; padding: 8px 14px;
+    color: #333 !important; font-weight: normal !important;
+    text-decoration: none; font-size: 13px;
+}
+.home-nav-dropdown a:first-child { border-radius: 5px 5px 0 0; }
+.home-nav-dropdown a:last-child  { border-radius: 0 0 5px 5px; }
+.home-nav-dropdown a:hover { background: #f5f5f5; color: #1a73e8 !important; }
 </style>
 </head>
 <body>
 <h1>2026–27 Dance Season</h1>
 <p class="lede">Upcoming performances across tracked companies, in date order.</p>
-<div class="month-jump"><a href="index.html" class="home-link">← Home</a> <a href="#June-2026">Jun 2026</a> <a href="#July-2026">Jul 2026</a> <a href="#August-2026">Aug 2026</a> <a href="#September-2026">Sep 2026</a> <a href="#October-2026">Oct 2026</a> <a href="#November-2026">Nov 2026</a> <a href="#December-2026">Dec 2026</a> <a href="#January-2027">Jan 2027</a> <a href="#February-2027">Feb 2027</a> <a href="#March-2027">Mar 2027</a> <a href="#April-2027">Apr 2027</a> <a href="#May-2027">May 2027</a> <a href="#June-2027">Jun 2027</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
+<div class="month-jump"><span class="home-nav"><a href="danceexplorer.html" class="home-link">&#8592;&nbsp;Home</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="podcasts.html">Podcasts</a><a href="performances.html">Performances</a></div></span> <a href="#June-2026">Jun 2026</a> <a href="#July-2026">Jul 2026</a> <a href="#August-2026">Aug 2026</a> <a href="#September-2026">Sep 2026</a> <a href="#October-2026">Oct 2026</a> <a href="#November-2026">Nov 2026</a> <a href="#December-2026">Dec 2026</a> <a href="#January-2027">Jan 2027</a> <a href="#February-2027">Feb 2027</a> <a href="#March-2027">Mar 2027</a> <a href="#April-2027">Apr 2027</a> <a href="#May-2027">May 2027</a> <a href="#June-2027">Jun 2027</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
 <h2 class="month-heading" id="June-2026">June 2026</h2>
 <div class="program" id="prog-ABT-swan-lake"><div class="date-col">Jun 17 – Jul 18, 2026</div><div class="program-body"><div class="title-row"><div class="title-left"><span class="badge" style="background:#b71c1c"><a href="#ABT" class="badge-link">ABT</a></span> <a class="program-title" href="https://www.abt.org/venue/metropolitan-opera-house/" target="_blank" rel="noopener noreferrer">Swan Lake</a></div><div class="title-right"><span class="dates-note-inline">Individual dates not yet announced</span></div></div><div class="works-line">Choreography: Marius Petipa / Lev Ivanov · Music: Pyotr Ilyich Tchaikovsky <span class='music-title'>(Swan Lake)</span></div></div></div>
 <div class="program" id="prog-ABT-onegin"><div class="date-col">Jun 23–27, 2026</div><div class="program-body"><div class="title-row"><div class="title-left"><span class="badge" style="background:#b71c1c"><a href="#ABT" class="badge-link">ABT</a></span> <a class="program-title" href="https://www.abt.org/venue/metropolitan-opera-house/" target="_blank" rel="noopener noreferrer">Onegin</a></div><div class="title-right"><span class="dates-note-inline">Individual dates not yet announced</span></div></div><div class="works-line">Choreography: John Cranko · Music: Pyotr Ilyich Tchaikovsky arr. Kurt-Heinz Stolze <span class='music-title'>(Onegin)</span></div></div></div>
@@ -433,6 +458,26 @@ function closeAllDates() {
         var btn = document.getElementById('btn-' + id);
         if (btn) btn.textContent = 'Show Dates';
     });
+}
+</script>
+<script>
+function toggleHomeNav(btn) {
+    var dd = btn.nextElementSibling;
+    var opening = !dd.classList.contains('open');
+    document.querySelectorAll('.home-nav-dropdown.open').forEach(function(el) {
+        el.classList.remove('open');
+    });
+    if (opening) {
+        dd.classList.add('open');
+        setTimeout(function () {
+            document.addEventListener('click', function closeDD(e) {
+                if (!btn.closest('.home-nav').contains(e.target)) {
+                    dd.classList.remove('open');
+                    document.removeEventListener('click', closeDD);
+                }
+            });
+        }, 0);
+    }
 }
 </script>
 </body>
