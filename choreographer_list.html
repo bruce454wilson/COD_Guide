@@ -171,10 +171,10 @@ a:hover {
 .home-nav-arrow:hover { opacity: 1; }
 .home-nav-dropdown {
     display: none;
-    position: absolute; top: calc(100% + 6px); left: 0;
+    position: fixed;
     background: white; border: 1px solid #ddd; border-radius: 5px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.15);
-    white-space: nowrap; z-index: 500; min-width: 145px;
+    white-space: nowrap; z-index: 2000; min-width: 145px;
 }
 .home-nav-dropdown.open { display: block; }
 .home-nav-dropdown a {
@@ -204,6 +204,9 @@ function toggleHomeNav(btn) {
         el.classList.remove('open');
     });
     if (opening) {
+        const rect = btn.getBoundingClientRect();
+        dd.style.top = (rect.bottom + 4) + 'px';
+        dd.style.left = rect.left + 'px';
         dd.classList.add('open');
         setTimeout(function () {
             document.addEventListener('click', function closeDD(e) {
