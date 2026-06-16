@@ -29,8 +29,9 @@ h1 {
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
     z-index: 1000;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
 }
 
 .index a {
@@ -270,5 +271,75 @@ function toggleHomeNav(btn) {
 </div>
 <div id="desc-vid-6" class="description">This weeks episode of Conversations On Dance was recorded live at the Kennedy Center in Washington, DC. Our guest is former New York City Ballet principal and Artistic Director of the San Francisco Ballet, Helgi Tomasson. The San Francisco Ballet is performing at the Kennedy Center this week, from October 23 28, 2018. They will be performing six works that premiered earlier this year at the Unbound festival in San Francisco. You can purchase tickets online at www.kennedy-center.org. This episode is supported by the Kennedy Center and Yumiko. Watch the full video of this event now: https://youtu.be/N6FlxJV3mZc The post (112) LIVE from the Kennedy Center: Helgi Tomasson, Artistic Director of San Francisco Ballet appeared first on tendusunderapalmtree.com.</div>
 </div>
+<script>
+(function () {
+    // Best-effort: tell Chrome not to restore a stale scroll position.
+    // This works on the first visit; on subsequent visits Chrome may have
+    // already committed to restoration before scripts run — the guard below
+    // handles that case.
+    if (window.location.hash && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    function _navH() {
+        var nav = document.querySelector('.index, .alpha-nav');
+        return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
+    }
+
+    // Same-page anchor clicks (A-Z nav, Jump To links that stay on this page).
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#' || href.length < 2) return;
+        var target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.style.scrollMarginTop = _navH() + 'px';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', href);
+    });
+
+    // Cross-page hash arrival.
+    if (window.location.hash) {
+        var _h = window.location.hash;
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                var target = document.getElementById(_h.slice(1));
+                if (!target) return;
+                var nav = document.querySelector('.index, .alpha-nav');
+                var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+                target.style.scrollMarginTop = (rawNavH + 8) + 'px';
+                target.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+                // Scroll guard: if Chrome's restoration fires after our
+                // correction (moving us to the wrong position), snap back.
+                // We distinguish restoration (no prior user gesture) from
+                // deliberate scrolling (mousedown / wheel / touch / key fires
+                // before the resulting scroll event).
+                var anchorY = window.scrollY;
+                var guardOn = true;
+                var userScrolled = false;
+                ['mousedown', 'touchstart', 'keydown', 'wheel'].forEach(function (t) {
+                    window.addEventListener(t, function () { userScrolled = true; }, { passive: true });
+                });
+                setTimeout(function () { guardOn = false; }, 1500);
+                var _g = function () {
+                    if (!guardOn) { window.removeEventListener('scroll', _g); return; }
+                    if (userScrolled) {
+                        guardOn = false;
+                        window.removeEventListener('scroll', _g);
+                        return;
+                    }
+                    if (Math.abs(window.scrollY - anchorY) > 20) {
+                        window.scrollTo(0, anchorY);
+                    }
+                };
+                window.addEventListener('scroll', _g);
+            });
+        });
+    }
+})();
+</script>
 </body>
 </html>

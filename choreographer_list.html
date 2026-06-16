@@ -29,8 +29,9 @@ h1 {
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
     z-index: 1000;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
 }
 
 .index a {
@@ -247,7 +248,7 @@ function toggleHomeNav(btn) {
 </div>
 <h2 class="letter-heading" id="letter-B">B</h2>
 <div class="guest-block" id="choreo-robert-battle">
-<div class="guest-line">Robert Battle — resident choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a></div>
+<div class="guest-line">Robert Battle — resident choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a> <a class="profile-badge" href="performances_choreographer.html#choreo-robert-battle" title="Performances featuring Robert Battle in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Feb 18, 2026 — (481) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/481-robert-battle-resident-choreographer-at-paul-taylor-dance-company" target="_blank" rel="noopener noreferrer"><strong>Robert Battle</strong>, resident choreographer at Paul Taylor Dance Company</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/481-robert-at-151099789" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -266,7 +267,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-hope-boykin">
-<div class="guest-line">Hope Boykin — Choreographer</div>
+<div class="guest-line">Hope Boykin — Choreographer <a class="profile-badge" href="performances_choreographer.html#choreo-hope-boykin" title="Performances featuring Hope Boykin in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Oct 10, 2023 — (368) — <a href="https://shows.acast.com/conversations-on-dance/episodes/choreographer-hope-boykin-on-her-new-work-states-of-hope" target="_blank" rel="noopener noreferrer">Choreographer <strong>Hope Boykin</strong>, on her new work &#x27;States Of Hope&#x27;</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-chor-hope-boykin-1', this)">Show description</button>
@@ -416,7 +417,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-lauren-lovette">
-<div class="guest-line">Lauren Lovette — Choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a></div>
+<div class="guest-line">Lauren Lovette — Choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a> <a class="profile-badge" href="performances_choreographer.html#choreo-lauren-lovette" title="Performances featuring Lauren Lovette in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Sep 25, 2023 — (366) — <a href="https://shows.acast.com/conversations-on-dance/episodes/lauren-lovette-resident-choreographer-paul-taylor-dance" target="_blank" rel="noopener noreferrer"><strong>Lauren Lovette</strong>, Resident Choreographer at Paul Taylor Dance Company</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-chor-lauren-lovette-1', this)">Show description</button>
@@ -655,7 +656,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jamar-roberts">
-<div class="guest-line">Jamar Roberts — Choreographer</div>
+<div class="guest-line">Jamar Roberts — Choreographer <a class="profile-badge" href="performances_choreographer.html#choreo-jamar-roberts" title="Performances featuring Jamar Roberts in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Aug 1, 2024 — (408) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/408-sara-mearns-and-jamar-roberts-live-from-the-vail-dance-festival" target="_blank" rel="noopener noreferrer"><strong>Sara Mearns</strong> and <strong>Jamar Roberts</strong>, LIVE from the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-chor-jamar-roberts-1', this)">Show description</button>
@@ -801,5 +802,75 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-chor-christopher-wheeldon-1">This week on the podcast, we are joined in San Francisco by one of the worlds most in demand choreographers, Christopher Wheeldon. Having trained at Royal Ballet, Wheeldon was taken into the company, but soon transferred to the New York City Ballet, where he rose to the rank of soloist. His choreographic talents were soon recognized and while still in his twenties, he was named resident choreographer of the New York City ballet. He was shortly after in demand at major companies all over the globe, including the Bolshoi Ballet, San Francisco Ballet, and the Royal Ballet. In 2014, he made his Broadway directorial debut with An American in Paris, a production that garnered him a Tony for his work as choreographer. We talk with him about what it was like finding his voice as a young choreographer, how he made the transition to broadway, and what continues to inspire his work. The post (93) Christopher Wheeldon, Choreographer appeared first on tendusunderapalmtree.com.</div>
 </div>
 </div>
+<script>
+(function () {
+    // Best-effort: tell Chrome not to restore a stale scroll position.
+    // This works on the first visit; on subsequent visits Chrome may have
+    // already committed to restoration before scripts run — the guard below
+    // handles that case.
+    if (window.location.hash && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    function _navH() {
+        var nav = document.querySelector('.index, .alpha-nav');
+        return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
+    }
+
+    // Same-page anchor clicks (A-Z nav, Jump To links that stay on this page).
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#' || href.length < 2) return;
+        var target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.style.scrollMarginTop = _navH() + 'px';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', href);
+    });
+
+    // Cross-page hash arrival.
+    if (window.location.hash) {
+        var _h = window.location.hash;
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                var target = document.getElementById(_h.slice(1));
+                if (!target) return;
+                var nav = document.querySelector('.index, .alpha-nav');
+                var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+                target.style.scrollMarginTop = (rawNavH + 8) + 'px';
+                target.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+                // Scroll guard: if Chrome's restoration fires after our
+                // correction (moving us to the wrong position), snap back.
+                // We distinguish restoration (no prior user gesture) from
+                // deliberate scrolling (mousedown / wheel / touch / key fires
+                // before the resulting scroll event).
+                var anchorY = window.scrollY;
+                var guardOn = true;
+                var userScrolled = false;
+                ['mousedown', 'touchstart', 'keydown', 'wheel'].forEach(function (t) {
+                    window.addEventListener(t, function () { userScrolled = true; }, { passive: true });
+                });
+                setTimeout(function () { guardOn = false; }, 1500);
+                var _g = function () {
+                    if (!guardOn) { window.removeEventListener('scroll', _g); return; }
+                    if (userScrolled) {
+                        guardOn = false;
+                        window.removeEventListener('scroll', _g);
+                        return;
+                    }
+                    if (Math.abs(window.scrollY - anchorY) > 20) {
+                        window.scrollTo(0, anchorY);
+                    }
+                };
+                window.addEventListener('scroll', _g);
+            });
+        });
+    }
+})();
+</script>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Browse by Guest</title>
+<title>All Guests</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1W89Y447W"></script>
 <script>
@@ -29,8 +29,9 @@ h1 {
     padding: 8px 0;
     border-bottom: 1px solid #ccc;
     z-index: 1000;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
 }
 
 .index a {
@@ -221,8 +222,141 @@ function toggleHomeNav(btn) {
 </script>
 </head>
 <body>
-<h1>Browse by Guest</h1>
+<h1></h1>
 
+<style>h1 { display: none; }</style>
+
+<div id="video-banner-area"></div>
+
+<script>
+(function() {
+  var VIDEOS = [{"id": "xIQc4WyO49g", "label": "Miami City Ballet Justin Peck's HEATSCAPE", "thumb": "https://img.youtube.com/vi/xIQc4WyO49g/maxresdefault.jpg", "start": 11, "duration": "0:30", "jumpto": [{"name": "Justin Peck", "href": "#choreo-justin-peck"}]}, {"id": "N5R33v5V5wI", "label": "New York City Ballet Trailer AFTERNOON OF A FAUN", "thumb": "https://img.youtube.com/vi/N5R33v5V5wI/maxresdefault.jpg", "start": 39, "duration": "1:23", "jumpto": [{"name": "Dominika Afanasenkov", "href": "#choreo-dominika-afanasenkov"}, {"name": "Christopher Grant", "href": "#choreo-christopher-grant"}, {"name": "Afternoon of a Faun", "href": "performances_works.html#work-afternoon-of-a-faun"}]}, {"id": "tY7WmSrfFHU", "label": "Joffrey trailer for Justin Peck's YEAR OF THE RABBIT", "thumb": "https://img.youtube.com/vi/tY7WmSrfFHU/maxresdefault.jpg", "start": 115, "duration": "2:47", "jumpto": [{"name": "Justin Peck", "href": "#choreo-justin-peck"}]}, {"id": "wlKGw7B35vk", "label": "Martha Graham's APPALACHIAN SPRING", "thumb": "https://img.youtube.com/vi/wlKGw7B35vk/maxresdefault.jpg", "start": 30, "duration": "3:10", "jumpto": [{"name": "Martha Graham", "href": "#choreo-martha-graham"}, {"name": "Appalachian Spring", "href": "performances_works.html#work-appalachian-spring"}]}, {"id": "lGTk31QU4Rk", "label": "New York City Ballet Trailer for Tiler Peck's SYMPHONIE ESPAGNOLE", "thumb": "https://img.youtube.com/vi/lGTk31QU4Rk/maxresdefault.jpg", "start": 8, "duration": "1:27", "jumpto": [{"name": "Tiler Peck", "href": "#choreo-tiler-peck"}]}, {"id": "ACnMJ-82c4s", "label": "Houston Ballet 2026-2027 Season Trailer", "thumb": "https://img.youtube.com/vi/ACnMJ-82c4s/maxresdefault.jpg", "start": 8, "duration": "1:08", "jumpto": []}, {"id": "P-4tJCXrP80", "label": "Mita Nadon on Balanchine's RUBIES", "thumb": "https://img.youtube.com/vi/P-4tJCXrP80/maxresdefault.jpg", "start": 18, "duration": "2:44", "jumpto": [{"name": "Mira Nadon", "href": "#choreo-mira-nadon"}, {"name": "Rubies", "href": "performances_works.html#work-rubies"}]}, {"id": "GPl3I-Gd9VU", "label": "Tiler Peck on Balanchine's COPPELIA", "thumb": "https://img.youtube.com/vi/GPl3I-Gd9VU/maxresdefault.jpg", "start": 34, "duration": "2:04", "jumpto": [{"name": "Tiler Peck", "href": "#choreo-tiler-peck"}, {"name": "Copp\u00e9lia", "href": "performances_works.html#work-copp-lia"}]}];
+
+  function shuffled(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  var playlist = shuffled(VIDEOS);
+  var pos = 0;
+  var v = playlist[pos];
+
+  function thumbHtml(video) {
+    // width/height attributes declare the 16:9 ratio so the browser never
+    // reflows when the image finishes loading (belt-and-suspenders alongside
+    // the aspect-ratio:16/9 CSS on the container).
+    return '<img src="' + video.thumb + '" width="16" height="9" '
+      + 'style="width:100%; height:100%; object-fit:cover; display:block;" '
+      + 'alt="' + video.label + '">';
+  }
+
+  // Returns the innerHTML for the Jump To line (empty string if no items)
+  function jumpToContent(video) {
+    if (!video.jumpto || !video.jumpto.length) return '';
+    var links = video.jumpto.map(function(p) {
+      return '<a href="' + p.href + '" style="color:#D4AF37; text-decoration:underline;">'
+        + p.name + '</a>';
+    }).join(' &nbsp;|&nbsp; ');
+    return 'Jump To: ' + links;
+  }
+
+  function updateLabel(video) {
+    var lbl = document.getElementById('yt-label');
+    if (lbl) lbl.textContent = video.label;
+    var jt = document.getElementById('yt-jumpto');
+    if (jt) jt.innerHTML = jumpToContent(video);
+    var dur = document.getElementById('yt-duration');
+    if (dur) dur.textContent = video.duration || '';
+  }
+
+  // Build banner HTML
+  document.getElementById('video-banner-area').innerHTML =
+    '<div style="background:#000; padding:12px 0 0; margin-bottom:0;">'
+    + '<div id="yt-thumb-container" onclick="window._playVideo()" '
+    +   'style="width:min(800px,100%); aspect-ratio:16/9; margin:0 auto; cursor:pointer;">'
+    + thumbHtml(v)
+    + '</div></div>'
+    + '<div style="background:#2D1B69; color:#D4AF37; padding:22px 20px; '
+    +   'margin-bottom:1em; display:flex; align-items:center; gap:20px;">'
+    // Left: page heading
+    + '<div style="font-size:22px; font-weight:bold; flex:0 0 auto; white-space:nowrap;">'
+    +   'All Guests'
+    + '</div>'
+    + '<div style="width:1px; background:#D4AF37; opacity:0.4; align-self:stretch;"></div>'
+    // Middle: video label + Jump To line
+    + '<div style="flex:1; display:flex; flex-direction:column; gap:6px;">'
+    +   '<div id="yt-label" style="font-size:16px; font-style:italic;">' + v.label + '</div>'
+    +   '<div id="yt-jumpto" style="font-size:13px;">' + jumpToContent(v) + '</div>'
+    + '</div>'
+    + '<div style="width:1px; background:#D4AF37; opacity:0.4; align-self:stretch;"></div>'
+    // Right: duration + Play button + Next link
+    + '<div style="flex:0 0 auto; display:flex; flex-direction:column; align-items:center; gap:6px;">'
+    +   '<div id="yt-duration" style="font-size:12px; opacity:0.8;">' + (v.duration || '') + '</div>'
+    +   '<button onclick="window._playVideo()" '
+    +     'style="background:#D4AF37; color:#2D1B69; border:none; '
+    +     'padding:8px 18px; font-size:14px; font-weight:bold; '
+    +     'cursor:pointer; border-radius:4px;">&#9654; Play Video</button>'
+    +   '<a href="#" onclick="window._nextVideo(); return false;" '
+    +     'style="color:#D4AF37; font-size:13px; text-decoration:none;">'
+    +     'Next Video &#9654;</a>'
+    + '</div>'
+    + '</div>';
+
+  // Play handler — swaps thumbnail for live iframe, stops on scroll-away or tab-switch
+  window._playVideo = function() {
+    var c = document.getElementById('yt-thumb-container');
+    if (!c) return;
+    c.onclick = null;
+    c.style.cursor = 'default';
+    c.innerHTML = '<iframe src="https://www.youtube.com/embed/' + v.id
+      + '?autoplay=1&rel=0" '
+      + 'style="width:100%; height:100%; border:0; display:block;" '
+      + 'allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>';
+
+    function stopVideo() {
+      var fr = c.querySelector('iframe');
+      if (fr) { fr.src = ''; }
+    }
+
+    // Stop when video scrolls out of view
+    var obs = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting) { stopVideo(); obs.disconnect(); }
+    }, { threshold: 0.1 });
+    obs.observe(c);
+
+    // Stop when user switches to another tab
+    document.addEventListener('visibilitychange', function onHide() {
+      if (document.hidden) {
+        stopVideo();
+        document.removeEventListener('visibilitychange', onHide);
+      }
+    });
+  };
+
+  // Next Video handler — walks the shuffled playlist in order; re-shuffles after full cycle
+  window._nextVideo = function() {
+    if (playlist.length <= 1) return;
+    pos++;
+    if (pos >= playlist.length) {
+      playlist = shuffled(VIDEOS);
+      pos = 0;
+    }
+    v = playlist[pos];
+
+    var c = document.getElementById('yt-thumb-container');
+    if (c) {
+      c.innerHTML = thumbHtml(v);
+      c.onclick = function() { window._playVideo(); };
+      c.style.cursor = 'pointer';
+    }
+    updateLabel(v);
+  };
+})();
+</script>
 <div class="index">
 <span class="home-nav"><a href="danceexplorer.html">&#8592;&nbsp;Home</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="podcasts.html">Podcasts</a><a href="performances.html">Performances</a></div></span>
 <span class="index-sep">|</span>
@@ -283,7 +417,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-carlos-acosta">
-<div class="guest-line">Carlos Acosta — Director — Birmingham Royal Ballet</div>
+<div class="guest-line">Carlos Acosta — Director — <a href="https://brb.org.uk" target="_blank" rel="noopener noreferrer" title="Birmingham Royal Ballet Home Page">Birmingham Royal Ballet</a></div>
 <div class="appearance">
 <div class="row2">Apr 30, 2025 — (442) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/442-carlos-acosta-director-of-birmingham-royal-ballet" target="_blank" rel="noopener noreferrer"><strong>Carlos Acosta</strong>, director of Birmingham Royal Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-carlos-acosta-1', this)">Show description</button>
@@ -358,7 +492,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-tyler-angle">
-<div class="guest-line">Tyler Angle — Artistic Director — Nantucket Dance Festival <a class="profile-badge" href="https://www.nycballet.com/discover/meet-our-dancers/principal-dancers/tyler-angle" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Tyler Angle">Profile Page</a></div>
+<div class="guest-line">Tyler Angle — Artistic Director — <a href="https://nantucketdancefestival.org" target="_blank" rel="noopener noreferrer" title="Nantucket Dance Festival Home Page">Nantucket Dance Festival</a> <a class="profile-badge" href="https://www.nycballet.com/discover/meet-our-dancers/principal-dancers/tyler-angle" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Tyler Angle">Profile Page</a></div>
 <div class="appearance">
 <div class="row2">Jun 17, 2019 — (142) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a592" target="_blank" rel="noopener noreferrer"><strong>Tyler Angle</strong>, NYCB Principal &amp; Nantucket Atheneum Dance Festival Artistic Director</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-tyler-angle-1', this)">Show description</button>
@@ -403,7 +537,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-aesha-ash">
-<div class="guest-line">Aesha Ash — Director of Health — School of American Ballet</div>
+<div class="guest-line">Aesha Ash — Director of Health — <a href="https://sab.org" target="_blank" rel="noopener noreferrer" title="School of American Ballet Home Page">School of American Ballet</a></div>
 <div class="appearance">
 <div class="row2">Feb 4, 2026 — (479) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/479-aesha-ash-and-jenifer-ringer-educational-directors-at-the-school-of-american-ballet" target="_blank" rel="noopener noreferrer"><strong>Aesha Ash</strong> and <strong>Jenifer Ringer</strong>, Educational Directors at The School of American Ballet</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/479-aesha-ash-at-149953710" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -413,7 +547,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-ephrat-asherie">
-<div class="guest-line">Ephrat Asherie — Artistic Director — Ephrat Asherie Dance</div>
+<div class="guest-line">Ephrat Asherie — Artistic Director — <a href="https://ephratasheriedance.com" target="_blank" rel="noopener noreferrer" title="Ephrat Asherie Dance Home Page">Ephrat Asherie Dance</a></div>
 <div class="appearance">
 <div class="row2">Jun 27, 2022 — (295) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4f0" target="_blank" rel="noopener noreferrer"><strong>Ephrat Asherie</strong>, Artistic Director of <strong>Ephrat Asherie</strong> Dance, coming to the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-ephrat-asherie-1', this)">Show description</button>
@@ -428,7 +562,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-timur-askerov">
-<div class="guest-line">Timur Askerov — Dancer — Mariinsky Ballet</div>
+<div class="guest-line">Timur Askerov — Dancer — <a href="https://mariinsky.ru" target="_blank" rel="noopener noreferrer" title="Mariinsky Ballet Home Page">Mariinsky Ballet</a></div>
 <div class="appearance">
 <div class="row2">Nov 13, 2017 — (68) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5e9" target="_blank" rel="noopener noreferrer">Live From The Kennedy Center: Mariinsky Ballet Director <strong>Yuri Fateev</strong> and Dancer <strong>Timur Askerov</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-timur-askerov-1', this)">Show description</button>
@@ -447,7 +581,7 @@ function toggleHomeNav(btn) {
 </div>
 <h2 class="letter-heading" id="letter-B">B</h2>
 <div class="guest-block" id="choreo-constantine-baecher">
-<div class="guest-line">Constantine Baecher — Founder — Lake Tahoe Dance Festival</div>
+<div class="guest-line">Constantine Baecher — Founder — <a href="https://laketahoedancefestival.org" target="_blank" rel="noopener noreferrer" title="Lake Tahoe Dance Festival Home Page">Lake Tahoe Dance Festival</a></div>
 <div class="appearance">
 <div class="row2">Jun 24, 2019 — (143) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a591" target="_blank" rel="noopener noreferrer"><strong>Christin Hanna</strong> and <strong>Constantine Baecher</strong> of the Lake Tahoe Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-constantine-baecher-1', this)">Show description</button>
@@ -474,7 +608,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-frankfurt-ballet">
-<div class="guest-line">Frankfurt Ballet — Director — USC Glorya Kaufman School</div>
+<div class="guest-line">Frankfurt Ballet — Director — <a href="https://kaufman.usc.edu" target="_blank" rel="noopener noreferrer" title="USC Glorya Kaufman School Home Page">USC Glorya Kaufman School</a></div>
 <div class="appearance">
 <div class="row2">Feb 3, 2020 — (171) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a571" target="_blank" rel="noopener noreferrer">Jodie Gates, Director of USCs Glorya Kaufman School of Dance (part two)</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-frankfurt-ballet-1', this)">Show description</button>
@@ -483,7 +617,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-pennsylvania-ballet">
-<div class="guest-line">Pennsylvania Ballet — Director — USC Glorya Kaufman School</div>
+<div class="guest-line">Pennsylvania Ballet — Director — <a href="https://kaufman.usc.edu" target="_blank" rel="noopener noreferrer" title="USC Glorya Kaufman School Home Page">USC Glorya Kaufman School</a></div>
 <div class="appearance">
 <div class="row2">Feb 3, 2020 — (171) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a571" target="_blank" rel="noopener noreferrer">Jodie Gates, Director of USCs Glorya Kaufman School of Dance (part two)</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-pennsylvania-ballet-1', this)">Show description</button>
@@ -513,7 +647,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-robert-battle">
-<div class="guest-line">Robert Battle — resident choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a></div>
+<div class="guest-line">Robert Battle — resident choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a> <a class="profile-badge" href="performances_choreographer.html#choreo-robert-battle" title="Performances featuring Robert Battle in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Feb 18, 2026 — (481) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/481-robert-battle-resident-choreographer-at-paul-taylor-dance-company" target="_blank" rel="noopener noreferrer"><strong>Robert Battle</strong>, resident choreographer at Paul Taylor Dance Company</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/481-robert-at-151099789" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -523,7 +657,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-rachel-beaujean">
-<div class="guest-line">Rachel Beaujean — Artistic Director — Dutch National Ballet</div>
+<div class="guest-line">Rachel Beaujean — Artistic Director — <a href="https://operaballet.nl" target="_blank" rel="noopener noreferrer" title="Dutch National Ballet Home Page">Dutch National Ballet</a></div>
 <div class="appearance">
 <div class="row2">Mar 23, 2023 — (333) — <a href="https://shows.acast.com/conversations-on-dance/episodes/dutch-national-ballet-ballet-sun-valley" target="_blank" rel="noopener noreferrer"><strong>Ted Brandsen</strong> and <strong>Rachel Beaujean</strong>, Dutch National Ballet Director and Associate Artistic Director, at Ballet Sun Valley</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-rachel-beaujean-1', this)">Show description</button>
@@ -559,7 +693,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-stefanie-batten-bland">
-<div class="guest-line">Stefanie Batten Bland — Founder — Company SBB</div>
+<div class="guest-line">Stefanie Batten Bland — Founder — <a href="https://companysbb.org" target="_blank" rel="noopener noreferrer" title="Company SBB Home Page">Company SBB</a></div>
 <div class="appearance">
 <div class="row2">Oct 24, 2022 — (311) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4e0" target="_blank" rel="noopener noreferrer"><strong>Stefanie Batten Bland</strong>, Founder of Company SBB, on Embarqued: Stories of Soil at BAM</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-stefanie-batten-bland-1', this)">Show description</button>
@@ -601,12 +735,21 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-rafael-bonachela">
-<div class="guest-line">Rafael Bonachela — Director — Sydney Dance Company</div>
+<div class="guest-line">Rafael Bonachela — Director — <a href="https://sydneydancecompany.com" target="_blank" rel="noopener noreferrer" title="Sydney Dance Company Home Page">Sydney Dance Company</a></div>
 <div class="appearance">
 <div class="row2">Apr 15, 2024 — (393) — <a href="https://shows.acast.com/conversations-on-dance/episodes/393-rafael-bonachela-bryce-dessner" target="_blank" rel="noopener noreferrer"><strong>Rafael Bonachela</strong>, choreographer and director of Sydney Dance Company, and <strong>Bryce Dessner</strong>, Composer</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-rafael-bonachela-1', this)">Show description</button>
 </div>
 <div class="description" id="desc-rafael-bonachela-1">Today on &#x27;Conversations on Dance&#x27;, we are joined by choreographer and director of Sydney Dance Company Rafael Bonachela and composer Bryce Dessner. Bryce and Rafael take us through their personal journeys towards finding their art as a profession, the inspiration and collaborative process behind their latest collaboration &#x27;Impermanence&#x27;, and how COVID delays extended and altered the work into its present form. &#x27;Impermanence&#x27; will have its US premiere at the Kennedy Center this April 25th with shows running through the 27th. If you&#x27;re in the Washington, DC area and would like to purchase tickets, visit kennedy-center.org.THIS EPISODE&#x27;S SPONSORS:Unlock your potential with the Graduate Certificate in Arts Entrepreneurship from the Weitzenhoffer Family College of Fine Arts at the University of Oklahoma. In partnership with the prestigious Price College of Business, this innovative program is expertly designed for the aspiring arts entrepreneur, blending your creative and artistic talents with the business knowledge, skills, and strategies needed to successfully launch and manage arts-related enterprises. Affordable and fast-track, you can achieve this transformative education remotely in less than 12 months. To learn more and apply, visit ou.edu/finearts.New York Theatre Ballets Summer Repertoire Workshops offer pre-professional, collegiate, and post-collegiate dancers full-day training sessions of classes, rehearsals, and new choreography at their studios in lower Manhattan. Each two-week session, May 6th through 17th and June 10th through 21st, provides individualized instruction, movement analysis, and immersion in NYTBs acclaimed repertoire. Aspiring students are invited to submit video auditions by April 30. Merit-based scholarships are available. For more information, please visit nytb.org/auditions.</div>
+</div>
+</div>
+<div class="guest-block" id="choreo-paul-boos">
+<div class="guest-line">Paul Boos — Repetiteur — <a href="https://balanchine.org" target="_blank" rel="noopener noreferrer" title="Balanchine Foundation Home Page">Balanchine Foundation</a></div>
+<div class="appearance">
+<div class="row2">Jun 4, 2026 — (496) — <a href="https://shows.acast.com/conversations-on-dance/episodes/496-paul-boos-repetiteur-and-former-balanchine-dancer" target="_blank" rel="noopener noreferrer"><strong>Paul Boos</strong>, Repetiteur and former Balanchine dancer</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-paul-boos-1', this)">Show description</button>
+</div>
+<div class="description" id="desc-paul-boos-1">Listen to Conversations on Dance ad-free on Patreon: https://www.patreon.com/cw/conversationsondanceToday on the Conversations on Dance podcast we are joined by Paul Boos, Repetiteur and former Balanchine dancer. Paul recounts growing up in South Dakota, being enrolled in ballet with his sisters, then eventually continuing his training at American Ballet Theatre, where he received a full scholarship to study and live in New York. He describes early exposure to ABT stars, joining New York City Ballet, informative encounters with Balanchine and Robbins during his time in the company. After leaving New York City Ballet, He began staging Balanchine works and later became director of the Balanchine Foundation Video Archives, which documents role originators coaching and being interviewed.  Book: In Balanchine&#x27;s Steps: https://amzn.to/4vxm9IgApply to view Balanchine Foundation videos: https://balanchine.org/video-archives/interpreters-archive-archive-of-lost-choreography/LINKS:Website: conversationsondancepod.comInstagram: @conversationsondanceCOD MerchListen to COD on YouTubeJoin our email listSponsorship information Hosted on Acast. See acast.com/privacy for more information.</div>
 </div>
 </div>
 <div class="guest-block" id="choreo-meg-booth">
@@ -634,7 +777,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-hope-boykin">
-<div class="guest-line">Hope Boykin — Choreographer</div>
+<div class="guest-line">Hope Boykin — Choreographer <a class="profile-badge" href="performances_choreographer.html#choreo-hope-boykin" title="Performances featuring Hope Boykin in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Oct 10, 2023 — (368) — <a href="https://shows.acast.com/conversations-on-dance/episodes/choreographer-hope-boykin-on-her-new-work-states-of-hope" target="_blank" rel="noopener noreferrer">Choreographer <strong>Hope Boykin</strong>, on her new work &#x27;States Of Hope&#x27;</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-hope-boykin-1', this)">Show description</button>
@@ -670,7 +813,7 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-isabella-boylston-3">On this week&#x27;s episode of Conversations On Dance, we are thrilled to be joined once again by American Ballet Theatre principal Isabella Boylston. We caught up with her at the Vail Dance Festival, where we talked about her most recent season at the Met with ABT, how her second year running the Ballet Sun Valley Festival differed from the first, and her preparations for her first performances dancing Justin Peck&#x27;s In Creases&#x27;. This episode is sponsored by Yumiko (yumiko.com) and Quarter Marks (quartermarksquarterly.com) The post (106) Isabella Boylston, ABT Principal, from Vail Dance Festival appeared first on tendusunderapalmtree.com.</div>
 </div>
 <div class="appearance">
-<div class="row2">Oct 16, 2017 — (64) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5ed" target="_blank" rel="noopener noreferrer"><strong>Isabella Boylston</strong>, <strong>American Ballet Theater Principal Dancer</strong></a>
+<div class="row2">Oct 16, 2017 — (64) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5ed" target="_blank" rel="noopener noreferrer"><strong>Isabella Boylston</strong>, American Ballet Theater Principal Dancer</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-isabella-boylston-4', this)">Show description</button>
 </div>
 <div class="description" id="desc-isabella-boylston-4">This week we are joined by Isabella Boylston, American Ballet Theater Principal Dancer. Isabella was born in Sun Valley Idaho and started dancing at the age of 3. In 1994 she began training at a small studio, and by the age of 12 was commuting to Denver every day to study at the Academy of Colorado Ballet. After winning gold at the Youth America Grand Prix finals in New York City in 2001, she moved to Florida to study at the Harid Conservatory. After attending a summer course at American Ballet Theater, she joined the studio company in 2005, and joined the main company a year later. She was then promoted to Principal Dancer in 2014. She has danced many lead roles with the company, most noteably Giselle, Odette/Odile, Kitri in Don Quixote, and the lead in George Balanchines Theme and Variations. Recently she appeared as a guest star with the Royal Danish Ballet, and the Mariinsky Ballet in St. Petersburg, Russia. Today we chat with Bella ahead of the opening of ABTs Fall Season at the Koch Theater in New York City starting this Wednesday and going through October 29th. We talk today about the path that brought her to ABT, what her first big opportunities in the company were like, about her time as Artistic Director of this summers Ballet Sun Valley festival, and get a preview of what she is dancing this week in New York. Get tickets now: abt.org. This episode is sponsored by Body Wrappers: http://bodywrappers.com. This episode is also sponsored by Blue Apron. We are happy to offer a special $30 off your first order for all of our listeners when you visit conversationsondancepod.com/blueapron. Take advantage of this offer now and next week you could be enjoying delicious meals that can be made in 30 minutes or less. The post (64) Isabella Boylston, American Ballet Theater Principal Dancer appeared first on tendusunderapalmtree.com.</div>
@@ -698,7 +841,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-ted-brandsen">
-<div class="guest-line">Ted Brandsen — Director — Dutch National Ballet</div>
+<div class="guest-line">Ted Brandsen — Director — <a href="https://operaballet.nl" target="_blank" rel="noopener noreferrer" title="Dutch National Ballet Home Page">Dutch National Ballet</a></div>
 <div class="appearance">
 <div class="row2">Mar 23, 2023 — (333) — <a href="https://shows.acast.com/conversations-on-dance/episodes/dutch-national-ballet-ballet-sun-valley" target="_blank" rel="noopener noreferrer"><strong>Ted Brandsen</strong> and <strong>Rachel Beaujean</strong>, Dutch National Ballet Director and Associate Artistic Director, at Ballet Sun Valley</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-ted-brandsen-1', this)">Show description</button>
@@ -707,7 +850,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-amy-brandt">
-<div class="guest-line">Amy Brandt — Editor — Pointe Magazine</div>
+<div class="guest-line">Amy Brandt — Editor — <a href="https://pointemagazine.com" target="_blank" rel="noopener noreferrer" title="Pointe Magazine Home Page">Pointe Magazine</a></div>
 <div class="appearance">
 <div class="row2">Feb 12, 2018 — (79) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5dc" target="_blank" rel="noopener noreferrer"><strong>Amy Brandt</strong>, Pointe Magazine Editor-in-Chief</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-amy-brandt-1', this)">Show description</button>
@@ -722,7 +865,7 @@ function toggleHomeNav(btn) {
  <a class="youtube-badge" href="https://www.youtube.com/watch?v=N6FlxJV3mZc" target="_blank" rel="noopener noreferrer" title="Watch this episode on YouTube">YouTube Video</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-skylar-brandt-1', this)">Show description</button>
 </div>
-<div class="description" id="desc-skylar-brandt-1">Todays episode of Conversations on Dance was recorded at a live post-performance event at the Kennedy Center. At the beginning of February, American Ballet Theatre brought Alexei Ratmanskys Harlequinade to the Kennedy Center for a week of incredible performances. Following a Saturday matinee, we caught up with ABT soloist, Skylar Brandt, who had just danced the lead role of Columbine. In this live podcast event open to audience members, we talk with Skylar about her initial dance training, attending ABTs Jacqueline Kennedy Onassis School, and moving through the ranks at ABT. Following this discussion, we filmed a 20 minute Bonus Walk and Talk with Skylar while we walked her through the beautiful halls of the Kennedy Center to her dressing room. We talk about her performance, working with Alexei Ratmansky, and even pause to sit in the empty house after the audience has filtered out to discuss what a special experience it is to perform on the Kennedy Center stage. Dont miss this bonus video that pairs perfectly with this weeks episode. Click over to the Kennedy Centers You Tube Channel, or find the link on our social media channels: instagram.com/conversationsondance or facebook.com/conversationsondance. This episode is brought to you by Yumiko and The Kennedy Center. The post (127) Skylar Brandt of American Ballet Theatre LIVE from the Kennedy Center appeared first on tendusunderapalmtree.com.</div>
+<div class="description" id="desc-skylar-brandt-1">BONUS: San Francisco Ballet Dancers Ep. 1. Welcome to our 1st of two bonus episode wrap ups of San Francisco Ballets Unbound festival. In each episode we will be talking with 3 different dancers in the company about what ultimately led them to SFB and abo</div>
 </div>
 </div>
 <div class="guest-block" id="choreo-kersh-branz">
@@ -735,7 +878,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-michael-sean-breeden">
-<div class="guest-line">Michael Sean Breeden — Host — Conversations on Dance</div>
+<div class="guest-line">Michael Sean Breeden — Host — <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer" title="Conversations on Dance Home Page">Conversations on Dance</a></div>
 <div class="appearance">
 <div class="row2">Dec 18, 2025 — (477) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/477-the-best-of-2025-with-michael-and-rebecca" target="_blank" rel="noopener noreferrer">The Best of 2025 with Michael and Rebecca</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/477-best-of-2025-146148900" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -1034,7 +1177,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-michele-byrd-mcphee">
-<div class="guest-line">Michele Byrd-McPhee — founder — Ladies of Hip-Hop</div>
+<div class="guest-line">Michele Byrd-McPhee — founder — <a href="https://ladiesofhiphop.com" target="_blank" rel="noopener noreferrer" title="Ladies of Hip-Hop Home Page">Ladies of Hip-Hop</a></div>
 <div class="appearance">
 <div class="row2">Oct 28, 2022 — (312) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4df" target="_blank" rel="noopener noreferrer"><strong>Michele Byrd-McPhee</strong>, founder of Ladies of Hip-Hop</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-michele-byrd-mcphee-1', this)">Show description</button>
@@ -1044,7 +1187,7 @@ function toggleHomeNav(btn) {
 </div>
 <h2 class="letter-heading" id="letter-C">C</h2>
 <div class="guest-block" id="choreo-maria-calegari">
-<div class="guest-line">Maria Calegari — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">Maria Calegari — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Mar 25, 2026 — (486) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/486-march-madness-balanchine-bracket-with-maria-calegari-and-bart-cook" target="_blank" rel="noopener noreferrer">March Madness Balanchine Bracket with <strong>Maria Calegari</strong> and <strong>Bart Cook</strong></a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/486-march-with-153927180" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -1082,7 +1225,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-isabella-carroll">
-<div class="guest-line">Isabella Carroll — Dancer — Royal Danish Ballet</div>
+<div class="guest-line">Isabella Carroll — Dancer — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">Apr 23, 2025 — (441) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/441-the-great-gatsby-at-royal-danish-ballet-with-choreographer-arthur-pita-and-dance-isabella-carroll" target="_blank" rel="noopener noreferrer">The Great Gatsby at Royal Danish Ballet with Choreographer, <strong>Arthur Pita</strong>, and dancer <strong>Isabella Carroll</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-isabella-carroll-1', this)">Show description</button>
@@ -1100,7 +1243,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-renan-cerdeiro">
-<div class="guest-line">Renan Cerdeiro — Dancer — Twyla Tharp Dance Company <a class="profile-badge" href="https://www.dancetheatreofharlem.org/people/renan-cerdeiro/" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Renan Cerdeiro">Profile Page</a></div>
+<div class="guest-line">Renan Cerdeiro — Dancer — <a href="https://twylatharp.org" target="_blank" rel="noopener noreferrer" title="Twyla Tharp Dance Company Home Page">Twyla Tharp Dance Company</a> <a class="profile-badge" href="https://www.dancetheatreofharlem.org/people/renan-cerdeiro/" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Renan Cerdeiro">Profile Page</a></div>
 <div class="appearance">
 <div class="row2">Apr 15, 2025 — (440) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/440-twyla-60th-anniversary-tour-with-renan-cerdeiro-and-alex-peters" target="_blank" rel="noopener noreferrer">Twyla 60th Anniversary Tour with <strong>Renan Cerdeiro</strong> and <strong>Alex Peters</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-renan-cerdeiro-1', this)">Show description</button>
@@ -1202,7 +1345,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-evelyn-cisneros-legate">
-<div class="guest-line">Evelyn Cisneros-Legate — Director — Ballet West Academy</div>
+<div class="guest-line">Evelyn Cisneros-Legate — Director — <a href="https://academy.balletwest.org" target="_blank" rel="noopener noreferrer" title="Ballet West Academy Home Page">Ballet West Academy</a></div>
 <div class="appearance">
 <div class="row2">Jan 3, 2024 — (379) — <a href="https://shows.acast.com/conversations-on-dance/episodes/evelyn-cisneros-legate-allison-debona-ballet-west-academy" target="_blank" rel="noopener noreferrer"><strong>Evelyn Cisneros-Legate</strong> and <strong>Allison DeBona</strong>, of Ballet West Academy</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-evelyn-cisneros-legate-1', this)">Show description</button>
@@ -1285,7 +1428,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-bart-cook">
-<div class="guest-line">Bart Cook — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">Bart Cook — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Mar 25, 2026 — (486) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/486-march-madness-balanchine-bracket-with-maria-calegari-and-bart-cook" target="_blank" rel="noopener noreferrer">March Madness Balanchine Bracket with <strong>Maria Calegari</strong> and <strong>Bart Cook</strong></a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/486-march-with-153927180" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -1302,7 +1445,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-part-one-bart-cook">
-<div class="guest-line">PART ONE: Bart Cook — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">PART ONE: Bart Cook — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Jun 25, 2025 — (449) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/449-part-one-bart-cook-legendary-new-york-city-ballet-dancer-and-repetiteur" target="_blank" rel="noopener noreferrer"><strong>PART ONE: Bart Cook</strong>, Legendary New York City Ballet dancer and repetiteur</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-part-one-bart-cook-1', this)">Show description</button>
@@ -1311,7 +1454,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-part-two-bart-cook">
-<div class="guest-line">PART TWO: Bart Cook — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">PART TWO: Bart Cook — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Jun 26, 2025 — (450) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/450-part-two-bart-cook-legendary-new-york-city-ballet-dancer-and-repetiteur" target="_blank" rel="noopener noreferrer"><strong>PART TWO: Bart Cook</strong>, Legendary New York City Ballet dancer and repetiteur</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-part-two-bart-cook-1', this)">Show description</button>
@@ -1399,15 +1542,6 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-alexandra-damiani-1">Today on the Conversations on Dance podcast we are joined by Alexandra Damiani, Artistic Director of Ballets Jazz Montreal. Alexandra traces her path from early training in France, then heading to New York, where she found healing, new technique, and artistic freedom. She recounts her wide-performing career, and the shift to rehearsal direction and leadership. She discusses moving from New York to Montreal during COVID, balancing motherhood with leadership, strengthening Ballet Jazz Montreal’s roots locally while touring, and previews BJM’s tour to Houston with Performing Arts Houston. If you are in the Houston area, see Ballets Jazz Montreal in &quot;Dance Me: The Music of Leonard Cohen&quot; June 12 and 13th. Tickets start at $29. More information at performingartshouston.org.</div>
 </div>
 </div>
-<div class="guest-block" id="choreo-american-ballet-theater-principal-dancer">
-<div class="guest-line">American Ballet Theater Principal Dancer</div>
-<div class="appearance">
-<div class="row2">Oct 16, 2017 — (64) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5ed" target="_blank" rel="noopener noreferrer"><strong>Isabella Boylston</strong>, <strong>American Ballet Theater Principal Dancer</strong></a>
- <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-american-ballet-theater-principal-dancer-1', this)">Show description</button>
-</div>
-<div class="description" id="desc-american-ballet-theater-principal-dancer-1">This week we are joined by Isabella Boylston, American Ballet Theater Principal Dancer. Isabella was born in Sun Valley Idaho and started dancing at the age of 3. In 1994 she began training at a small studio, and by the age of 12 was commuting to Denver every day to study at the Academy of Colorado Ballet. After winning gold at the Youth America Grand Prix finals in New York City in 2001, she moved to Florida to study at the Harid Conservatory. After attending a summer course at American Ballet Theater, she joined the studio company in 2005, and joined the main company a year later. She was then promoted to Principal Dancer in 2014. She has danced many lead roles with the company, most noteably Giselle, Odette/Odile, Kitri in Don Quixote, and the lead in George Balanchines Theme and Variations. Recently she appeared as a guest star with the Royal Danish Ballet, and the Mariinsky Ballet in St. Petersburg, Russia. Today we chat with Bella ahead of the opening of ABTs Fall Season at the Koch Theater in New York City starting this Wednesday and going through October 29th. We talk today about the path that brought her to ABT, what her first big opportunities in the company were like, about her time as Artistic Director of this summers Ballet Sun Valley festival, and get a preview of what she is dancing this week in New York. Get tickets now: abt.org. This episode is sponsored by Body Wrappers: http://bodywrappers.com. This episode is also sponsored by Blue Apron. We are happy to offer a special $30 off your first order for all of our listeners when you visit conversationsondancepod.com/blueapron. Take advantage of this offer now and next week you could be enjoying delicious meals that can be made in 30 minutes or less. The post (64) Isabella Boylston, American Ballet Theater Principal Dancer appeared first on tendusunderapalmtree.com.</div>
-</div>
-</div>
 <div class="guest-block" id="choreo-duke-dang">
 <div class="guest-line">Duke Dang — General Manager — <a href="guggenheim.org/event/event_series/works-process" target="_blank" rel="noopener noreferrer" title="Guggenheim Works &amp; Process Home Page">Guggenheim Works &amp; Process</a></div>
 <div class="appearance">
@@ -1445,7 +1579,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-allison-debona">
-<div class="guest-line">Allison DeBona — Principal — Ballet West Academy</div>
+<div class="guest-line">Allison DeBona — Principal — <a href="https://academy.balletwest.org" target="_blank" rel="noopener noreferrer" title="Ballet West Academy Home Page">Ballet West Academy</a></div>
 <div class="appearance">
 <div class="row2">Jan 3, 2024 — (379) — <a href="https://shows.acast.com/conversations-on-dance/episodes/evelyn-cisneros-legate-allison-debona-ballet-west-academy" target="_blank" rel="noopener noreferrer"><strong>Evelyn Cisneros-Legate</strong> and <strong>Allison DeBona</strong>, of Ballet West Academy</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-allison-debona-1', this)">Show description</button>
@@ -1504,7 +1638,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-bryce-dessner">
-<div class="guest-line">Bryce Dessner — composer — Sydney Dance Company</div>
+<div class="guest-line">Bryce Dessner — composer — <a href="https://sydneydancecompany.com" target="_blank" rel="noopener noreferrer" title="Sydney Dance Company Home Page">Sydney Dance Company</a></div>
 <div class="appearance">
 <div class="row2">Apr 15, 2024 — (393) — <a href="https://shows.acast.com/conversations-on-dance/episodes/393-rafael-bonachela-bryce-dessner" target="_blank" rel="noopener noreferrer"><strong>Rafael Bonachela</strong>, choreographer and director of Sydney Dance Company, and <strong>Bryce Dessner</strong>, Composer</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-bryce-dessner-1', this)">Show description</button>
@@ -1531,7 +1665,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-holly-dorger">
-<div class="guest-line">Holly Dorger — Principal — Royal Danish Ballet</div>
+<div class="guest-line">Holly Dorger — Principal — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">Jan 17, 2023 — (323) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4d4" target="_blank" rel="noopener noreferrer"><strong>Holly Dorger</strong>, Principal Ballerina of the Royal Danish Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-holly-dorger-1', this)">Show description</button>
@@ -1540,7 +1674,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-michelle-dorrance">
-<div class="guest-line">Michelle Dorrance — Artistic Director — Dorrance Dance</div>
+<div class="guest-line">Michelle Dorrance — Artistic Director — <a href="https://dorrancedance.com" target="_blank" rel="noopener noreferrer" title="Dorrance Dance Home Page">Dorrance Dance</a></div>
 <div class="appearance">
 <div class="row2">Jul 28, 2025 — (454) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/454-tap-visionary-michelle-dorrance-live-from-the-vail-dance-festival" target="_blank" rel="noopener noreferrer">Tap Visionary, <strong>Michelle Dorrance</strong>, LIVE from the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-michelle-dorrance-1', this)">Show description</button>
@@ -1558,7 +1692,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-fernando-duarte">
-<div class="guest-line">Fernando Duarte — Artistic Director — National Ballet of Portugal <a class="profile-badge" href="https://joffrey.org/the-company/company-artists/fernando-duarte/" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Fernando Duarte">Profile Page</a></div>
+<div class="guest-line">Fernando Duarte — Artistic Director — <a href="https://cnb.pt" target="_blank" rel="noopener noreferrer" title="National Ballet of Portugal Home Page">National Ballet of Portugal</a> <a class="profile-badge" href="https://joffrey.org/the-company/company-artists/fernando-duarte/" target="_blank" rel="noopener noreferrer" title="The company's biographical page for Fernando Duarte">Profile Page</a></div>
 <div class="appearance">
 <div class="row2">Mar 12, 2025 — (436) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/436-artistic-director-of-the-national-ballet-of-portugal-fernando-duarte" target="_blank" rel="noopener noreferrer">Artistic Director of the National Ballet Of Portugal, <strong>Fernando Duarte</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-fernando-duarte-1', this)">Show description</button>
@@ -1567,7 +1701,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-philip-duclos">
-<div class="guest-line">Philip Duclos — Dancer — Royal Danish Ballet</div>
+<div class="guest-line">Philip Duclos — Dancer — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">Aug 2, 2024 — (409) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/409-the-next-generation-live-from-the-vail-dance-festival" target="_blank" rel="noopener noreferrer">The Next Generation, LIVE from the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-philip-duclos-1', this)">Show description</button>
@@ -1665,7 +1799,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-yuri-fateev">
-<div class="guest-line">Yuri Fateev — Artistic Director — Mariinsky Ballet</div>
+<div class="guest-line">Yuri Fateev — Artistic Director — <a href="https://mariinsky.ru" target="_blank" rel="noopener noreferrer" title="Mariinsky Ballet Home Page">Mariinsky Ballet</a></div>
 <div class="appearance">
 <div class="row2">Nov 13, 2017 — (68) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5e9" target="_blank" rel="noopener noreferrer">Live From The Kennedy Center: Mariinsky Ballet Director <strong>Yuri Fateev</strong> and Dancer <strong>Timur Askerov</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-yuri-fateev-1', this)">Show description</button>
@@ -1691,8 +1825,18 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-chyrstyn-fentroy-1">On today&#x27;s episode of &#x27;Conversations On Dance&#x27;, we are joined by Chyrstyn Fentroy, principal ballerina with Boston Ballet. We talk to Chyrstyn about how she built her work ethic during her training years, dancing under Virgina Johnson in the newly revived Dance Theater Of Harlem and what it was like to make the move to a larger company in the middle of her career. If you&#x27;d like to see Chyrstyn perform, stay tuned to the Boston Ballet website at bostonballet.org.</div>
 </div>
 </div>
+<div class="guest-block" id="choreo-ben-ferraro">
+<div class="guest-line">Ben Ferraro — Special Guest</div>
+<div class="appearance">
+<div class="row2">May 21, 2026 — (494) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/494-ariel-rose-choreographer-and-former-soloist-with-miami-city-ballet" target="_blank" rel="noopener noreferrer"><strong>Ariel Rose</strong>, Choreographer and former Soloist with Miami City Ballet</a>
+ <a class="patreon-badge" href="https://www.patreon.com/posts/494-ariel-rose-158873884" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-ben-ferraro-1', this)">Show description</button>
+</div>
+<div class="description" id="desc-ben-ferraro-1">Today on the Conversations on Dance podcast we are joined by Ariel Rose, choreographer and former soloist with Miami City Ballet. Ariel traces his path from Ballet Academy East to Boston Ballet and Richmond Ballet, ultimately landing at Miami City Ballet. He talks with us about how early exposure to live music, performing opportunities, and diverse choreographic processes shaped him. Rose talks about his choreographic journey including his work with Miami City Ballet and the New World Symphony, his approach to music selection, and details his new project Ballet Rose: Made in Miami. Don&#x27;t miss Ballet Rose: Made in Miami, one night only on June 13 at the Florence Gould Theatre in New York City. Tickets and more details are available here: https://www.tickettailor.com/events/lalliancenewyork/2032602. Learn more on Ariel&#x27;s website: https://www.balletrose.com/</div>
+</div>
+</div>
 <div class="guest-block" id="choreo-rebecca-king-ferraro">
-<div class="guest-line">Rebecca King Ferraro — Host — Conversations on Dance</div>
+<div class="guest-line">Rebecca King Ferraro — Host — <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer" title="Conversations on Dance Home Page">Conversations on Dance</a></div>
 <div class="appearance">
 <div class="row2">Jun 20, 2024 — (401) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/401-michael-amp-rebecca-on-michaels-setting-of-alexei-ratmanskys-the-fairys-kiss" target="_blank" rel="noopener noreferrer">Michael &amp; Rebecca on Michael&#x27;s setting of Alexei Ratmansky&#x27;s &#x27;The Fairy&#x27;s Kiss&#x27;</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-rebecca-king-ferraro-1', this)">Show description</button>
@@ -2075,7 +2219,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jodie-gates">
-<div class="guest-line">Jodie Gates — Director — USC Glorya Kaufman School</div>
+<div class="guest-line">Jodie Gates — Director — <a href="https://kaufman.usc.edu" target="_blank" rel="noopener noreferrer" title="USC Glorya Kaufman School Home Page">USC Glorya Kaufman School</a></div>
 <div class="appearance">
 <div class="row2">May 13, 2019 — (137) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a597" target="_blank" rel="noopener noreferrer"><strong>Jodie Gates</strong>, Vice Dean and Director of USCs Glorya Kaufman School of Dance</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-jodie-gates-1', this)">Show description</button>
@@ -2084,7 +2228,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-tara-ghassemieh">
-<div class="guest-line">Tara Ghassemieh — Principal — Golden State Ballet</div>
+<div class="guest-line">Tara Ghassemieh — Principal — <a href="https://goldenstateballet.org" target="_blank" rel="noopener noreferrer" title="Golden State Ballet Home Page">Golden State Ballet</a></div>
 <div class="appearance">
 <div class="row2">Jun 21, 2023 — (346) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/346-tara-ghassemieh-on-honoring-the-untold-story-of-the-iranian-national-ballet" target="_blank" rel="noopener noreferrer"><strong>Tara Ghassemieh</strong> on honoring the untold story of the Iranian National Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-tara-ghassemieh-1', this)">Show description</button>
@@ -2153,7 +2297,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-martha-graham">
-<div class="guest-line">Martha Graham</div>
+<div class="guest-line">Martha Graham <a class="profile-badge" href="performances_choreographer.html#choreo-martha-graham" title="Performances featuring Martha Graham in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Oct 25, 2023 — (370) — <a href="https://shows.acast.com/conversations-on-dance/episodes/martha-graham-michael-small" target="_blank" rel="noopener noreferrer">Interview with <strong>Martha Graham</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-martha-graham-1', this)">Show description</button>
@@ -2247,7 +2391,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-christin-hanna">
-<div class="guest-line">Christin Hanna — Artistic Director — Lake Tahoe Dance Festival</div>
+<div class="guest-line">Christin Hanna — Artistic Director — <a href="https://laketahoedancefestival.org" target="_blank" rel="noopener noreferrer" title="Lake Tahoe Dance Festival Home Page">Lake Tahoe Dance Festival</a></div>
 <div class="appearance">
 <div class="row2">Jul 20, 2020 — (192) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a55c" target="_blank" rel="noopener noreferrer"><strong>Christin Hanna</strong>, Lake Tahoe Dance Festival Artistic Director</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-christin-hanna-1', this)">Show description</button>
@@ -2305,7 +2449,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-austin-hartel">
-<div class="guest-line">Austin Hartel — Artistic Director — Oklahoma International Dance Festival</div>
+<div class="guest-line">Austin Hartel — Artistic Director — <a href="https://okdancefest.org" target="_blank" rel="noopener noreferrer" title="Oklahoma International Dance Festival Home Page">Oklahoma International Dance Festival</a></div>
 <div class="appearance">
 <div class="row2">Jul 8, 2020 — (190) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a55e" target="_blank" rel="noopener noreferrer"><strong>Austin Hartel</strong>, Oklahoma International Dance Festival Artistic Director</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-austin-hartel-1', this)">Show description</button>
@@ -2410,7 +2554,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-shane-horan">
-<div class="guest-line">Shane Horan — Editor — Balanchine Foundation</div>
+<div class="guest-line">Shane Horan — Editor — <a href="https://balanchine.org" target="_blank" rel="noopener noreferrer" title="Balanchine Foundation Home Page">Balanchine Foundation</a></div>
 <div class="appearance">
 <div class="row2">Mar 6, 2025 — (435) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/435-shane-horan-editor-for-the-george-balanchine-foundations-video-archives" target="_blank" rel="noopener noreferrer"><strong>Shane Horan</strong>, editor for the George Balanchine Foundation&#x27;s Video Archives</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-shane-horan-1', this)">Show description</button>
@@ -2462,7 +2606,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-shohei-iwahama">
-<div class="guest-line">Shohei Iwahama — Dancer — Les Ballet Trockadero de Monte Carlo</div>
+<div class="guest-line">Shohei Iwahama — Dancer — <a href="https://trockadero.org" target="_blank" rel="noopener noreferrer" title="Les Ballet Trockadero de Monte Carlo Home Page">Les Ballet Trockadero de Monte Carlo</a></div>
 <div class="appearance">
 <div class="row2">Jan 10, 2024 — (380) — <a href="https://shows.acast.com/conversations-on-dance/episodes/380-shohei-iwahama-les-ballet-trockadero-de-monte-carlo" target="_blank" rel="noopener noreferrer"><strong>Shohei Iwahama</strong>, dancer with Les Ballet Trockadero de Monte Carlo</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-shohei-iwahama-1', this)">Show description</button>
@@ -2474,22 +2618,28 @@ function toggleHomeNav(btn) {
 <div class="guest-block" id="choreo-susan-jaffe">
 <div class="guest-line">Susan Jaffe — Artistic Director — <a href="abt.org" target="_blank" rel="noopener noreferrer" title="American Ballet Theatre Home Page">American Ballet Theatre</a></div>
 <div class="appearance">
-<div class="row2">Apr 30, 2024 — (395) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/395-susan-jaffe-american-ballet-theatre" target="_blank" rel="noopener noreferrer"><strong>Susan Jaffe</strong>, Artistic Director of American Ballet Theatre</a>
+<div class="row2">Jun 11, 2026 — (497) — <a href="https://shows.acast.com/conversations-on-dance/episodes/497-american-ballet-theatres-summer-season-with-susan-jaffe" target="_blank" rel="noopener noreferrer">American Ballet Theatre&#x27;s Summer Season with <strong>Susan Jaffe</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-1', this)">Show description</button>
 </div>
-<div class="description" id="desc-susan-jaffe-1">Today on the Conversations on Dance podcast, we are joined once again by Susan Jaffe, Artistic Director of American Ballet Theatre. We last had Susan on the podcast in late 2022 in episode 309 as she was about to take the helm of the company. This week we get the opportunity to hear from Susan about what her first year has been like, some of the challenges she has faced, and we get a preview of what is next for the company. For more information about upcoming performances of American Ballet Theatre, visit, abt.org. Listen to episode 309.</div>
+<div class="description" id="desc-susan-jaffe-1">Today on the Conversations on Dance podcast we are joined by Susan Jaffe, Artistic Director of American Ballet Theatre. Susan reflects on ABT’s Spring Season, the challenges of the Met season shifting later into summer, and the company exceeding attendance goals while continuing strong ticket sales. She talk about how Executive Director Barry Hughson&#x27;s arrival has strengthened fundraising and operations, freeing her to focus on artistic work. She previews the upcoming Met lineup—two weeks of Swan Lake, Cranko’s Onegin, and 10 performances of Don Quixote with seven Kitri/Basilio casts. Jaffe details her Don Quixote refresh: keeping the 1978 production, tightening storytelling and pacing, making music cuts, adjusting mime and choreography, and more. See ABT at the Met June 17 - July 18th. Tickets available at ABT.org: https://www.abt.org/performances/summer-season/Listen to our other episodes with Susan here: https://www.conversationsondancepod.com/search?q=susan+jaffeListen to Conversations on Dance ad-free on Patreon: https://www.patreon.com/cw/conversationsondance____________________________________Introduction: Conversations on Dance with Susan JaffeJoin hosts Rebecca King Ferraro and Michael Sean Breeden on the latest episode of the &quot;Conversations on Dance&quot; podcast as they engage with Susan Jaffe, the esteemed artistic director of American Ballet Theatre (ABT). They dive into the intricacies of ABT’s performances, the innovations under Jaffe&#x27;s leadership, and the exciting future of ballet.Reflections on the Spring SeasonSusan Jaffe begins by reflecting on the challenges and triumphs of ABT’s spring season. Originally set for mid-April at the Metropolitan Opera House, a shift pushed performances into summer, prompting concerns about audience engagement. Despite these challenges, ABT exceeded attendance expectations, experiencing what Susan coined as “Timothee Chalamet moments” – standing ovations each night. With the support of Executive Director Barry Hughson, the company navigated these changes with finesse, focusing on enriching its artistic offerings while maintaining strong ticket sales.Previewing the Met Season: New Approaches and Old FavoritesAs the discussion shifts to upcoming performances at the Metropolitan Opera House, Susan announces a packed lineup featuring two weeks of &quot;Swan Lake&quot;, George Cranko’s emotionally rich &quot;Onegin&quot;, and a refreshed &quot;Don Quixote&quot; (Don Q). The conversation reveals how adjustments to the season were strategically planned to cater to both New York residents and the influx of summer tourists.Don Quixote Gets a RefreshThe process behind updating &quot;Don Quixote&quot; was intricate, with Susan focusing on tightening storytelling, enhancing choreography, and making selective cuts to maintain audience engagement. Her collaboration with renowned figures such as Susan Jones and forthcoming music director David LaMarche highlights a commitment to retaining the piece’s essence while injecting fresh energy.Conclusion: An Invitation to Experience the MagicThe episode closes with an invitation from Susan Jaffe for audiences to experience the magic of ABT’s upcoming performances. With refreshed classics and bold new directions, each ballet is crafted to captivate and inspire. Whether a longtime fan or a newcomer, ABT’s vibrant season promises unforgettable experiences for all.Join the ConversationListen to the full episode for a detailed exploration of ABT’s artistic journey. Subscribe to &quot;Conversations on Dance&quot; for more illuminating discussions on ballet&#x27;s vibrant tapestry. Visit conversationsondancepod.com for more information and to explore sponsorship opportunities.LINKS:Website: conversationsondancepod.comInstagram: @conversationsondanceCOD MerchListen to COD on YouTubeJoin our email listSponsorship information Hosted on Acast. See acast.com/privacy for more information.</div>
+</div>
+<div class="appearance">
+<div class="row2">Apr 30, 2024 — (395) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/395-susan-jaffe-american-ballet-theatre" target="_blank" rel="noopener noreferrer"><strong>Susan Jaffe</strong>, Artistic Director of American Ballet Theatre</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-2', this)">Show description</button>
+</div>
+<div class="description" id="desc-susan-jaffe-2">Today on the Conversations on Dance podcast, we are joined once again by Susan Jaffe, Artistic Director of American Ballet Theatre. We last had Susan on the podcast in late 2022 in episode 309 as she was about to take the helm of the company. This week we get the opportunity to hear from Susan about what her first year has been like, some of the challenges she has faced, and we get a preview of what is next for the company. For more information about upcoming performances of American Ballet Theatre, visit, abt.org. Listen to episode 309.</div>
 </div>
 <div class="appearance">
 <div class="row2">Oct 3, 2022 — (309) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/309-susan-jaffe-incoming-artistic-director-of-american-ballet-theatre" target="_blank" rel="noopener noreferrer"><strong>Susan Jaffe</strong>, incoming Artistic Director of American Ballet Theatre</a>
- <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-2', this)">Show description</button>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-3', this)">Show description</button>
 </div>
-<div class="description" id="desc-susan-jaffe-2">On today&#x27;s episode, we are joined by former ballerina and incoming artist director of American Ballet Theatre Susan Jaffe. Susan has previously appeared on the podcast in an interview that covered her rapid rise to stardom at ABT, the accompanying self doubts during this success, and how working through those moments affects her present day work as a coach and director. (Listen here: https://conversationsondancepod.com/2020/08/31/susan-jaffe/). Today she talks about her time directing Pittsburgh Ballet Theater through a pandemic and what her plans are for when she takes the helm of American Ballet Theatre later this year.</div>
+<div class="description" id="desc-susan-jaffe-3">On today&#x27;s episode, we are joined by former ballerina and incoming artist director of American Ballet Theatre Susan Jaffe. Susan has previously appeared on the podcast in an interview that covered her rapid rise to stardom at ABT, the accompanying self doubts during this success, and how working through those moments affects her present day work as a coach and director. (Listen here: https://conversationsondancepod.com/2020/08/31/susan-jaffe/). Today she talks about her time directing Pittsburgh Ballet Theater through a pandemic and what her plans are for when she takes the helm of American Ballet Theatre later this year.</div>
 </div>
 <div class="appearance">
 <div class="row2">Aug 31, 2020 — (199) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a555" target="_blank" rel="noopener noreferrer"><strong>Susan Jaffe</strong>, Pittsburgh Ballet Theatres New Artistic Director</a>
- <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-3', this)">Show description</button>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-jaffe-4', this)">Show description</button>
 </div>
-<div class="description" id="desc-susan-jaffe-3">Today we chat with Pittsburgh Ballet Theatre&#x27;s newly appointed Artistic Director, Susan Jaffe. Susan was a Principal dancer with American Ballet Theatre for 22 years, appearing prominently in the international dance scene and frequently dancing with Mikhail Baryshnikov. She retired from the stage in 2002 at age 40 and went on to serve as an adviser to the chairman of the board of American Ballet Theatre. From 2003-2010, she taught in the Jacqueline Kennedy Onassis School of American Ballet Theatre and from 2010-2012, she worked with American Ballet Theatre as ballet mistress. Since 2012, Ms. Jaffe has been the dean of dance at the University of North Carolina School of the Arts in Winston-Salem. In April 2020, it was announced that Susan would be taking on the role of Artistic Director at PBT. We talk with Susan about her prolific career, dancing with and for Baryshnikov, her ambition, dealing with career stress, &amp; her new position in the dance world. Learn more about the Susan Jaffe Series: https://www.susanjaffe.com This episode is brought to you by Yumiko (yumiko.com) and Veyette Virtual Ballet School (veyettevirtualballetschool.com). Links: instagram.com/conversationsondance facebook.com/conversationsondance twitter.com/convoondance conversationsondancepod.com The post (199) Susan Jaffe, Pittsburgh Ballet Theatre&#x27;s New Artistic Director appeared first on tendusunderapalmtree.com.</div>
+<div class="description" id="desc-susan-jaffe-4">Today we chat with Pittsburgh Ballet Theatre&#x27;s newly appointed Artistic Director, Susan Jaffe. Susan was a Principal dancer with American Ballet Theatre for 22 years, appearing prominently in the international dance scene and frequently dancing with Mikhail Baryshnikov. She retired from the stage in 2002 at age 40 and went on to serve as an adviser to the chairman of the board of American Ballet Theatre. From 2003-2010, she taught in the Jacqueline Kennedy Onassis School of American Ballet Theatre and from 2010-2012, she worked with American Ballet Theatre as ballet mistress. Since 2012, Ms. Jaffe has been the dean of dance at the University of North Carolina School of the Arts in Winston-Salem. In April 2020, it was announced that Susan would be taking on the role of Artistic Director at PBT. We talk with Susan about her prolific career, dancing with and for Baryshnikov, her ambition, dealing with career stress, &amp; her new position in the dance world. Learn more about the Susan Jaffe Series: https://www.susanjaffe.com This episode is brought to you by Yumiko (yumiko.com) and Veyette Virtual Ballet School (veyettevirtualballetschool.com). Links: instagram.com/conversationsondance facebook.com/conversationsondance twitter.com/convoondance conversationsondancepod.com The post (199) Susan Jaffe, Pittsburgh Ballet Theatre&#x27;s New Artistic Director appeared first on tendusunderapalmtree.com.</div>
 </div>
 </div>
 <div class="guest-block" id="choreo-russell-janzen">
@@ -2520,7 +2670,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-damien-johnson">
-<div class="guest-line">Damien Johnson — Upper Division Head — Washington School of Ballet</div>
+<div class="guest-line">Damien Johnson — Upper Division Head — <a href="https://washingtonballet.org" target="_blank" rel="noopener noreferrer" title="Washington School of Ballet Home Page">Washington School of Ballet</a></div>
 <div class="appearance">
 <div class="row2">Jun 13, 2023 — (344) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/344-male-specific-ballet-training-with-damien-johnson-upper-division-head-of-the-washington-school-of-ballet" target="_blank" rel="noopener noreferrer">Male specific ballet training with <strong>Damien Johnson</strong>, Upper Division Head of The Washington School of Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-damien-johnson-1', this)">Show description</button>
@@ -2578,7 +2728,7 @@ function toggleHomeNav(btn) {
 </div>
 <h2 class="letter-heading" id="letter-K">K</h2>
 <div class="guest-block" id="choreo-laurie-kanyok">
-<div class="guest-line">Laurie Kanyok — Founder — Kanyok Arts Initiative</div>
+<div class="guest-line">Laurie Kanyok — Founder — <a href="https://kanyokartsinitiative.com" target="_blank" rel="noopener noreferrer" title="Kanyok Arts Initiative Home Page">Kanyok Arts Initiative</a></div>
 <div class="appearance">
 <div class="row2">Dec 22, 2020 — (210) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a54a" target="_blank" rel="noopener noreferrer"><strong>Laurie Kanyok</strong>, Founder of Kanyok Arts Initiative</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-laurie-kanyok-1', this)">Show description</button>
@@ -2656,7 +2806,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-rebecca-king-ferraro">
-<div class="guest-line">Rebecca King Ferraro — Host — Conversations on Dance</div>
+<div class="guest-line">Rebecca King Ferraro — Host — <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer" title="Conversations on Dance Home Page">Conversations on Dance</a></div>
 <div class="appearance">
 <div class="row2">Dec 18, 2025 — (477) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/477-the-best-of-2025-with-michael-and-rebecca" target="_blank" rel="noopener noreferrer">The Best of 2025 with Michael and Rebecca</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/477-best-of-2025-146148900" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -2741,7 +2891,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-evelyn-kocak">
-<div class="guest-line">Evelyn Kocak — Friend — Conversations on Dance</div>
+<div class="guest-line">Evelyn Kocak — Friend — <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer" title="Conversations on Dance Home Page">Conversations on Dance</a></div>
 <div class="appearance">
 <div class="row2">Dec 16, 2021 — (264) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a50f" target="_blank" rel="noopener noreferrer">Best of 2021 with <strong>Evelyn Kocak</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-evelyn-kocak-1', this)">Show description</button>
@@ -2762,7 +2912,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-carla-korbes">
-<div class="guest-line">Carla Korbes — Associate Professor — Indiana University Jacobs School</div>
+<div class="guest-line">Carla Korbes — Associate Professor — <a href="https://music.indiana.edu" target="_blank" rel="noopener noreferrer" title="Indiana University Jacobs School Home Page">Indiana University Jacobs School</a></div>
 <div class="appearance">
 <div class="row2">Jan 21, 2020 — (169) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a574" target="_blank" rel="noopener noreferrer">Carla Krbes, Associate Professor of Music in Ballet at the Indiana University Jacobs School of Music</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-carla-korbes-1', this)">Show description</button>
@@ -2991,7 +3141,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-andrea-renee-long-naidu">
-<div class="guest-line">Andrea Renee Long-Naidu — Faculty — Boston Ballet School</div>
+<div class="guest-line">Andrea Renee Long-Naidu — Faculty — <a href="https://bostonballet.org" target="_blank" rel="noopener noreferrer" title="Boston Ballet School Home Page">Boston Ballet School</a></div>
 <div class="appearance">
 <div class="row2">Mar 25, 2021 — (222) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a53e" target="_blank" rel="noopener noreferrer"><strong>Andrea Renee Long-Naidu</strong>, Former Principal with Dance Theatre of Harlem and current Boston Ballet School Faculty Member</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-andrea-renee-long-naidu-1', this)">Show description</button>
@@ -3015,7 +3165,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-lauren-lovette">
-<div class="guest-line">Lauren Lovette — Choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a></div>
+<div class="guest-line">Lauren Lovette — Choreographer — <a href="paultaylordance.org/" target="_blank" rel="noopener noreferrer" title="Paul Taylor Dance Company Home Page">Paul Taylor Dance Company</a> <a class="profile-badge" href="performances_choreographer.html#choreo-lauren-lovette" title="Performances featuring Lauren Lovette in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Sep 25, 2023 — (366) — <a href="https://shows.acast.com/conversations-on-dance/episodes/lauren-lovette-resident-choreographer-paul-taylor-dance" target="_blank" rel="noopener noreferrer"><strong>Lauren Lovette</strong>, Resident Choreographer at Paul Taylor Dance Company</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-lauren-lovette-1', this)">Show description</button>
@@ -3191,7 +3341,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-julian-mackay">
-<div class="guest-line">Julian MacKay — Soloist — Mikhailovsky Theatre</div>
+<div class="guest-line">Julian MacKay — Soloist — <a href="https://mikhailovsky.ru" target="_blank" rel="noopener noreferrer" title="Mikhailovsky Theatre Home Page">Mikhailovsky Theatre</a></div>
 <div class="appearance">
 <div class="row2">Sep 30, 2019 — (156) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a581" target="_blank" rel="noopener noreferrer"><strong>Julian MacKay</strong>, First Soloist with Mikhailovsky Theatre</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-julian-mackay-1', this)">Show description</button>
@@ -3200,7 +3350,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-michelle-manzanales">
-<div class="guest-line">Michelle Manzanales — Director — Ballet Hispanicos School</div>
+<div class="guest-line">Michelle Manzanales — Director — <a href="https://ballethispanico.org" target="_blank" rel="noopener noreferrer" title="Ballet Hispanicos School Home Page">Ballet Hispanicos School</a></div>
 <div class="appearance">
 <div class="row2">Mar 21, 2022 — (276) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a503" target="_blank" rel="noopener noreferrer"><strong>Michelle Manzanales</strong>, Director of Ballet Hispnicos School of Dance</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-michelle-manzanales-1', this)">Show description</button>
@@ -3209,7 +3359,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-gregory-maqoma">
-<div class="guest-line">Gregory Maqoma — founder — Vuyani Dance Theater</div>
+<div class="guest-line">Gregory Maqoma — founder — <a href="https://vuyani.co.za" target="_blank" rel="noopener noreferrer" title="Vuyani Dance Theater Home Page">Vuyani Dance Theater</a></div>
 <div class="appearance">
 <div class="row2">Mar 14, 2023 — (332) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4cb" target="_blank" rel="noopener noreferrer"><strong>Gregory Maqoma</strong>, founder of Vuyani Dance Theater, coming to Performing Arts Houston</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-gregory-maqoma-1', this)">Show description</button>
@@ -3260,7 +3410,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-kati-hanlon-mayo">
-<div class="guest-line">Kati Hanlon Mayo — Associate Director — Charlotte Ballet Academy</div>
+<div class="guest-line">Kati Hanlon Mayo — Associate Director — <a href="https://charlotteballet.org" target="_blank" rel="noopener noreferrer" title="Charlotte Ballet Academy Home Page">Charlotte Ballet Academy</a></div>
 <div class="appearance">
 <div class="row2">Feb 1, 2023 — (326) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4d1" target="_blank" rel="noopener noreferrer"><strong>Kati Hanlon Mayo</strong>, Associate Director of Charlotte Ballet Academy</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-kati-hanlon-mayo-1', this)">Show description</button>
@@ -3389,7 +3539,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-marzia-memoli">
-<div class="guest-line">Marzia Memoli — Chorus Dancer — <a href="marthagraham.org/" target="_blank" rel="noopener noreferrer" title="Martha Graham Dance Company Home Page">Martha Graham Dance Company</a></div>
+<div class="guest-line">Marzia Memoli — Dancer — <a href="marthagraham.org/" target="_blank" rel="noopener noreferrer" title="Martha Graham Dance Company Home Page">Martha Graham Dance Company</a></div>
 <div class="appearance">
 <div class="row2">Oct 18, 2021 — (256) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a518" target="_blank" rel="noopener noreferrer"><strong>Marzia Memoli</strong>, Chorus dancer with Martha Graham Dance Company</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-marzia-memoli-1', this)">Show description</button>
@@ -3453,7 +3603,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-marika-molnar">
-<div class="guest-line">Marika Molnar — Founder — Westside Dance Physical Therapy</div>
+<div class="guest-line">Marika Molnar — Founder — <a href="https://westsidedancept.com" target="_blank" rel="noopener noreferrer" title="Westside Dance Physical Therapy Home Page">Westside Dance Physical Therapy</a></div>
 <div class="appearance">
 <div class="row2">Jan 14, 2019 — (122) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5a5" target="_blank" rel="noopener noreferrer"><strong>Marika Molnar</strong>, Director of Physical Therapy for New York City Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-marika-molnar-1', this)">Show description</button>
@@ -3479,8 +3629,17 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-michael-montgomery-1">This week on Conversations on Dance, we are joined by Michael Montgomery, dancer with Alonzo King LINES Ballet from the 2019 Vail Dance Festival. Michael was born in Long Beach, CA, trained at the Orange County High School of the Arts and studied at the Alvin Ailey School in the Certificate program. In 2011 he graduated from the Alonzo King LINES Ballet BFA Program at Dominican University of California. In 2010, he joined LINES Ballet and was named to the list of 25 to Watch by Dance Magazine in 2013. We talk with Michael about his origins in dance, the BFA program at Dominican University, what a typical day is like as a member of LINES, and what it is like working in the studio with Alonzo during his creation process. This episode is brought to you by The Town of Vail, Yumiko (yumiko.com), and The Veyette Virtual Ballet School (veyettevirtualballetschool.com). The post (174) Michael Montgomery, Alonzo King LINES Ballet appeared first on tendusunderapalmtree.com.</div>
 </div>
 </div>
+<div class="guest-block" id="choreo-padraic-moyles">
+<div class="guest-line">Padraic Moyles — Executive Producer — <a href="https://riverdance.com" target="_blank" rel="noopener noreferrer" title="Riverdance Home Page">Riverdance</a></div>
+<div class="appearance">
+<div class="row2">May 28, 2026 — (495) — <a href="https://shows.acast.com/conversations-on-dance/episodes/495-padraic-moyles-executive-producer-and-director-of-riverd" target="_blank" rel="noopener noreferrer"><strong>Padraic Moyles</strong>, Executive Producer and Director of &#x27;Riverdance 30 - The New Generation&#x27;</a>
+ <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-padraic-moyles-1', this)">Show description</button>
+</div>
+<div class="description" id="desc-padraic-moyles-1">Listen to Conversations on Dance ad-free on Patreon: https://www.patreon.com/cw/conversationsondanceOn today&#x27;s episode of Conversations On Dance we are joined by Padraic Moyles, Executive Producer and Director of &#x27;Riverdance 30 - The New Generation&#x27;. Padraic tells us about his own journey as a performer in the early days of the Riverdance phenomenon, how the show has evolved in its 30 year history, and the incredible method they use to both spread the physical burden and keep the dancers from burning out during their grueling tours. Riverdance will be at Performing Arts Houston from June 19th through the 21st. Tickets are available on performingartshouston.org. LINKS:Website: conversationsondancepod.comInstagram: @conversationsondanceCOD MerchListen to COD on YouTubeJoin our email listSponsorship information Hosted on Acast. See acast.com/privacy for more information.</div>
+</div>
+</div>
 <div class="guest-block" id="choreo-linda-murray">
-<div class="guest-line">Linda Murray — Curator — New York Public Library</div>
+<div class="guest-line">Linda Murray — Curator — <a href="https://nypl.org" target="_blank" rel="noopener noreferrer" title="New York Public Library Home Page">New York Public Library</a></div>
 <div class="appearance">
 <div class="row2">Apr 17, 2023 — (337) — <a href="https://shows.acast.com/conversations-on-dance/episodes/linda-murray" target="_blank" rel="noopener noreferrer"><strong>Linda Murray</strong> curator of the Jerome Robbins Dance Division at the New York Public Library</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-linda-murray-1', this)">Show description</button>
@@ -3596,7 +3755,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-allynne-noelle">
-<div class="guest-line">Allynne Noelle — Soloist — Suzanne Farrell Ballet</div>
+<div class="guest-line">Allynne Noelle — Soloist — <a href="https://suzannefarrell.org" target="_blank" rel="noopener noreferrer" title="Suzanne Farrell Ballet Home Page">Suzanne Farrell Ballet</a></div>
 <div class="appearance">
 <div class="row2">Nov 27, 2017 — (69) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5e8" target="_blank" rel="noopener noreferrer"><strong>Allynne Noelle</strong>, Suzanne Farrell Ballet First Soloist</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-allynne-noelle-1', this)">Show description</button>
@@ -3786,7 +3945,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-moses-pendleton">
-<div class="guest-line">Moses Pendleton — Director — <a href="momix.com/" target="_blank" rel="noopener noreferrer" title="Momix Home Page">Momix</a></div>
+<div class="guest-line">Moses Pendleton — Director — <a href="momix.com/" target="_blank" rel="noopener noreferrer" title="Momix Home Page">Momix</a> <a class="profile-badge" href="performances_choreographer.html#choreo-moses-pendleton" title="Performances featuring Moses Pendleton in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Aug 17, 2023 — (362) — <a href="https://shows.acast.com/conversations-on-dance/episodes/362-choreographer-moses-pendleton-on-momixs-alice-at-perform" target="_blank" rel="noopener noreferrer">Choreographer <strong>Moses Pendleton</strong>, on MOMIX&#x27;s &#x27;Alice&#x27; at Performing Arts Houston</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-moses-pendleton-1', this)">Show description</button>
@@ -3795,7 +3954,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-kate-penner">
-<div class="guest-line">Kate Penner — Friend — Conversations on Dance</div>
+<div class="guest-line">Kate Penner — Friend — <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer" title="Conversations on Dance Home Page">Conversations on Dance</a></div>
 <div class="appearance">
 <div class="row2">Mar 26, 2024 — (390) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/390-social-medias-impact-on-ballet-amp-dance-with-kate-penner" target="_blank" rel="noopener noreferrer">Social media&#x27;s impact on ballet &amp; dance, with <strong>Kate Penner</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-kate-penner-1', this)">Show description</button>
@@ -3834,7 +3993,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-alex-peters">
-<div class="guest-line">Alex Peters — Dancer — Twyla Tharp Dance Company</div>
+<div class="guest-line">Alex Peters — Dancer — <a href="https://twylatharp.org" target="_blank" rel="noopener noreferrer" title="Twyla Tharp Dance Company Home Page">Twyla Tharp Dance Company</a></div>
 <div class="appearance">
 <div class="row2">Apr 15, 2025 — (440) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/440-twyla-60th-anniversary-tour-with-renan-cerdeiro-and-alex-peters" target="_blank" rel="noopener noreferrer">Twyla 60th Anniversary Tour with <strong>Renan Cerdeiro</strong> and <strong>Alex Peters</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-alex-peters-1', this)">Show description</button>
@@ -3885,7 +4044,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-susan-pilarre">
-<div class="guest-line">Susan Pilarre — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">Susan Pilarre — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Sep 12, 2017 — (59) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5f2" target="_blank" rel="noopener noreferrer"><strong>Susan Pilarre</strong>, Esteemed Teacher at the School of American Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-susan-pilarre-1', this)">Show description</button>
@@ -3915,7 +4074,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-tobias-praetorius">
-<div class="guest-line">Tobias Praetorius — Soloist — Royal Danish Ballet</div>
+<div class="guest-line">Tobias Praetorius — Soloist — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">Apr 2, 2026 — (487) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/487-royal-danish-ballet-soloist-tobias-praetorius" target="_blank" rel="noopener noreferrer">Royal Danish Ballet soloist <strong>Tobias Praetorius</strong></a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/487-royal-danish-154615591" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -3925,7 +4084,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-viki-bromberg-psihoyos">
-<div class="guest-line">Viki Bromberg Psihoyos — Repetiteur — Balanchine Trust</div>
+<div class="guest-line">Viki Bromberg Psihoyos — Repetiteur — <a href="https://balanchine.com" target="_blank" rel="noopener noreferrer" title="Balanchine Trust Home Page">Balanchine Trust</a></div>
 <div class="appearance">
 <div class="row2">Nov 21, 2022 — (315) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4dc" target="_blank" rel="noopener noreferrer"><strong>Viki Bromberg Psihoyos</strong>, Balanchine Trust Repetiteur</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-viki-bromberg-psihoyos-1', this)">Show description</button>
@@ -4065,7 +4224,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-tegan-rich">
-<div class="guest-line">Tegan Rich — Dancer — Festival Ballet Providence</div>
+<div class="guest-line">Tegan Rich — Dancer — <a href="https://balletri.org" target="_blank" rel="noopener noreferrer" title="Festival Ballet Providence Home Page">Festival Ballet Providence</a></div>
 <div class="appearance">
 <div class="row2">May 20, 2019 — (138) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a596" target="_blank" rel="noopener noreferrer"><strong>Tegan Rich</strong>, Festival Ballet Providence</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-tegan-rich-1', this)">Show description</button>
@@ -4125,7 +4284,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jenifer-ringer">
-<div class="guest-line">Jenifer Ringer — Director Intermediate and Advanced — School of American Ballet</div>
+<div class="guest-line">Jenifer Ringer — Director Intermediate and Advanced — <a href="https://sab.org" target="_blank" rel="noopener noreferrer" title="School of American Ballet Home Page">School of American Ballet</a></div>
 <div class="appearance">
 <div class="row2">Feb 4, 2026 — (479) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/479-aesha-ash-and-jenifer-ringer-educational-directors-at-the-school-of-american-ballet" target="_blank" rel="noopener noreferrer"><strong>Aesha Ash</strong> and <strong>Jenifer Ringer</strong>, Educational Directors at The School of American Ballet</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/479-aesha-ash-at-149953710" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -4144,7 +4303,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jamar-roberts">
-<div class="guest-line">Jamar Roberts — Choreographer</div>
+<div class="guest-line">Jamar Roberts — Choreographer <a class="profile-badge" href="performances_choreographer.html#choreo-jamar-roberts" title="Performances featuring Jamar Roberts in the 2026–27 season">Upcoming Performances</a></div>
 <div class="appearance">
 <div class="row2">Aug 1, 2024 — (408) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/408-sara-mearns-and-jamar-roberts-live-from-the-vail-dance-festival" target="_blank" rel="noopener noreferrer"><strong>Sara Mearns</strong> and <strong>Jamar Roberts</strong>, LIVE from the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-jamar-roberts-1', this)">Show description</button>
@@ -4309,7 +4468,7 @@ function toggleHomeNav(btn) {
 </div>
 <h2 class="letter-heading" id="letter-S">S</h2>
 <div class="guest-block" id="choreo-kristoffer-dahl-sakurai">
-<div class="guest-line">Kristoffer Dahl Sakurai — former Principal — Royal Danish Ballet</div>
+<div class="guest-line">Kristoffer Dahl Sakurai — former Principal — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">Oct 15, 2024 — (420) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/420-kristoffer-dahl-sakurai-former-principal-dancer-with-the-royal-danish-ballet" target="_blank" rel="noopener noreferrer"><strong>Kristoffer Dahl Sakurai</strong>, former principal dancer with the Royal Danish Ballet</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-kristoffer-dahl-sakurai-1', this)">Show description</button>
@@ -4373,7 +4532,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-garen-scribner">
-<div class="guest-line">Garen Scribner — Artistic Director — San Francisco Dance Film Festival</div>
+<div class="guest-line">Garen Scribner — Artistic Director — <a href="https://sfdancefilmfest.org" target="_blank" rel="noopener noreferrer" title="San Francisco Dance Film Festival Home Page">San Francisco Dance Film Festival</a></div>
 <div class="appearance">
 <div class="row2">Oct 15, 2025 — (469) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/469-tiler-peck-and-garen-scribner-on-the-new-documentary-tiler-peck-suspending-time" target="_blank" rel="noopener noreferrer"><strong>Tiler Peck</strong> and <strong>Garen Scribner</strong>, on the new documentary, &quot;<strong>Tiler Peck</strong>: Suspending Time&quot;</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/469-tiler-peck-141798059" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -4455,7 +4614,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jakari-sherman">
-<div class="guest-line">Jakari Sherman — Director — Step Afrika!</div>
+<div class="guest-line">Jakari Sherman — Director — <a href="https://stepafrika.org" target="_blank" rel="noopener noreferrer" title="Step Afrika! Home Page">Step Afrika!</a></div>
 <div class="appearance">
 <div class="row2">Sep 13, 2023 — (364) — <a href="https://shows.acast.com/conversations-on-dance/episodes/jakari-sherman-drumfolk" target="_blank" rel="noopener noreferrer"><strong>Jakari Sherman</strong> on &#x27;Drumfolk&#x27; with Step Afrika! at Performing Arts Houston</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-jakari-sherman-1', this)">Show description</button>
@@ -4473,7 +4632,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-junyla-silmon">
-<div class="guest-line">Junyla Silmon — Senior Research — Dance Data Project</div>
+<div class="guest-line">Junyla Silmon — Senior Research — <a href="https://dancedataproject.com" target="_blank" rel="noopener noreferrer" title="Dance Data Project Home Page">Dance Data Project</a></div>
 <div class="appearance">
 <div class="row2">Dec 13, 2022 — (319) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4d8" target="_blank" rel="noopener noreferrer">Dance Data Project with <strong>Elizabeth Yntema</strong> and <strong>Junyla Silmon</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-junyla-silmon-1', this)">Show description</button>
@@ -4807,7 +4966,7 @@ function toggleHomeNav(btn) {
 <div class="row2">May 20, 2021 — (229) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a537" target="_blank" rel="noopener noreferrer"><strong>Jessica Tong</strong>, Associate Artistic Director, Hubbard Street Dance Chicago</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-jessica-tong-1', this)">Show description</button>
 </div>
-<div class="description" id="desc-jessica-tong-1">This week we are joined by Jessica Tong, Associate Artistic Director of Hubbard Street Dance Chicago. Jessica received her formal training at The Ballet School in Salt Lake City and University of Utah. Tong danced with BalletMet in Columbus, Ohio, Eliot Felds Ballet Tech in New York, and Hubbard Street 2 before dancing with Hubbard Street Dance Chicago for 11 years.Jessica was named one of Dance Magazines Top 25 to Watch in 2009. After retiring from the stage, she went on to become rehearsal director at Hubbard Street before recently being promoted to Associate Artistic Director. We talk with Jessica about her career, her work ethic, making the unexpected transition to being in front of the studio, what Hubbard Street has been doing in this past year of COVID, and how she got involved in Final Bow For Yellow Face&#x27;s 10,000 Dreams: Virtual Choreography Festival. More information at yellowface.org. This episode is brought to you by Yumiko (yumiko.com). Links: Join our email list: https://bit.ly/3basX5g instagram.com/conversationsondance facebook.com/conversationsondance twitter.com/convoondance conversationsondancepod.com The post (229) Jessica Tong, Associate Artistic Director, Hubbard Street Dance Chicago appeared first on tendusunderapalmtree.com.</div>
+<div class="description" id="desc-jessica-tong-1">This week we are joined by Jessica Tong, Associate Artistic Director of Hubbard Street Dance Chicago. Jessica received her formal training at The Ballet School in Salt Lake City and University of Utah. Tong danced with BalletMet in Columbus, Ohio, Eliot Felds Ballet Tech in New York, and Hubbard Street 2 before dancing with Hubbard Street Dance Chicago for 11 years.Jessica was named one of Dance Magazines Top 25 to Watch in 2009. After retiring from the stage, she went on to become rehearsal director at Hubbard Street before recently being promoted to Associate Artistic Director. We talk with Jessica about her career, her work ethic, making the unexpected transition to being in front of the studio, what Hubbard Street has been doing in this past year of COVID, and how she got involved in Final Bow For Yellow Face&#x27;s 10,000 Dreams: Virtual Choreography Festival. More information at yellowface.org.</div>
 </div>
 </div>
 <div class="guest-block" id="choreo-melissa-toogood">
@@ -4838,7 +4997,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-margaret-tracey">
-<div class="guest-line">Margaret Tracey — Director — Boston Ballet School</div>
+<div class="guest-line">Margaret Tracey — Director — <a href="https://bostonballet.org" target="_blank" rel="noopener noreferrer" title="Boston Ballet School Home Page">Boston Ballet School</a></div>
 <div class="appearance">
 <div class="row2">Aug 27, 2018 — (104) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a5b9" target="_blank" rel="noopener noreferrer"><strong>Margaret Tracey</strong>, Director of Boston Ballet School</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-margaret-tracey-1', this)">Show description</button>
@@ -4884,7 +5043,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-jillian-vanstone">
-<div class="guest-line">Jillian Vanstone — Principal — National Ballet of Canada</div>
+<div class="guest-line">Jillian Vanstone — Principal — <a href="https://national.ballet.ca" target="_blank" rel="noopener noreferrer" title="National Ballet of Canada Home Page">National Ballet of Canada</a></div>
 <div class="appearance">
 <div class="row2">Apr 5, 2021 — (223) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a53d" target="_blank" rel="noopener noreferrer"><strong>Jillian Vanstone</strong>, The National Ballet of Canada Principal Dancer</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-jillian-vanstone-1', this)">Show description</button>
@@ -4902,7 +5061,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-michael-vernon">
-<div class="guest-line">Michael Vernon — Professor — Indiana University Jacobs School</div>
+<div class="guest-line">Michael Vernon — Professor — <a href="https://music.indiana.edu" target="_blank" rel="noopener noreferrer" title="Indiana University Jacobs School Home Page">Indiana University Jacobs School</a></div>
 <div class="appearance">
 <div class="row2">Apr 2, 2024 — (391) — <a href="https://shows.acast.com/conversations-on-dance/episodes/391-michael-vernon-professor-of-music-ballet-at-indiana-univ" target="_blank" rel="noopener noreferrer"><strong>Michael Vernon</strong>, Professor of Music (Ballet) at Indiana University Jacobs School of Music</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-michael-vernon-1', this)">Show description</button>
@@ -4920,7 +5079,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-francis-veyette">
-<div class="guest-line">Francis Veyette — Founder — Veyette Virtual Ballet School</div>
+<div class="guest-line">Francis Veyette — Founder — <a href="https://veyettevirtualballetschool.com" target="_blank" rel="noopener noreferrer" title="Veyette Virtual Ballet School Home Page">Veyette Virtual Ballet School</a></div>
 <div class="appearance">
 <div class="row2">Mar 17, 2020 — (176) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a56c" target="_blank" rel="noopener noreferrer">Veyette Virtual Ballet School is exactly what you need right now</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-francis-veyette-1', this)">Show description</button>
@@ -4929,7 +5088,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-lauren-fadeley-veyette">
-<div class="guest-line">Lauren Fadeley Veyette — Founder — Veyette Virtual Ballet School</div>
+<div class="guest-line">Lauren Fadeley Veyette — Founder — <a href="https://veyettevirtualballetschool.com" target="_blank" rel="noopener noreferrer" title="Veyette Virtual Ballet School Home Page">Veyette Virtual Ballet School</a></div>
 <div class="appearance">
 <div class="row2">Mar 17, 2020 — (176) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a56c" target="_blank" rel="noopener noreferrer">Veyette Virtual Ballet School is exactly what you need right now</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-lauren-fadeley-veyette-1', this)">Show description</button>
@@ -5021,7 +5180,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-amy-watson">
-<div class="guest-line">Amy Watson — Artistic Director — Royal Danish Ballet</div>
+<div class="guest-line">Amy Watson — Artistic Director — <a href="https://kglteater.dk" target="_blank" rel="noopener noreferrer" title="Royal Danish Ballet Home Page">Royal Danish Ballet</a></div>
 <div class="appearance">
 <div class="row2">May 6, 2026 — (492) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/492-amy-watson-artistic-director-of-the-royal-danish-ballet" target="_blank" rel="noopener noreferrer"><strong>Amy Watson</strong>, Artistic Director of the Royal Danish Ballet</a>
  <a class="patreon-badge" href="https://www.patreon.com/posts/492-amy-watson-157617595" target="_blank" rel="noopener noreferrer" title="Listen to this episode ad-free on Patreon">Patreon</a>
@@ -5192,7 +5351,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-laurel-winton">
-<div class="guest-line">Laurel Winton — Artistic Director — DanceAspen</div>
+<div class="guest-line">Laurel Winton — Artistic Director — <a href="https://dance-aspen.org" target="_blank" rel="noopener noreferrer" title="DanceAspen Home Page">DanceAspen</a></div>
 <div class="appearance">
 <div class="row2">Aug 4, 2023 — (357) — <a href="https://shows.acast.com/conversations-on-dance/episodes/christine-cox-laurel-winton-vail-dance-festival" target="_blank" rel="noopener noreferrer"><strong>Christine Cox</strong> and <strong>Laurel Winton</strong>, LIVE from the Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-laurel-winton-1', this)">Show description</button>
@@ -5246,7 +5405,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-kaya-wolsey">
-<div class="guest-line">Kaya Wolsey — Dancer — DanceAspen</div>
+<div class="guest-line">Kaya Wolsey — Dancer — <a href="https://dance-aspen.org" target="_blank" rel="noopener noreferrer" title="DanceAspen Home Page">DanceAspen</a></div>
 <div class="appearance">
 <div class="row2">Aug 17, 2022 — (302) — <a href="https://shows.acast.com/conversations-on-dance/episodes/64147e7c7eb781001260a4e9" target="_blank" rel="noopener noreferrer">DanceAspens <strong>Laurel Winton</strong> and <strong>Kaya Wolsey</strong>, LIVE from Vail Dance Festival</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-kaya-wolsey-1', this)">Show description</button>
@@ -5255,7 +5414,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-sarah-worth">
-<div class="guest-line">Sarah Worth — faculty — Indiana University Jacobs School</div>
+<div class="guest-line">Sarah Worth — faculty — <a href="https://music.indiana.edu" target="_blank" rel="noopener noreferrer" title="Indiana University Jacobs School Home Page">Indiana University Jacobs School</a></div>
 <div class="appearance">
 <div class="row2">May 9, 2023 — (339) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/339-la-bayadere" target="_blank" rel="noopener noreferrer">Reimagining La Bayadre with <strong>Phil Chan</strong>, <strong>Doug Fullington</strong>, and Sarah Wroth</a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-sarah-worth-1', this)">Show description</button>
@@ -5284,7 +5443,7 @@ function toggleHomeNav(btn) {
 </div>
 </div>
 <div class="guest-block" id="choreo-elizabeth-yntema">
-<div class="guest-line">Elizabeth Yntema — Founder — Dance Data Project</div>
+<div class="guest-line">Elizabeth Yntema — Founder — <a href="https://dancedataproject.com" target="_blank" rel="noopener noreferrer" title="Dance Data Project Home Page">Dance Data Project</a></div>
 <div class="appearance">
 <div class="row2">Jan 29, 2025 — (430) — <a href="https://www.conversationsondancepod.com/episodes-transcripts/430-breaking-down-dance-data-projects-artistic-and-executive-director-compensation-report-with-elizabeth-yntema" target="_blank" rel="noopener noreferrer">Breaking Down Dance Data Project&#x27;s Artistic and Executive Director Compensation Report with <strong>Elizabeth Yntema</strong></a>
  <button class="desc-button" aria-expanded="false" onclick="toggleDescription('desc-elizabeth-yntema-1', this)">Show description</button>
@@ -5323,5 +5482,75 @@ function toggleHomeNav(btn) {
 <div class="description" id="desc-eugenia-zinovieva-1">This week we are joined by Eugenia Zinovieva, Co-Director of Rhode Island Women&#x27;s Choreography Project and dancer with Festival Ballet Providence. Born in Moscow, Russia, Eugenia moved to the United States at a young age and began her classical ballet training at the Boston Ballet School while also competing as a rhythmic gymnast. She graduated from the University of North Carolina School of the Arts high school program under the artistic direction of Ethan Stiefel. She spent a year coaching with SLK Ballet in New York City before coming to Festival Ballet Providence. Eugenia got her start in choreography through a unique program, which she now co-directs called, Rhode Island Women&#x27;s Choreography Project or RIWCP. RIWCP returns on June 26st, 2021. This years digital production features six short dance films by up-and-coming women choreographers from New England and beyond. Enjoy inspired works filmed in settings such as mountains, sand dunes, a city apartment, and more. Each dance creator has also had the opportunity to connect with a personal mentor to deepen her creative process this year. For more information on the project and for tickets for their virtual event on June 26th, visit: riwomenschoreographyproject.com. Eugenia got in touch with us after listening to episode 221, where we discussed our fantasy ballet company. She let us know about RIWCP, so we knew we had to have her on to share her work with our listeners. This episode is brought to you by Yumiko (yumiko.com). Links: Join our email list: https://bit.ly/3basX5g instagram.com/conversationsondance facebook.com/conversationsondance twitter.com/convoondance conversationsondancepod.com The post (231) Eugenia Zinovieva, Rhode Island Women&#x27;s Choreography Project Co-Director and dancer with Festival Ballet Providence appeared first on tendusunderapalmtree.com.</div>
 </div>
 </div>
+<script>
+(function () {
+    // Best-effort: tell Chrome not to restore a stale scroll position.
+    // This works on the first visit; on subsequent visits Chrome may have
+    // already committed to restoration before scripts run — the guard below
+    // handles that case.
+    if (window.location.hash && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+
+    function _navH() {
+        var nav = document.querySelector('.index, .alpha-nav');
+        return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
+    }
+
+    // Same-page anchor clicks (A-Z nav, Jump To links that stay on this page).
+    document.addEventListener('click', function (e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = a.getAttribute('href');
+        if (!href || href.charAt(0) !== '#' || href.length < 2) return;
+        var target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        target.style.scrollMarginTop = _navH() + 'px';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', href);
+    });
+
+    // Cross-page hash arrival.
+    if (window.location.hash) {
+        var _h = window.location.hash;
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                var target = document.getElementById(_h.slice(1));
+                if (!target) return;
+                var nav = document.querySelector('.index, .alpha-nav');
+                var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
+                target.style.scrollMarginTop = (rawNavH + 8) + 'px';
+                target.scrollIntoView({ behavior: 'instant', block: 'start' });
+
+                // Scroll guard: if Chrome's restoration fires after our
+                // correction (moving us to the wrong position), snap back.
+                // We distinguish restoration (no prior user gesture) from
+                // deliberate scrolling (mousedown / wheel / touch / key fires
+                // before the resulting scroll event).
+                var anchorY = window.scrollY;
+                var guardOn = true;
+                var userScrolled = false;
+                ['mousedown', 'touchstart', 'keydown', 'wheel'].forEach(function (t) {
+                    window.addEventListener(t, function () { userScrolled = true; }, { passive: true });
+                });
+                setTimeout(function () { guardOn = false; }, 1500);
+                var _g = function () {
+                    if (!guardOn) { window.removeEventListener('scroll', _g); return; }
+                    if (userScrolled) {
+                        guardOn = false;
+                        window.removeEventListener('scroll', _g);
+                        return;
+                    }
+                    if (Math.abs(window.scrollY - anchorY) > 20) {
+                        window.scrollTo(0, anchorY);
+                    }
+                };
+                window.addEventListener('scroll', _g);
+            });
+        });
+    }
+})();
+</script>
 </body>
 </html>
