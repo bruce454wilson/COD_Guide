@@ -192,7 +192,7 @@ const PERF_DATA = {"programs": [{"company": "MEMPHIS", "title": "Memphis Sounds"
 <body>
 <h1>2026–27 Dance Season</h1>
 <p class="lede">Choose which companies to display. Hover any bar for the program title. Click to see the full agenda entry.</p>
-<div class="month-jump"><span class="home-nav"><a href="danceexplorer.html" class="slink">&#8592;&nbsp;Home</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="podcasts.html">Podcasts</a><a href="performances.html">Performances</a></div></span> <span class="sep">|</span> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <a href="#July-2027">Jul&nbsp;27</a> <a href="#August-2027">Aug&nbsp;27</a> <span class="sep">|</span> <a href="performances_calendar.html" class="slink">All companies &#8594;</a></div>
+<div class="month-jump"><span class="home-nav"><a href="performances.html" class="slink">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <span class="sep">|</span> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <a href="#July-2027">Jul&nbsp;27</a> <a href="#August-2027">Aug&nbsp;27</a> <span class="sep">|</span> <a href="performances_calendar.html" class="slink">All companies &#8594;</a></div>
 <div id="filter-panel" class="filter-panel">
   <div class="filter-header" onclick="toggleFilterPanel()">
     <span class="filter-toggle-icon" id="filter-icon">&#9660;</span>
@@ -939,7 +939,13 @@ function renderBars(selectedSet) {
 
             const a = document.createElement('a');
             a.className = classes;
-            a.href      = 'performances_agenda.html#' + programAnchor(p.company, p.title);
+            if (p.url) {
+                a.href   = p.url;
+                a.target = '_blank';
+                a.rel    = 'noopener noreferrer';
+            } else {
+                a.href   = 'performances_agenda.html#' + programAnchor(p.company, p.title);
+            }
             a.title     = p.title;
             a.style.cssText =
                 'grid-row:' + row + ';' +
