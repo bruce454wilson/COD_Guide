@@ -148,6 +148,36 @@ h1 { margin-bottom: 6px; }
 .home-nav-dropdown a:first-child { border-radius: 5px 5px 0 0; }
 .home-nav-dropdown a:last-child  { border-radius: 0 0 5px 5px; }
 .home-nav-dropdown a:hover { background: #f5f5f5; color: #1a73e8 !important; }
+
+/* ── Mobile (match podcast pages) ───────────────────────────── */
+@media (max-width: 650px) {
+    body {
+        margin: 14px;
+        font-size: 18px;
+    }
+    .lede { font-size: 16px; }
+    /* section / letter / month headings */
+    .month-heading, .letter-heading, .company-heading { font-size: 24px; }
+    /* sticky nav bars */
+    .month-jump, .month-jump a,
+    .alpha-nav, .alpha-nav a,
+    .company-nav, .company-nav a { font-size: 16px; }
+    .nav-badge { font-size: 13px; }
+    /* primary titles */
+    .program-title, .program-title-plain,
+    .work-title, .choreo-name { font-size: 20px; }
+    /* secondary lines */
+    .works-line, .date-col, .company-row, .work-credit,
+    .work-entry, .choreo-count, .date-range, .perf-dates { font-size: 16px; }
+    .choreo { font-size: 15px; }
+    .music-title, .credit-note { font-size: 14px; }
+    /* badges & inline buttons */
+    .badge { font-size: 13px; }
+    .dates-toggle, .cross-link { font-size: 15px; }
+    /* per-date mini calendar */
+    .perf-cal, .cal-time { font-size: 15px; }
+    .cal-date, .perf-cal th { font-size: 13px; }
+}
 </style>
 </head>
 <body>
@@ -187,6 +217,14 @@ h1 { margin-bottom: 6px; }
     <span class="badge" style="background:#555"><a href="performances_company.html#BAM" class="badge-link">BAM</a></span>
     <a class="prog-link" href="https://www.bam.org/dance/2026/adaku2" target="_blank" rel="noopener noreferrer">adaku, part 2</a>
     <span class="date-range">Nov 11–15, 2026</span>
+  </div>
+</div>
+<div class="work-block" id="work-aerosmith-pictures-at-an-exhibition-nocturne">
+  <div class="work-title">Aerosmith / Pictures at an Exhibition / Nocturne<span class="work-credit">(Music: Mussorgsky, Chopin)</span></div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">Aerosmith, Pictures at an Exhibition, Nocturne</a>
+    <span class="date-range">May 2, 2027</span>
   </div>
 </div>
 <div class="work-block" id="work-after-the-rain">
@@ -294,6 +332,14 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Sep 11–20, 2026</span>
   </div>
 </div>
+<div class="work-block" id="work-american-ballet-theatre-studio-company">
+  <div class="work-title">American Ballet Theatre Studio Company</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#STRATHMORE" class="badge-link">Music Center at Strathmore</a></span>
+    <a class="prog-link" href="https://www.strathmore.org/events-tickets/in-the-music-center/american-ballet-theatre-studio-company/" target="_blank" rel="noopener noreferrer">American Ballet Theatre Studio Company</a>
+    <span class="date-range">Nov 10, 2026</span>
+  </div>
+</div>
 <div class="work-block" id="work-anatomy-of-fear">
   <div class="work-title">Anatomy of Fear</div>
   <div class="company-row">
@@ -388,6 +434,14 @@ h1 { margin-bottom: 6px; }
     <span class="date-range">Aug 12–16, 2026</span>
   </div>
 </div>
+<div class="work-block" id="work-black-grace">
+  <div class="work-title">Black Grace</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/black-grace" target="_blank" rel="noopener noreferrer">Black Grace</a>
+    <span class="date-range">Jan 30, 2027</span>
+  </div>
+</div>
 <div class="work-block" id="work-bloodlines">
   <div class="work-title">Bloodlines</div>
   <div class="company-row">
@@ -476,6 +530,14 @@ h1 { margin-bottom: 6px; }
     <span class="badge" style="background:#555"><a href="performances_company.html#LOUISVILLE" class="badge-link">Louisville Ballet</a></span>
     <a class="prog-link" href="https://louisvilleballet.org/holidaymagic/" target="_blank" rel="noopener noreferrer">The Brown-Forman Nutcracker</a>
     <span class="date-range">Dec 11–21, 2026</span>
+  </div>
+</div>
+<div class="work-block" id="work-the-butterfly-lovers">
+  <div class="work-title">The Butterfly Lovers<span class="work-credit">(Music: He Zhanhao, Chen Gang)</span></div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/shanghai-ballet-butterfly-lovers" target="_blank" rel="noopener noreferrer">Shanghai Ballet: Butterfly Lovers</a>
+    <span class="date-range">Nov 7, 2026</span>
   </div>
 </div>
 <div class="work-block" id="work-byzantium">
@@ -631,7 +693,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="work-block" id="work-cinderella">
-  <div class="work-title">Cinderella<span class="work-credit">(Bruce Wells · Music: Johann Strauss II · Edwaard Liang · Frederick Ashton · Music: Sergei Prokofiev · Paul Vasterling · Music: Sergei Prokofiev)</span></div>
+  <div class="work-title">Cinderella<span class="work-credit">(Bruce Wells · Music: Johann Strauss II · Edwaard Liang · Frederick Ashton · Music: Sergei Prokofiev · Music: Prokofiev · Paul Vasterling · Music: Sergei Prokofiev)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#IDAHO" class="badge-link">Ballet Idaho</a></span>
     <a class="prog-link" href="https://balletidaho.org/performance/cinderella/" target="_blank" rel="noopener noreferrer">Cinderella</a>
@@ -646,6 +708,26 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#NASHVILLE" class="badge-link">Nashville Ballet</a></span>
     <a class="prog-link" href="https://www.nashvilleballet.com/cinderella" target="_blank" rel="noopener noreferrer">Cinderella</a>
     <span class="date-range">Feb 26–28, 2027</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#CAPITAL_ONE" class="badge-link">Capital One Hall</a></span>
+    <a class="prog-link" href="https://www.capitalonehall.com/events/detail/virginia-national-ballet-presents-cinderella" target="_blank" rel="noopener noreferrer">Virginia National Ballet presents Cinderella</a>
+    <span class="date-range">Mar 6, 2027</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">Cinderella</a>
+    <span class="date-range">Mar 13, 2027</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">Cinderella</a>
+    <span class="date-range">Mar 13, 2027</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">Cinderella</a>
+    <span class="date-range">Mar 13, 2027</span>
   </div>
   <div class="company-row">
     <span class="badge" style="background:#0277bd"><a href="performances_company.html#BOSTON" class="badge-link">Boston Ballet</a></span>
@@ -701,6 +783,14 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#PILLOW" class="badge-link">Jacob&#x27;s Pillow</a></span>
     <a class="prog-link" href="https://www.jacobspillow.org/whats-on/calendar/?event_type=performance" target="_blank" rel="noopener noreferrer">New York Theatre Ballet</a>
     <span class="date-range">Aug 21, 2026</span>
+  </div>
+</div>
+<div class="work-block" id="work-complexions-contemporary-ballet">
+  <div class="work-title">Complexions Contemporary Ballet</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/complexions-contemporary-ballet" target="_blank" rel="noopener noreferrer">Complexions Contemporary Ballet</a>
+    <span class="date-range">Oct 4, 2026</span>
   </div>
 </div>
 <div class="work-block" id="work-the-concert">
@@ -1360,6 +1450,11 @@ Ballet</a></span>
     <span class="date-range">Oct 23–24, 2026</span>
   </div>
   <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/shanghai-ballet-giselle" target="_blank" rel="noopener noreferrer">Shanghai Ballet: Giselle</a>
+    <span class="date-range">Nov 8, 2026</span>
+  </div>
+  <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#CAROLINA" class="badge-link">Carolina Ballet</a></span>
     <a class="prog-link" href="https://carolinaballet.com/program/giselle/" target="_blank" rel="noopener noreferrer">Giselle</a>
     <span class="date-range">Feb 4–14, 2027</span>
@@ -1373,6 +1468,11 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#AUSTIN" class="badge-link">Ballet Austin</a></span>
     <a class="prog-link" href="https://balletaustin.org/performances/seasontickets/" target="_blank" rel="noopener noreferrer">Giselle</a>
     <span class="date-range">May 7–9, 2027</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/giselle" target="_blank" rel="noopener noreferrer">Manassas Ballet Theatre: Giselle</a>
+    <span class="date-range">May 14–16, 2027</span>
   </div>
 </div>
 <div class="work-block" id="work-glass-pieces">
@@ -1615,6 +1715,14 @@ Ballet</a></span>
   </div>
 </div>
 <h2 class="letter-heading" id="letter-J">J</h2>
+<div class="work-block" id="work-jazz-in-motion">
+  <div class="work-title">Jazz In Motion</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/jazz-in-motion" target="_blank" rel="noopener noreferrer">Manassas Ballet Theatre: Jazz In Motion</a>
+    <span class="date-range">Oct 23–25, 2026</span>
+  </div>
+</div>
 <div class="work-block" id="work-je-ne-t-aime-pas-de-deux">
   <div class="work-title">Je ne t&#x27;Aime pas de deux<span class="work-credit">(Christopher Wheeldon · Music: Kurt Weill)</span></div>
   <div class="company-row">
@@ -1724,6 +1832,14 @@ Ballet</a></span>
     <span class="date-range">Mar 26–27, 2027</span>
   </div>
 </div>
+<div class="work-block" id="work-kollywood-night-2026">
+  <div class="work-title">Kollywood Night 2026</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/kollywood-night-2026" target="_blank" rel="noopener noreferrer">Kollywood Night 2026</a>
+    <span class="date-range">Oct 11, 2026</span>
+  </div>
+</div>
 <div class="work-block" id="work-kyle-abraham-world-premiere">
   <div class="work-title">Kyle Abraham World Premiere<span class="work-credit">(Kyle Abraham)</span></div>
   <div class="company-row">
@@ -1781,6 +1897,14 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#PILOBOLUS" class="badge-link">Pilobolus Dance Theater</a></span>
     <a class="prog-link" href="https://pilobolus.org/tour-dates/2026/the-joyce" target="_blank" rel="noopener noreferrer">Summer Residency 2026</a>
     <span class="date-range">Jun 23 – Jul 12, 2026</span>
+  </div>
+</div>
+<div class="work-block" id="work-latin-dance-competition">
+  <div class="work-title">Latin Dance Competition</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#STRATHMORE" class="badge-link">Music Center at Strathmore</a></span>
+    <a class="prog-link" href="https://www.strathmore.org/calendar/" target="_blank" rel="noopener noreferrer">Annual ASDF/BAILA4LIFE Latin Dance Competition</a>
+    <span class="date-range">Nov 23, 2026</span>
   </div>
 </div>
 <div class="work-block" id="work-le-tombeau-de-couperin">
@@ -1961,6 +2085,14 @@ Ballet</a></span>
     <span class="date-range">Oct 16–24, 2026</span>
   </div>
 </div>
+<div class="work-block" id="work-martha-graham-dance-company">
+  <div class="work-title">Martha Graham Dance Company</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/martha-graham-dance-company" target="_blank" rel="noopener noreferrer">Martha Graham Dance Company</a>
+    <span class="date-range">Apr 3, 2027</span>
+  </div>
+</div>
 <div class="work-block" id="work-mazurkas">
   <div class="work-title">Mazurkas<span class="work-credit">(José Limón · Music: Frédéric Chopin)</span></div>
   <div class="company-row">
@@ -2095,6 +2227,14 @@ Ballet</a></span>
     <span class="badge" style="background:#0277bd"><a href="performances_company.html#BOSTON" class="badge-link">Boston Ballet</a></span>
     <a class="prog-link" href="https://www.bostonballet.org/performances/spring-experience-2027/" target="_blank" rel="noopener noreferrer">Spring Experience 2027</a>
     <span class="date-range">May 13–23, 2027</span>
+  </div>
+</div>
+<div class="work-block" id="work-music-from-the-sole">
+  <div class="work-title">Music From The Sole</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/music-from-the-sole" target="_blank" rel="noopener noreferrer">Music From The Sole</a>
+    <span class="date-range">Sep 26, 2026</span>
   </div>
 </div>
 <div class="work-block" id="work-musical-theatre-performance-ensemble">
@@ -2370,7 +2510,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="work-block" id="work-the-nutcracker">
-  <div class="work-title">The Nutcracker<span class="work-credit">(Ben Stevenson · Music: Pyotr Ilyich Tchaikovsky · Christopher Wheeldon · Music: Peter Ilyich Tchaikovsky · Devon Carney · Music: Pyotr Ilyich Tchaikovsky · George Balanchine · Music: Peter Ilyich Tchaikovsky · George Balanchine · Music: Pyotr Ilyich Tchaikovsky · Gerard Charles · Music: Pyotr Ilyich Tchaikovsky · Jorden Morris · Music: Pyotr Ilyich Tchaikovsky · Mikko Nissinen · Music: Pyotr Ilyich Tchaikovsky · Music: Pyotr Ilyich Tchaikovsky · Ryan Jolicoeur-Nye · Music: Pyotr Ilyich Tchaikovsky · Septime Webre · Music: Pyotr Ilyich Tchaikovsky · Stanton Welch AM · Music: Pyotr Ilyich Tchaikovsky · Stephen Mills · Music: Pyotr Ilyich Tchaikovsky · Stoner Winslett · Music: Pyotr Ilyich Tchaikovsky · Val Caniparoli · Music: Pyotr Ilyich Tchaikovsky · Willam Christensen / Michael Neary · Music: Pyotr Ilyich Tchaikovsky · Willam Christensen · Music: Peter Ilyich Tchaikovsky · Zalman Raffael · Music: Pyotr Ilyich Tchaikovsky)</span></div>
+  <div class="work-title">The Nutcracker<span class="work-credit">(Ben Stevenson · Music: Pyotr Ilyich Tchaikovsky · Christopher Wheeldon · Music: Peter Ilyich Tchaikovsky · Devon Carney · Music: Pyotr Ilyich Tchaikovsky · George Balanchine · Music: Peter Ilyich Tchaikovsky · George Balanchine · Music: Pyotr Ilyich Tchaikovsky · Gerard Charles · Music: Pyotr Ilyich Tchaikovsky · Jorden Morris · Music: Pyotr Ilyich Tchaikovsky · Mikko Nissinen · Music: Pyotr Ilyich Tchaikovsky · Music: Pyotr Ilyich Tchaikovsky · Music: Tchaikovsky · Ryan Jolicoeur-Nye · Music: Pyotr Ilyich Tchaikovsky · Septime Webre · Music: Pyotr Ilyich Tchaikovsky · Stanton Welch AM · Music: Pyotr Ilyich Tchaikovsky · Stephen Mills · Music: Pyotr Ilyich Tchaikovsky · Stoner Winslett · Music: Pyotr Ilyich Tchaikovsky · Val Caniparoli · Music: Pyotr Ilyich Tchaikovsky · Willam Christensen / Michael Neary · Music: Pyotr Ilyich Tchaikovsky · Willam Christensen · Music: Peter Ilyich Tchaikovsky · Zalman Raffael · Music: Pyotr Ilyich Tchaikovsky)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#0277bd"><a href="performances_company.html#BOSTON" class="badge-link">Boston Ballet</a></span>
     <a class="prog-link" href="https://www.bostonballet.org/performances/the-nutcracker/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
@@ -2397,6 +2537,11 @@ Ballet</a></span>
     <span class="date-range">Nov 28 – Dec 27, 2026</span>
   </div>
   <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/academy-of-russian-ballet-and-northern-virginia-ballet-the-nutcracker" target="_blank" rel="noopener noreferrer">Academy of Russian Ballet and Northern Virginia Ballet: The Nutcracker</a>
+    <span class="date-range">Nov 28, 2026</span>
+  </div>
+  <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#KCB" class="badge-link">Kansas City Ballet</a></span>
     <a class="prog-link" href="https://kcballet.org/events/the-nutcracker/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
     <span class="date-range">Nov 28 – Dec 24, 2026</span>
@@ -2405,6 +2550,11 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#WASHINGTON" class="badge-link">Washington Ballet</a></span>
     <a class="prog-link" href="https://www.washingtonballet.org/events/the-nutcracker-2026/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
     <span class="date-range">Nov 28 – Dec 27, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#CAPITAL_ONE" class="badge-link">Capital One Hall</a></span>
+    <a class="prog-link" href="https://www.capitalonehall.com/events/detail/nutcracker-magical-christmas-ballet-3" target="_blank" rel="noopener noreferrer">NUTCRACKER! Magical Christmas Ballet</a>
+    <span class="date-range">Nov 29, 2026</span>
   </div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#AUSTIN" class="badge-link">Ballet Austin</a></span>
@@ -2435,6 +2585,16 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#RICHMOND" class="badge-link">Richmond Ballet</a></span>
     <a class="prog-link" href="https://richmondballet.com/performances/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
     <span class="date-range">Dec 5–23, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#CAPITAL_ONE" class="badge-link">Capital One Hall</a></span>
+    <a class="prog-link" href="https://www.capitalonehall.com/events/detail/centre-company-nutcracker-2026" target="_blank" rel="noopener noreferrer">Centre Company presents The Nutcracker</a>
+    <span class="date-range">Dec 6, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#STRATHMORE" class="badge-link">Music Center at Strathmore</a></span>
+    <a class="prog-link" href="https://www.strathmore.org/events-tickets/in-the-music-center/nutcracker-magical-christmas-ballet/" target="_blank" rel="noopener noreferrer">NUTCRACKER! Magical Christmas Ballet</a>
+    <span class="date-range">Dec 6, 2026</span>
   </div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#BALLETMET" class="badge-link">BalletMet</a></span>
@@ -2475,6 +2635,21 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#SACRAMENTO" class="badge-link">Sacramento Ballet</a></span>
     <a class="prog-link" href="https://www.sacballet.org/performances/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
     <span class="date-range">Dec 12–24, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#CAPITAL_ONE" class="badge-link">Capital One Hall</a></span>
+    <a class="prog-link" href="https://www.capitalonehall.com/events/detail/the-nutcracker-4" target="_blank" rel="noopener noreferrer">Virginia National Ballet presents The Nutcracker</a>
+    <span class="date-range">Dec 13, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
+    <span class="date-range">Dec 13, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#VNB" class="badge-link">Virginia National Ballet</a></span>
+    <a class="prog-link" href="https://virginianationalballet.org/2026-27-season/" target="_blank" rel="noopener noreferrer">The Nutcracker</a>
+    <span class="date-range">Dec 13, 2026</span>
   </div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#IDAHO" class="badge-link">Ballet Idaho</a></span>
@@ -2683,6 +2858,14 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#JUILLIARD" class="badge-link">Juilliard School</a></span>
     <a class="prog-link" href="https://www.juilliard.edu/stage-beyond/performances/26-27-season/dance" target="_blank" rel="noopener noreferrer">Spring Dances</a>
     <span class="date-range">Mar 24–27, 2027</span>
+  </div>
+</div>
+<div class="work-block" id="work-peter-and-the-wolf-more">
+  <div class="work-title">Peter and the Wolf &amp; More!</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/peter-and-the-wolf-amp-more" target="_blank" rel="noopener noreferrer">Manassas Ballet Theatre: Peter and the Wolf &amp; More!</a>
+    <span class="date-range">Mar 12–14, 2027</span>
   </div>
 </div>
 <div class="work-block" id="work-peter-pan">
@@ -2955,6 +3138,14 @@ Ballet</a></span>
     <span class="date-range">May 14–16, 2027</span>
   </div>
 </div>
+<div class="work-block" id="work-ronald-k-brown-evidence">
+  <div class="work-title">Ronald K. Brown / EVIDENCE</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/ronald-k-brown-evidence" target="_blank" rel="noopener noreferrer">Ronald K. Brown / EVIDENCE</a>
+    <span class="date-range">Apr 24, 2027</span>
+  </div>
+</div>
 <div class="work-block" id="work-rooster">
   <div class="work-title">Rooster<span class="work-credit">(Christopher Bruce · Music: The Rolling Stones)</span></div>
   <div class="company-row">
@@ -3109,7 +3300,12 @@ Ballet</a></span>
   </div>
 </div>
 <div class="work-block" id="work-sleeping-beauty">
-  <div class="work-title">Sleeping Beauty<span class="work-credit">(Zalman Raffael (after Marius Petipa) · Music: Pyotr Ilyich Tchaikovsky)</span></div>
+  <div class="work-title">Sleeping Beauty<span class="work-credit">(Music: Tchaikovsky · Zalman Raffael (after Marius Petipa) · Music: Pyotr Ilyich Tchaikovsky)</span></div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#WOLF_TRAP" class="badge-link">Wolf Trap</a></span>
+    <a class="prog-link" href="https://www.wolftrap.org/calendar/" target="_blank" rel="noopener noreferrer">Maryland Youth Ballet: Sleeping Beauty</a>
+    <span class="date-range">Jul 31 – Aug 2, 2026</span>
+  </div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#CAROLINA" class="badge-link">Carolina Ballet</a></span>
     <a class="prog-link" href="https://carolinaballet.com/program/sleeping-beauty/" target="_blank" rel="noopener noreferrer">Sleeping Beauty</a>
@@ -3161,6 +3357,14 @@ Ballet</a></span>
     <span class="badge" style="background:#00695c"><a href="performances_company.html#PNB" class="badge-link">Pacific Northwest Ballet</a></span>
     <a class="prog-link" href="https://www.pnb.org/season/snow-white/" target="_blank" rel="noopener noreferrer">Snow White</a>
     <span class="date-range">Mar 27 – Apr 4, 2027</span>
+  </div>
+</div>
+<div class="work-block" id="work-sol-invictus">
+  <div class="work-title">Sol Invictus</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#GMU_CFA" class="badge-link">George Mason University Center for the Arts</a></span>
+    <a class="prog-link" href="https://cfa.calendar.gmu.edu/compagnie-herv-201-koubi" target="_blank" rel="noopener noreferrer">Compagnie Herve Koubi</a>
+    <span class="date-range">Oct 24, 2026</span>
   </div>
 </div>
 <div class="work-block" id="work-solitaire">
@@ -3254,6 +3458,14 @@ Ballet</a></span>
     <span class="date-range">Sep 10–20, 2026</span>
   </div>
 </div>
+<div class="work-block" id="work-stars-and-stripes-forever">
+  <div class="work-title">Stars and Stripes Forever!<span class="work-credit">(Music: Sousa)</span></div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#WOLF_TRAP" class="badge-link">Wolf Trap</a></span>
+    <a class="prog-link" href="https://www.wolftrap.org/calendar/" target="_blank" rel="noopener noreferrer">Philadelphia Ballet: Stars and Stripes Forever!</a>
+    <span class="date-range">Sep 10, 2026</span>
+  </div>
+</div>
 <div class="work-block" id="work-stars-and-stripes-pas-de-deux">
   <div class="work-title">Stars and Stripes Pas de Deux<span class="work-credit">(George Balanchine · Music: John Philip Sousa (arr. Hershey Kay))</span></div>
   <div class="company-row">
@@ -3329,7 +3541,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="work-block" id="work-swan-lake">
-  <div class="work-title">Swan Lake<span class="work-credit">(Alexei Ratmansky · Music: Pyotr Ilyich Tchaikovsky · Christopher Stuart · Music: Pyotr Ilyich Tchaikovsky · Kent Stowell · Music: Peter Ilyich Tchaikovsky · Marius Petipa / Lev Ivanov · Music: Pyotr Ilyich Tchaikovsky · Music: Pyotr Ilyich Tchaikovsky · Remi Wortmeyer · Music: Pyotr Ilyich Tchaikovsky · Stanton Welch AM · Music: Pyotr Ilyich Tchaikovsky)</span></div>
+  <div class="work-title">Swan Lake<span class="work-credit">(Alexei Ratmansky · Music: Pyotr Ilyich Tchaikovsky · Christopher Stuart · Music: Pyotr Ilyich Tchaikovsky · Kent Stowell · Music: Peter Ilyich Tchaikovsky · Marius Petipa / Lev Ivanov · Music: Pyotr Ilyich Tchaikovsky · Music: Pyotr Ilyich Tchaikovsky · Music: Tchaikovsky · Remi Wortmeyer · Music: Pyotr Ilyich Tchaikovsky · Stanton Welch AM · Music: Pyotr Ilyich Tchaikovsky)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#b71c1c"><a href="performances_company.html#ABT" class="badge-link">American Ballet Theatre</a></span>
     <a class="prog-link" href="https://www.abt.org/events/swan-lake/" target="_blank" rel="noopener noreferrer">Swan Lake</a>
@@ -3339,6 +3551,11 @@ Ballet</a></span>
     <span class="badge" style="background:#555"><a href="performances_company.html#OREGON" class="badge-link">Oregon Ballet Theatre</a></span>
     <a class="prog-link" href="https://www.obt.org/event/swan-lake-2026-27/" target="_blank" rel="noopener noreferrer">Swan Lake</a>
     <span class="date-range">Oct 10–17, 2026</span>
+  </div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#STRATHMORE" class="badge-link">Music Center at Strathmore</a></span>
+    <a class="prog-link" href="https://www.strathmore.org/events-tickets/in-the-music-center/swan-lake/" target="_blank" rel="noopener noreferrer">Swan Lake</a>
+    <span class="date-range">Jan 19, 2027</span>
   </div>
   <div class="company-row">
     <span class="badge" style="background:#00695c"><a href="performances_company.html#PNB" class="badge-link">Pacific Northwest Ballet</a></span>
@@ -3538,12 +3755,28 @@ Ballet</a></span>
     <span class="date-range">May 13–16, 2027</span>
   </div>
 </div>
+<div class="work-block" id="work-traditional-native-american-dance">
+  <div class="work-title">Traditional Native American Dance</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#WOLF_TRAP" class="badge-link">Wolf Trap</a></span>
+    <a class="prog-link" href="https://www.wolftrap.org/calendar/" target="_blank" rel="noopener noreferrer">Native Arts Collaborative: Traditional Native American Dance</a>
+    <span class="date-range">Aug 6, 2026</span>
+  </div>
+</div>
 <div class="work-block" id="work-tranca">
   <div class="work-title">Tranca<span class="work-credit">(Cassi Abranches)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#PILLOW" class="badge-link">Jacob&#x27;s Pillow</a></span>
     <a class="prog-link" href="https://www.jacobspillow.org/whats-on/calendar/?event_type=performance" target="_blank" rel="noopener noreferrer">Ballet Hispanico New York</a>
     <span class="date-range">Aug 19–23, 2026</span>
+  </div>
+</div>
+<div class="work-block" id="work-trinity-irish-dance-company">
+  <div class="work-title">Trinity Irish Dance Company</div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#HYLTON" class="badge-link">Hylton Performing Arts Center</a></span>
+    <a class="prog-link" href="https://hylton.calendar.gmu.edu/trinity-irish-dance-company" target="_blank" rel="noopener noreferrer">Trinity Irish Dance Company</a>
+    <span class="date-range">Mar 5, 2027</span>
   </div>
 </div>
 <div class="work-block" id="work-trio-con-brio">

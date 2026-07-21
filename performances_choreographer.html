@@ -173,6 +173,36 @@ h1 { margin-bottom: 6px; }
 .home-nav-dropdown a:first-child { border-radius: 5px 5px 0 0; }
 .home-nav-dropdown a:last-child  { border-radius: 0 0 5px 5px; }
 .home-nav-dropdown a:hover { background: #f5f5f5; color: #1a73e8 !important; }
+
+/* ── Mobile (match podcast pages) ───────────────────────────── */
+@media (max-width: 650px) {
+    body {
+        margin: 14px;
+        font-size: 18px;
+    }
+    .lede { font-size: 16px; }
+    /* section / letter / month headings */
+    .month-heading, .letter-heading, .company-heading { font-size: 24px; }
+    /* sticky nav bars */
+    .month-jump, .month-jump a,
+    .alpha-nav, .alpha-nav a,
+    .company-nav, .company-nav a { font-size: 16px; }
+    .nav-badge { font-size: 13px; }
+    /* primary titles */
+    .program-title, .program-title-plain,
+    .work-title, .choreo-name { font-size: 20px; }
+    /* secondary lines */
+    .works-line, .date-col, .company-row, .work-credit,
+    .work-entry, .choreo-count, .date-range, .perf-dates { font-size: 16px; }
+    .choreo { font-size: 15px; }
+    .music-title, .credit-note { font-size: 14px; }
+    /* badges & inline buttons */
+    .badge { font-size: 13px; }
+    .dates-toggle, .cross-link { font-size: 15px; }
+    /* per-date mini calendar */
+    .perf-cal, .cal-time { font-size: 15px; }
+    .cal-date, .perf-cal th { font-size: 13px; }
+}
 </style>
 </head>
 <body>
