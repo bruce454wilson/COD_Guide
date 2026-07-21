@@ -203,6 +203,22 @@ h1 { margin-bottom: 6px; }
     /* per-date mini calendar */
     .perf-cal, .cal-time { font-size: 15px; }
     .cal-date, .perf-cal th { font-size: 13px; }
+    /* Program cards (agenda + company): stack so the date and the Show Dates
+       button share the first line, with the title and details below at full
+       width. Relies on the flattened grid markup (date-col / title-main /
+       title-right / program-detail as direct grid children of .program). */
+    .program {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "date   button"
+            "title  title"
+            "detail detail";
+        column-gap: 10px;
+        row-gap: 6px;
+    }
+    .date-col { padding-top: 0; align-self: center; }
+    .title-right { align-self: center; justify-self: end; }
+    .dates-note-inline { white-space: normal; }
 }
 </style>
 </head>
