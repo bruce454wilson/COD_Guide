@@ -72,11 +72,15 @@ body {
     margin-top: 3px;
 }
 
-/* ── BACK LINK + GOLD BORDER ────────────────────────── */
+/* ── BACK LINK + ICONS + GOLD BORDER ────────────────── */
 .nav-row {
     background: #1c0c32;
     border-bottom: 3px solid #d4af37;
     padding: 11px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
 .back-link {
@@ -89,6 +93,35 @@ body {
 
 .back-link:hover {
     color: #d4af37;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.45);
+    background: rgba(212,175,55,0.06);
+    color: rgba(212,175,55,0.85);
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.icon-link:hover {
+    background: rgba(212,175,55,0.18);
+    border-color: rgba(212,175,55,0.85);
+    color: #d4af37;
+    text-decoration: none;
 }
 
 /* ── CONTENT AREA ───────────────────────────────────── */
@@ -285,9 +318,13 @@ body {
   <span class="sub-text">PODCASTS</span>
 </div>
 
-<!-- back link + gold border -->
+<!-- back link + icons + gold border -->
 <div class="nav-row">
   <a href="danceexplorer.html" class="back-link">← Dance Explorer</a>
+  <span class="nav-icons">
+    <a href="settings.html" class="icon-link" title="Settings" aria-label="Settings">&#9881;</a>
+    <a href="help.html" class="icon-link" title="Help" aria-label="Help">?</a>
+  </span>
 </div>
 
 <!-- menu -->

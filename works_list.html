@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Works — Dances, Books &amp; Films</title>
+<title>Dances, Books &amp; Films</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1W89Y447W"></script>
 <script>
@@ -249,6 +249,41 @@ a:hover {
         font-size: 16px;
         padding: 11px 16px;
     }
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.icon-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #333;
+    text-decoration: none;
 }
 </style>
 <script>
@@ -286,7 +321,7 @@ function toggleHomeNav(btn) {
 </script>
 </head>
 <body>
-<h1>Works — Dances, Books &amp; Films</h1>
+<h1>Dances, Books &amp; Films</h1>
 
 <style>
 .section-heading {
@@ -323,6 +358,7 @@ function toggleHomeNav(btn) {
 <a href="#sec-dances">Dances (14)</a>
 <a href="#sec-books">Books (15)</a>
 <a href="#sec-films">Films (12)</a>
+<span class="nav-right"><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span>
 </div>
 <h2 class="section-heading" id="sec-dances">Dances</h2>
 <div class="work-entry">

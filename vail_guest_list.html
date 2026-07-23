@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Vail — Browse by Guest</title>
+<title>Vail — by Guest</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1W89Y447W"></script>
 <script>
@@ -249,6 +249,41 @@ a:hover {
         font-size: 16px;
         padding: 11px 16px;
     }
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.icon-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #333;
+    text-decoration: none;
 }
 </style>
 <script>
@@ -286,7 +321,7 @@ function toggleHomeNav(btn) {
 </script>
 </head>
 <body>
-<h1>Vail — Browse by Guest</h1>
+<h1>Vail — by Guest</h1>
 
 <div class="index">
 <span class="home-nav"><a href="podcasts.html">Podcasts</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="performances.html">Performances</a></div></span>
@@ -310,6 +345,7 @@ function toggleHomeNav(btn) {
 <a href="#letter-S">S</a>
 <a href="#letter-T">T</a>
 <a href="#letter-W">W</a>
+<span class="nav-right"><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span>
 </div>
 <h2 id="letter-A" class="letter-heading">A</h2>
 <div class="guest-block">

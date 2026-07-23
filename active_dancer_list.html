@@ -249,6 +249,41 @@ a:hover {
         font-size: 16px;
         padding: 11px 16px;
     }
+    .icon-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 16px;
+    }
+}
+
+.nav-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.icon-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #333;
+    text-decoration: none;
 }
 </style>
 <script>
@@ -303,6 +338,7 @@ function toggleHomeNav(btn) {
 <a href="#co-philadelphia-ballet">Philadelphia</a>
 <a href="#co-san-francisco-ballet">SFB</a>
 <a href="#co-sarasota-ballet">SARASOTA</a>
+<span class="nav-right"><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span>
 </div>
 <h2 class="letter-heading" id="co-alonzo-king-lines-ballet" style="margin-top:36px;"><a href="https://linesballet.org" target="_blank" rel="noopener noreferrer">Alonzo King LINES Ballet</a><span style="font-weight:normal; font-size:14px; color:#888; margin-left:10px;">2 dancers</span></h2>
 <div class="guest-block" id="choreo-adji-cissoko">

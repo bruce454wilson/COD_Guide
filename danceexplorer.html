@@ -70,10 +70,45 @@ body {
 /* ── MAIN COLUMN ────────────────────────────────────── */
 .main-col {
     flex: 1;
+    position: relative;
     display: flex;
     flex-direction: column;
     min-width: 0;
     background: #f7f7f7;
+}
+
+/* ── TOP-RIGHT SETTINGS/HELP ICONS (over the dark header) ── */
+.home-icons {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.home-icons .icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,175,55,0.45);
+    background: rgba(28,12,50,0.55);
+    color: rgba(212,175,55,0.85);
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.home-icons .icon-link:hover {
+    background: rgba(212,175,55,0.22);
+    border-color: rgba(212,175,55,0.85);
+    color: #d4af37;
+    text-decoration: none;
 }
 
 /* ── SVG HEADER: dancers + line, DANCE text removed ── */
@@ -201,6 +236,12 @@ body {
 
   <!-- ── MAIN COLUMN ────────────────────────────────── -->
   <main class="main-col">
+
+    <!-- Settings / Help -->
+    <span class="home-icons">
+      <a href="settings.html" class="icon-link" title="Settings" aria-label="Settings">&#9881;</a>
+      <a href="help.html" class="icon-link" title="Help" aria-label="Help">?</a>
+    </span>
 
     <!-- SVG: shows dancers + the horizontal line; DANCE/EXPLORER text stripped out -->
     <header class="site-header">
