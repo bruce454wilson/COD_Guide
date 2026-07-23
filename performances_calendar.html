@@ -191,6 +191,18 @@ h1 { margin-bottom: 6px; }
 .home-nav-dropdown a:last-child  { border-radius: 0 0 5px 5px; }
 .home-nav-dropdown a:hover { background: #f5f5f5; color: #1a73e8 !important; }
 
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 6px;
+}
+.title-row h1 {
+    margin-bottom: 0;
+}
+
 .nav-right {
     margin-left: auto;
     display: flex;
@@ -202,9 +214,30 @@ h1 { margin-bottom: 6px; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.icon-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #333;
+    text-decoration: none;
+}
+.close-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 16px;
+    border-radius: 16px;
     border: 1px solid #ccc;
     background: #fff;
     color: #555;
@@ -213,8 +246,9 @@ h1 { margin-bottom: 6px; }
     text-decoration: none;
     line-height: 1;
     flex-shrink: 0;
+    white-space: nowrap;
 }
-.icon-btn:hover {
+.close-btn:hover {
     background: #f0f0f0;
     border-color: #999;
     color: #333;
@@ -295,9 +329,9 @@ const PERF_DATA = {"programs": [{"company": "ABT", "title": "Swan Lake", "start"
 </script>
 </head>
 <body>
-<h1>Dance Season — Grid</h1>
+<div class="title-row"><h1>Dance Season — Grid</h1><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-toggle" role="group" aria-label="Which companies to show"><button class="pc-seg" data-view="all" onclick="setPerfView('all')">All</button><button class="pc-seg" data-view="selected" onclick="setPerfView('selected')">Selected</button></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
 <p class="lede">Showing all companies. Use &ldquo;Select companies&rdquo; to build your own view, then switch to &ldquo;Selected.&rdquo; Hover any bar for the program title; click to see the full agenda entry.</p>
-<div class="month-jump"><span class="home-nav"><a href="performances.html" class="slink">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <span class="sep">|</span> <a href="#June-2026">Jun&nbsp;26</a> <a href="#July-2026">Jul&nbsp;26</a> <a href="#August-2026">Aug&nbsp;26</a> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <span class="sep">|</span> <a href="performances_agenda.html" class="slink">Agenda view &#8594;</a><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-toggle" role="group" aria-label="Which companies to show"><button class="pc-seg" data-view="all" onclick="setPerfView('all')">All</button><button class="pc-seg" data-view="selected" onclick="setPerfView('selected')">Selected</button></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
+<div class="month-jump"><span class="home-nav"><a href="performances.html" class="slink">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <span class="sep">|</span> <a href="#June-2026">Jun&nbsp;26</a> <a href="#July-2026">Jul&nbsp;26</a> <a href="#August-2026">Aug&nbsp;26</a> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <span class="sep">|</span> <a href="performances_agenda.html" class="slink">Agenda view &#8594;</a></div>
 <div class="co-overlay" id="co-overlay" onclick="if(event.target===this)closeCompanySelect()">
   <div class="co-panel">
     <div class="co-head">
@@ -1294,7 +1328,15 @@ window.applyPerfView = function () { renderBars(); };
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') window.closeCompanySelect();
     });
-    document.addEventListener('DOMContentLoaded', function () {
+    function reloadFromStorage() {
+        // Re-read every shared key from localStorage and re-render. Used on
+        // first load, and again on bfcache restores (e.g. the user opens
+        // Settings, flips a toggle, then hits Close/Back — a bfcache restore
+        // doesn't refire DOMContentLoaded, so without this the page would
+        // keep showing its pre-navigation state instead of the new setting).
+        window.perfSelected = new Set(readArr(K_CO));
+        window.perfView = (localStorage.getItem(K_VIEW) === 'selected') ? 'selected' : 'all';
+        window.perfPast = (localStorage.getItem(K_PAST) === '1');
         var valid = new Set();
         document.querySelectorAll('.co-cb input[type=checkbox]').forEach(function (cb) {
             valid.add(cb.dataset.company);
@@ -1305,6 +1347,10 @@ window.applyPerfView = function () { renderBars(); };
         }));
         syncUI();
         apply();
+    }
+    document.addEventListener('DOMContentLoaded', reloadFromStorage);
+    window.addEventListener('pageshow', function (e) {
+        if (e.persisted) reloadFromStorage();
     });
 })();
 </script>

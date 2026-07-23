@@ -23,6 +23,18 @@ h1 {
     margin-bottom: 12px;
 }
 
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin-bottom: 12px;
+}
+.title-row h1 {
+    margin-bottom: 0;
+}
+
 .index {
     position: sticky;
     top: 0;
@@ -249,11 +261,6 @@ a:hover {
         font-size: 16px;
         padding: 11px 16px;
     }
-    .icon-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 16px;
-    }
 }
 
 .nav-right {
@@ -267,9 +274,30 @@ a:hover {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    color: #555;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.icon-btn:hover {
+    background: #f0f0f0;
+    border-color: #999;
+    color: #333;
+    text-decoration: none;
+}
+.close-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 16px;
+    border-radius: 16px;
     border: 1px solid #ccc;
     background: #fff;
     color: #555;
@@ -278,8 +306,9 @@ a:hover {
     text-decoration: none;
     line-height: 1;
     flex-shrink: 0;
+    white-space: nowrap;
 }
-.icon-btn:hover {
+.close-btn:hover {
     background: #f0f0f0;
     border-color: #999;
     color: #333;
@@ -321,7 +350,7 @@ function toggleHomeNav(btn) {
 </script>
 </head>
 <body>
-<h1>Balanchine Scholars</h1>
+<div class="title-row"><h1>Balanchine Scholars</h1><span class="nav-right"><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
 
 <div class="index">
 <span class="home-nav"><a href="podcasts.html">Podcasts</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="performances.html">Performances</a></div></span>
@@ -334,7 +363,6 @@ function toggleHomeNav(btn) {
 <a href="#letter-K">K</a>
 <a href="#letter-M">M</a>
 <a href="#letter-W">W</a>
-<span class="nav-right"><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span>
 </div>
 <h2 id="letter-B" class="letter-heading">B</h2>
 <div class="guest-block">
