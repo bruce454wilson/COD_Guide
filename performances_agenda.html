@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>2026–27 Dance Season — Agenda</title>
+<title>2026–27 Dance Season — By Month</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T1W89Y447W"></script>
 <script>
@@ -361,17 +361,22 @@ h1 { margin-bottom: 6px; }
     white-space: nowrap;
 }
 .pc-btn:hover { background: #1666d0; }
-.pc-toggle {
-    display: inline-flex; border: 1px solid #ccc; border-radius: 5px;
-    overflow: hidden; flex-shrink: 0;
+
+/* All/Select view toggle — plain words, not boxes. Whichever isn't the
+   current view is styled like a link (that's the one you'd click to
+   switch); the current view sits there as plain bold text. */
+.pc-view-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; flex-shrink: 0;
 }
-.pc-toggle-label { color: #555; margin-right: 2px; }
-.pc-seg {
-    background: #fff; color: #333; border: none; padding: 5px 12px;
-    font-size: 13px; font-family: inherit; cursor: pointer;
+.pc-view-opt {
+    color: #333; font-weight: bold; cursor: pointer; user-select: none;
 }
-.pc-seg + .pc-seg { border-left: 1px solid #ccc; }
-.pc-seg.active { background: #1a73e8; color: #fff; }
+.pc-view-opt.pc-link {
+    color: #1a73e8; font-weight: normal; text-decoration: none;
+}
+.pc-view-opt.pc-link:hover { text-decoration: underline; }
+.pc-view-sep { color: #bbb; }
 
 /* --- company-selection overlay --- */
 .co-overlay {
@@ -416,12 +421,12 @@ h1 { margin-bottom: 6px; }
 .co-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 650px) {
     .perf-top-controls { font-size: 16px; }
-    .pc-btn, .pc-seg, .co-done { font-size: 16px; }
+    .pc-btn, .pc-view-toggle, .co-done { font-size: 16px; }
 }
 </style>
 </head>
 <body>
-<div class="title-row"><h1>Dance Season — Agenda</h1><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-toggle" role="group" aria-label="Which companies to show"><button class="pc-seg" data-view="all" onclick="setPerfView('all')">All</button><button class="pc-seg" data-view="selected" onclick="setPerfView('selected')">Selected</button></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings">&#9881;</a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
+<div class="title-row"><h1>Dance Season — By Month</h1><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-view-toggle" role="group" aria-label="Which companies to show"><span class="pc-view-opt" data-view="all" onclick="setPerfView('all')">All</span><span class="pc-view-sep">&middot;</span><span class="pc-view-opt" data-view="selected" onclick="setPerfView('selected')">Select</span></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
 <p class="lede">Upcoming performances across tracked companies, in date order.</p>
 <div class="month-jump"><span class="home-nav"><a href="performances.html" class="home-link">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <a href="#June-2026">Jun 2026</a> <a href="#July-2026">Jul 2026</a> <a href="#August-2026">Aug 2026</a> <a href="#September-2026">Sep 2026</a> <a href="#October-2026">Oct 2026</a> <a href="#November-2026">Nov 2026</a> <a href="#December-2026">Dec 2026</a> <a href="#January-2027">Jan 2027</a> <a href="#February-2027">Feb 2027</a> <a href="#March-2027">Mar 2027</a> <a href="#April-2027">Apr 2027</a> <a href="#May-2027">May 2027</a> <a href="#June-2027">Jun 2027</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
 <div class="co-overlay" id="co-overlay" onclick="if(event.target===this)closeCompanySelect()">
@@ -1145,8 +1150,10 @@ window.applyPerfView = function () {
         if (el) el.textContent = window.perfSelected.size + ' of ' + total + ' selected';
     }
     function syncUI() {
-        document.querySelectorAll('.pc-seg').forEach(function (b) {
-            b.classList.toggle('active', b.dataset.view === window.perfView);
+        // The option that ISN'T the current view gets link styling (it's
+        // the one you'd click); the current view stays plain bold text.
+        document.querySelectorAll('.pc-view-opt').forEach(function (b) {
+            b.classList.toggle('pc-link', b.dataset.view !== window.perfView);
         });
         var pc = document.getElementById('pc-past-cb');
         if (pc) pc.checked = window.perfPast;
