@@ -305,24 +305,32 @@ h1 { margin-bottom: 6px; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background: #fff;
+    width: 28px;
+    height: 28px;
     color: #555;
-    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     line-height: 1;
     flex-shrink: 0;
 }
 .icon-btn:hover {
-    background: #f0f0f0;
-    border-color: #999;
     color: #333;
     text-decoration: none;
 }
+/* Help "?" keeps its circle, sized to roughly match the plain gear icon's
+   visual footprint (both sit in a 28px box — see .icon-btn above). */
+.icon-btn-circle {
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 15px;
+}
+.icon-btn-circle:hover {
+    background: #f0f0f0;
+    border-color: #999;
+}
+/* Gear icon — no circle/border, just the glyph in the same-size box. */
+.icon-btn-gear { }
 .close-btn {
     display: inline-flex;
     align-items: center;
@@ -474,98 +482,10 @@ h1 { margin-bottom: 6px; }
 </style>
 </head>
 <body>
-<div class="title-row"><h1>Dance Season — By Company</h1><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-view-toggle" role="group" aria-label="Which companies to show"><span class="pc-view-opt" data-view="all" onclick="setPerfView('all')">All</span><span class="pc-view-sep">&middot;</span><span class="pc-view-opt" data-view="selected" onclick="setPerfView('selected')">Select</span></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
-<p class="lede">Programs for each company in the 2026–27 season.</p>
+<div class="title-row"><h1>By Company</h1><span class="nav-right"><a href="settings.html" class="icon-btn icon-btn-gear" title="Settings" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn icon-btn-circle" title="Help" aria-label="Help">?</a></span></div>
+<p class="lede" id="perf-lede">Showing all companies. Use Settings to limit to selected companies.</p>
 <div class="company-nav"><span class="home-nav"><a href="performances.html" class="home-link">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <a class="nav-badge" href="#AIM" style="background:#555">A.I.M.</a><a class="nav-badge" href="#ALABAMA" style="background:#555">Alabama </a><a class="nav-badge" href="#LINES" style="background:#555">LINES </a><a class="nav-badge" href="#AILEY" style="background:#8B0000">Ailey</a><a class="nav-badge" href="#ABT" style="background:#b71c1c">ABT</a><a class="nav-badge" href="#ARB" style="background:#555">American Rep</a><a class="nav-badge" href="#ATLANTA" style="background:#555">Atlanta </a><a class="nav-badge" href="#ARIZONA" style="background:#555"> Arizona</a><a class="nav-badge" href="#AUSTIN" style="background:#555"> Austin</a><a class="nav-badge" href="#HISPANICO" style="background:#555"> Hispanico</a><a class="nav-badge" href="#IDAHO" style="background:#555"> Idaho</a><a class="nav-badge" href="#MEMPHIS" style="background:#e65100"> Memphis</a><a class="nav-badge" href="#B_WEST" style="background:#37474f">Ballet West</a><a class="nav-badge" href="#BALLETMET" style="background:#555">BalletMet</a><a class="nav-badge" href="#BALLETX" style="background:#555">BalletX</a><a class="nav-badge" href="#BAM" style="background:#555">BAM</a><a class="nav-badge" href="#BOSTON" style="background:#0277bd">Boston </a><a class="nav-badge" href="#CAPITAL_ONE" style="background:#555">Capital One Hall</a><a class="nav-badge" href="#CAROLINA" style="background:#555">Carolina </a><a class="nav-badge" href="#CHARLOTTE" style="background:#2d6a4f">Charlotte </a><a class="nav-badge" href="#CINCINNATI" style="background:#555">Cincinnati </a><a class="nav-badge" href="#CLEVELAND" style="background:#555">Cleveland </a><a class="nav-badge" href="#COLLAGE" style="background:#555">Collage</a><a class="nav-badge" href="#COLORADO" style="background:#1B4F8A">Colorado </a><a class="nav-badge" href="#COMPLEXIONS" style="background:#555">Complexions</a><a class="nav-badge" href="#DTOH" style="background:#555">DTOH</a><a class="nav-badge" href="#EUGENE" style="background:#555">Eugene </a><a class="nav-badge" href="#GMU_CFA" style="background:#555">Mason CFA</a><a class="nav-badge" href="#GRAND_RAPIDS" style="background:#555">Grand Rapids </a><a class="nav-badge" href="#HOUSTON" style="background:#2e7d32">Houston </a><a class="nav-badge" href="#HUBBARD" style="background:#555">Hubbard Street</a><a class="nav-badge" href="#HYLTON" style="background:#555">Hylton PAC</a><a class="nav-badge" href="#PILLOW" style="background:#555">Jacob&#x27;s Pillow</a><a class="nav-badge" href="#JOFFREY" style="background:#bf360c">Joffrey </a><a class="nav-badge" href="#JOYCE" style="background:#555">Joyce</a><a class="nav-badge" href="#JUILLIARD" style="background:#555">Juilliard School</a><a class="nav-badge" href="#KCB" style="background:#555">Kansas City </a><a class="nav-badge" href="#LIMON" style="background:#555">Limon</a><a class="nav-badge" href="#LOS_ANGELES" style="background:#555">Los Angeles </a><a class="nav-badge" href="#LOUISVILLE" style="background:#555">Louisville </a><a class="nav-badge" href="#MORRIS" style="background:#555">Mark Morris</a><a class="nav-badge" href="#GRAHAM" style="background:#555">Graham</a><a class="nav-badge" href="#MCB" style="background:#00838f">Miami City </a><a class="nav-badge" href="#MILWAUKEE" style="background:#555">Milwaukee </a><a class="nav-badge" href="#MOMIX" style="background:#555">Momix</a><a class="nav-badge" href="#STRATHMORE" style="background:#555">Strathmore</a><a class="nav-badge" href="#NASHVILLE" style="background:#555">Nashville </a><a class="nav-badge" href="#NEVADA" style="background:#555">Nevada</a><a class="nav-badge" href="#NYCB" style="background:#1a237e">NYCB</a><a class="nav-badge" href="#NYCC" style="background:#555">City Center</a><a class="nav-badge" href="#OK_CITY" style="background:#555">OK City </a><a class="nav-badge" href="#OREGON" style="background:#555">Oregon</a><a class="nav-badge" href="#ORLANDO" style="background:#555">Orlando </a><a class="nav-badge" href="#PNB" style="background:#00695c">PNB</a><a class="nav-badge" href="#TAYLOR" style="background:#555">Taylor</a><a class="nav-badge" href="#PAH" style="background:#555">Perf Arts Houston</a><a class="nav-badge" href="#PHILADELPHIA" style="background:#555">Philadelphia </a><a class="nav-badge" href="#PILOBOLUS" style="background:#555">Pilobolus</a><a class="nav-badge" href="#PITTSBURGH" style="background:#555">Pittsburgh</a><a class="nav-badge" href="#PORTLAND" style="background:#555">Portland </a><a class="nav-badge" href="#RAGAMALA" style="background:#555">Ragamala</a><a class="nav-badge" href="#RICHMOND" style="background:#555">Richmond </a><a class="nav-badge" href="#SACRAMENTO" style="background:#555">Sacramento </a><a class="nav-badge" href="#SFB" style="background:#6a1b9a">San Francisco </a><a class="nav-badge" href="#SARASOTA" style="background:#555">Sarasota </a><a class="nav-badge" href="#SMUIN" style="background:#555">Smuin</a><a class="nav-badge" href="#TEXAS" style="background:#555">Texas</a><a class="nav-badge" href="#AUSTRALIAN" style="background:#555">Australian</a><a class="nav-badge" href="#TRISHA_BROWN" style="background:#555">Trisha Brown</a><a class="nav-badge" href="#TULSA" style="background:#555">Tulsa </a><a class="nav-badge" href="#VAIL" style="background:#555">Vail</a><a class="nav-badge" href="#VNB" style="background:#555">VA National Ballet</a><a class="nav-badge" href="#WASHINGTON" style="background:#555">Washington </a><a class="nav-badge" href="#WOLF_TRAP" style="background:#555">Wolf Trap</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
 <div class="company-nav-letters"><span class="home-nav"><a href="performances.html" class="home-link">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <a class="letter-nav-link" href="#AIM">A</a><a class="letter-nav-link" href="#ARIZONA">B</a><a class="letter-nav-link" href="#CAPITAL_ONE">C</a><a class="letter-nav-link" href="#DTOH">D</a><a class="letter-nav-link" href="#EUGENE">E</a><a class="letter-nav-link" href="#GMU_CFA">G</a><a class="letter-nav-link" href="#HOUSTON">H</a><a class="letter-nav-link" href="#PILLOW">J</a><a class="letter-nav-link" href="#KCB">K</a><a class="letter-nav-link" href="#LIMON">L</a><a class="letter-nav-link" href="#MORRIS">M</a><a class="letter-nav-link" href="#NASHVILLE">N</a><a class="letter-nav-link" href="#OK_CITY">O</a><a class="letter-nav-link" href="#PNB">P</a><a class="letter-nav-link" href="#RAGAMALA">R</a><a class="letter-nav-link" href="#SACRAMENTO">S</a><a class="letter-nav-link" href="#TEXAS">T</a><a class="letter-nav-link" href="#VAIL">V</a><a class="letter-nav-link" href="#WASHINGTON">W</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
-<div class="co-overlay" id="co-overlay" onclick="if(event.target===this)closeCompanySelect()">
-  <div class="co-panel">
-    <div class="co-head">
-      <span class="co-title">Select companies</span>
-      <span class="co-count" id="co-count"></span>
-      <a class="co-action" onclick="coShowAll()">Select all</a>
-      <a class="co-action" onclick="coHideAll()">Clear</a>
-      <button class="co-done" onclick="closeCompanySelect()">Done</button>
-    </div>
-    <div class="co-grid">
-      <label class="co-cb" title="Ballet Arizona"><input type="checkbox" data-company="ARIZONA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name"> Arizona</span></label>
-      <label class="co-cb" title="Ballet Austin"><input type="checkbox" data-company="AUSTIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name"> Austin</span></label>
-      <label class="co-cb" title="Ballet Hispanico"><input type="checkbox" data-company="HISPANICO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name"> Hispanico</span></label>
-      <label class="co-cb" title="Ballet Idaho"><input type="checkbox" data-company="IDAHO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name"> Idaho</span></label>
-      <label class="co-cb" title="Ballet Memphis"><input type="checkbox" data-company="MEMPHIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#e65100"></span><span class="co-name"> Memphis</span></label>
-      <label class="co-cb" title="A.I.M. by Kyle Abraham"><input type="checkbox" data-company="AIM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">A.I.M.</span></label>
-      <label class="co-cb" title="American Ballet Theatre"><input type="checkbox" data-company="ABT" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#b71c1c"></span><span class="co-name">ABT</span></label>
-      <label class="co-cb" title="Alvin Ailey American Dance Theater"><input type="checkbox" data-company="AILEY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#8B0000"></span><span class="co-name">Ailey</span></label>
-      <label class="co-cb" title="Alabama Ballet"><input type="checkbox" data-company="ALABAMA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Alabama </span></label>
-      <label class="co-cb" title="American Repertory Ballet"><input type="checkbox" data-company="ARB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">American Rep</span></label>
-      <label class="co-cb" title="Atlanta Ballet"><input type="checkbox" data-company="ATLANTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Atlanta </span></label>
-      <label class="co-cb" title="The Australian Ballet"><input type="checkbox" data-company="AUSTRALIAN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Australian</span></label>
-      <label class="co-cb" title="BAM"><input type="checkbox" data-company="BAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">BAM</span></label>
-      <label class="co-cb" title="Ballet West"><input type="checkbox" data-company="B_WEST" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#37474f"></span><span class="co-name">Ballet West</span></label>
-      <label class="co-cb" title="BalletMet"><input type="checkbox" data-company="BALLETMET" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">BalletMet</span></label>
-      <label class="co-cb" title="BalletX"><input type="checkbox" data-company="BALLETX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">BalletX</span></label>
-      <label class="co-cb" title="Boston Ballet"><input type="checkbox" data-company="BOSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#0277bd"></span><span class="co-name">Boston </span></label>
-      <label class="co-cb" title="Capital One Hall"><input type="checkbox" data-company="CAPITAL_ONE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Capital One Hall</span></label>
-      <label class="co-cb" title="Carolina Ballet"><input type="checkbox" data-company="CAROLINA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Carolina </span></label>
-      <label class="co-cb" title="Charlotte Ballet"><input type="checkbox" data-company="CHARLOTTE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2d6a4f"></span><span class="co-name">Charlotte </span></label>
-      <label class="co-cb" title="Cincinnati Ballet"><input type="checkbox" data-company="CINCINNATI" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Cincinnati </span></label>
-      <label class="co-cb" title="New York City Center"><input type="checkbox" data-company="NYCC" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">City Center</span></label>
-      <label class="co-cb" title="Cleveland Ballet"><input type="checkbox" data-company="CLEVELAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Cleveland </span></label>
-      <label class="co-cb" title="Collage Dance Collective"><input type="checkbox" data-company="COLLAGE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Collage</span></label>
-      <label class="co-cb" title="Colorado Ballet"><input type="checkbox" data-company="COLORADO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1B4F8A"></span><span class="co-name">Colorado </span></label>
-      <label class="co-cb" title="Complexions Contemporary Ballet"><input type="checkbox" data-company="COMPLEXIONS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Complexions</span></label>
-      <label class="co-cb" title="Dance Theatre of Harlem"><input type="checkbox" data-company="DTOH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">DTOH</span></label>
-      <label class="co-cb" title="Eugene Ballet"><input type="checkbox" data-company="EUGENE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Eugene </span></label>
-      <label class="co-cb" title="Martha Graham Dance Company"><input type="checkbox" data-company="GRAHAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Graham</span></label>
-      <label class="co-cb" title="Grand Rapids Ballet"><input type="checkbox" data-company="GRAND_RAPIDS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Grand Rapids </span></label>
-      <label class="co-cb" title="Houston Ballet"><input type="checkbox" data-company="HOUSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2e7d32"></span><span class="co-name">Houston </span></label>
-      <label class="co-cb" title="Hubbard Street Dance Chicago"><input type="checkbox" data-company="HUBBARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Hubbard Street</span></label>
-      <label class="co-cb" title="Hylton Performing Arts Center"><input type="checkbox" data-company="HYLTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Hylton PAC</span></label>
-      <label class="co-cb" title="Jacob&#x27;s Pillow"><input type="checkbox" data-company="PILLOW" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Jacob&#x27;s Pillow</span></label>
-      <label class="co-cb" title="Joffrey Ballet"><input type="checkbox" data-company="JOFFREY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#bf360c"></span><span class="co-name">Joffrey </span></label>
-      <label class="co-cb" title="Joyce Theater"><input type="checkbox" data-company="JOYCE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Joyce</span></label>
-      <label class="co-cb" title="Juilliard School"><input type="checkbox" data-company="JUILLIARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Juilliard School</span></label>
-      <label class="co-cb" title="Kansas City Ballet"><input type="checkbox" data-company="KCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Kansas City </span></label>
-      <label class="co-cb" title="Alonzo King LINES Ballet"><input type="checkbox" data-company="LINES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">LINES </span></label>
-      <label class="co-cb" title="Limon Dance Company"><input type="checkbox" data-company="LIMON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Limon</span></label>
-      <label class="co-cb" title="Los Angeles Ballet"><input type="checkbox" data-company="LOS_ANGELES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Los Angeles </span></label>
-      <label class="co-cb" title="Louisville Ballet"><input type="checkbox" data-company="LOUISVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Louisville </span></label>
-      <label class="co-cb" title="Mark Morris Dance"><input type="checkbox" data-company="MORRIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Mark Morris</span></label>
-      <label class="co-cb" title="George Mason University Center for the Arts"><input type="checkbox" data-company="GMU_CFA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Mason CFA</span></label>
-      <label class="co-cb" title="Miami City Ballet"><input type="checkbox" data-company="MCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00838f"></span><span class="co-name">Miami City </span></label>
-      <label class="co-cb" title="Milwaukee Ballet"><input type="checkbox" data-company="MILWAUKEE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Milwaukee </span></label>
-      <label class="co-cb" title="Momix"><input type="checkbox" data-company="MOMIX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Momix</span></label>
-      <label class="co-cb" title="New York City Ballet"><input type="checkbox" data-company="NYCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1a237e"></span><span class="co-name">NYCB</span></label>
-      <label class="co-cb" title="Nashville Ballet"><input type="checkbox" data-company="NASHVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Nashville </span></label>
-      <label class="co-cb" title="Nevada Ballet Theatre"><input type="checkbox" data-company="NEVADA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Nevada</span></label>
-      <label class="co-cb" title="Oklahoma City Ballet"><input type="checkbox" data-company="OK_CITY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">OK City </span></label>
-      <label class="co-cb" title="Oregon Ballet Theatre"><input type="checkbox" data-company="OREGON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Oregon</span></label>
-      <label class="co-cb" title="Orlando Ballet"><input type="checkbox" data-company="ORLANDO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Orlando </span></label>
-      <label class="co-cb" title="Pacific Northwest Ballet"><input type="checkbox" data-company="PNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">PNB</span></label>
-      <label class="co-cb" title="Performing Arts Houston"><input type="checkbox" data-company="PAH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Perf Arts Houston</span></label>
-      <label class="co-cb" title="Philadelphia Ballet"><input type="checkbox" data-company="PHILADELPHIA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Philadelphia </span></label>
-      <label class="co-cb" title="Pilobolus Dance Theater"><input type="checkbox" data-company="PILOBOLUS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Pilobolus</span></label>
-      <label class="co-cb" title="Pittsburgh Ballet Theatre"><input type="checkbox" data-company="PITTSBURGH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Pittsburgh</span></label>
-      <label class="co-cb" title="Portland Ballet"><input type="checkbox" data-company="PORTLAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Portland </span></label>
-      <label class="co-cb" title="Ragamala Dance Company"><input type="checkbox" data-company="RAGAMALA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Ragamala</span></label>
-      <label class="co-cb" title="Richmond Ballet"><input type="checkbox" data-company="RICHMOND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Richmond </span></label>
-      <label class="co-cb" title="Sacramento Ballet"><input type="checkbox" data-company="SACRAMENTO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Sacramento </span></label>
-      <label class="co-cb" title="San Francisco Ballet"><input type="checkbox" data-company="SFB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6a1b9a"></span><span class="co-name">San Francisco </span></label>
-      <label class="co-cb" title="Sarasota Ballet"><input type="checkbox" data-company="SARASOTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Sarasota </span></label>
-      <label class="co-cb" title="Smuin Contemporary
-Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Smuin</span></label>
-      <label class="co-cb" title="Music Center at Strathmore"><input type="checkbox" data-company="STRATHMORE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Strathmore</span></label>
-      <label class="co-cb" title="Paul Taylor Dance Company"><input type="checkbox" data-company="TAYLOR" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Taylor</span></label>
-      <label class="co-cb" title="Texas Ballet Theater"><input type="checkbox" data-company="TEXAS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Texas</span></label>
-      <label class="co-cb" title="Trisha Brown Dance Company"><input type="checkbox" data-company="TRISHA_BROWN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Trisha Brown</span></label>
-      <label class="co-cb" title="Tulsa Ballet"><input type="checkbox" data-company="TULSA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Tulsa </span></label>
-      <label class="co-cb" title="Virginia National Ballet"><input type="checkbox" data-company="VNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">VA National Ballet</span></label>
-      <label class="co-cb" title="Vail Dance Festival"><input type="checkbox" data-company="VAIL" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Vail</span></label>
-      <label class="co-cb" title="Washington Ballet"><input type="checkbox" data-company="WASHINGTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Washington </span></label>
-      <label class="co-cb" title="Wolf Trap"><input type="checkbox" data-company="WOLF_TRAP" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555"></span><span class="co-name">Wolf Trap</span></label>
-    </div>
-  </div>
-</div>
 <div class="company-section" id="AIM">
 <div class="company-heading"><a href="https://www.aimbykyleabraham.org/tours-archive" target="_blank" rel="noopener noreferrer">A.I.M. by Kyle Abraham</a><span class="badge-inline" style="background:#555">A.I.M.</span></div>
 <div class="program" data-company="AIM" data-end="2026-07-19"><div class="date-col">Jul 15–19, 2026</div><div class="title-main"><a class="program-title" href="https://www.jacobspillow.org/whats-on/events/aim-by-kyle-abraham/" target="_blank" rel="noopener noreferrer">Jacob&#x27;s Pillow: White Space</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-AIM-jacob-s-pillow-white-space" onclick="toggleDates('prog-AIM-jacob-s-pillow-white-space')">Show Dates</button></div><div class="program-detail"><div id="dates-prog-AIM-jacob-s-pillow-white-space" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:71.43%"><tr><th style="width:14.29%">Wed</th><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td class="cal-has-perf"><span class="cal-date">Jul 15</span></td><td class="cal-has-perf"><span class="cal-date">Jul 16</span></td><td class="cal-has-perf"><span class="cal-date">Jul 17</span></td><td class="cal-has-perf"><span class="cal-date">Jul 18</span></td><td class="cal-has-perf"><span class="cal-date">Jul 19</span></td></tr></table></div></div></div>
@@ -1406,6 +1326,15 @@ window.applyPerfView = function () {
         });
         var pc = document.getElementById('pc-past-cb');
         if (pc) pc.checked = window.perfPast;
+        // Shared lede text on the pages that share the company-selection
+        // model (By Month, By Company, Grid) — same wording everywhere,
+        // kept in one place so it can't drift between pages.
+        var lede = document.getElementById('perf-lede');
+        if (lede) {
+            lede.textContent = (window.perfView === 'selected')
+                ? 'Showing selected companies. Use Settings to show all companies.'
+                : 'Showing all companies. Use Settings to limit to selected companies.';
+        }
         updateCount();
     }
     window.setPerfView = function (v) {
@@ -1457,14 +1386,22 @@ window.applyPerfView = function () {
         window.perfSelected = new Set(readArr(K_CO));
         window.perfView = (localStorage.getItem(K_VIEW) === 'selected') ? 'selected' : 'all';
         window.perfPast = (localStorage.getItem(K_PAST) === '1');
-        var valid = new Set();
-        document.querySelectorAll('.co-cb input[type=checkbox]').forEach(function (cb) {
-            valid.add(cb.dataset.company);
-            cb.checked = window.perfSelected.has(cb.dataset.company);
-        });
-        window.perfSelected = new Set([...window.perfSelected].filter(function (c) {
-            return valid.has(c);
-        }));
+        // The company checkboxes now live only on settings.html (2026-07-26 —
+        // controls moved off the content pages). Only prune perfSelected
+        // against them when they're actually on this page; otherwise the
+        // content pages (agenda/company/grid) would have nothing to check
+        // against and would silently wipe the stored selection to empty.
+        var boxes = document.querySelectorAll('.co-cb input[type=checkbox]');
+        if (boxes.length) {
+            var valid = new Set();
+            boxes.forEach(function (cb) {
+                valid.add(cb.dataset.company);
+                cb.checked = window.perfSelected.has(cb.dataset.company);
+            });
+            window.perfSelected = new Set([...window.perfSelected].filter(function (c) {
+                return valid.has(c);
+            }));
+        }
         syncUI();
         apply();
     }

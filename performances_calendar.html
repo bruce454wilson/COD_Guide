@@ -214,24 +214,32 @@ h1 { margin-bottom: 6px; }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background: #fff;
+    width: 28px;
+    height: 28px;
     color: #555;
-    font-size: 20px;
     font-weight: bold;
     text-decoration: none;
     line-height: 1;
     flex-shrink: 0;
 }
 .icon-btn:hover {
-    background: #f0f0f0;
-    border-color: #999;
     color: #333;
     text-decoration: none;
 }
+/* Help "?" keeps its circle, sized to roughly match the plain gear icon's
+   visual footprint (both sit in a 28px box — see .icon-btn above). */
+.icon-btn-circle {
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 15px;
+}
+.icon-btn-circle:hover {
+    background: #f0f0f0;
+    border-color: #999;
+}
+/* Gear icon — no circle/border, just the glyph in the same-size box. */
+.icon-btn-gear { }
 .close-btn {
     display: inline-flex;
     align-items: center;
@@ -334,99 +342,11 @@ const PERF_DATA = {"programs": [{"company": "ABT", "title": "Swan Lake", "start"
 </script>
 </head>
 <body>
-<div class="title-row"><h1>Dance Season — Grid</h1><span class="nav-right"><span class="perf-top-controls"><button class="pc-btn" onclick="openCompanySelect()">Select companies</button><span class="pc-view-toggle" role="group" aria-label="Which companies to show"><span class="pc-view-opt" data-view="all" onclick="setPerfView('all')">All</span><span class="pc-view-sep">&middot;</span><span class="pc-view-opt" data-view="selected" onclick="setPerfView('selected')">Select</span></span></span><a href="settings.html" class="icon-btn" title="Settings" aria-label="Settings"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn" title="Help" aria-label="Help">?</a></span></div>
-<p class="lede">Showing all companies. Use &ldquo;Select companies&rdquo; to build your own view, then switch to &ldquo;Selected.&rdquo; Hover any bar for the program title; click to see the full agenda entry.</p>
+<div class="title-row"><h1>Dance Season — Grid</h1><span class="nav-right"><a href="settings.html" class="icon-btn icon-btn-gear" title="Settings" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn icon-btn-circle" title="Help" aria-label="Help">?</a></span></div>
+<p class="lede" id="perf-lede">Showing all companies. Use Settings to limit to selected companies.</p>
 <div class="month-jump"><span class="home-nav"><a href="performances.html" class="slink">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <span class="sep">|</span> <a href="#June-2026">Jun&nbsp;26</a> <a href="#July-2026">Jul&nbsp;26</a> <a href="#August-2026">Aug&nbsp;26</a> <a href="#September-2026">Sep&nbsp;26</a> <a href="#October-2026">Oct&nbsp;26</a> <a href="#November-2026">Nov&nbsp;26</a> <a href="#December-2026">Dec&nbsp;26</a> <a href="#January-2027">Jan&nbsp;27</a> <a href="#February-2027">Feb&nbsp;27</a> <a href="#March-2027">Mar&nbsp;27</a> <a href="#April-2027">Apr&nbsp;27</a> <a href="#May-2027">May&nbsp;27</a> <a href="#June-2027">Jun&nbsp;27</a> <span class="sep">|</span> <a href="performances_agenda.html" class="slink">By Month view &#8594;</a></div>
-<div class="co-overlay" id="co-overlay" onclick="if(event.target===this)closeCompanySelect()">
-  <div class="co-panel">
-    <div class="co-head">
-      <span class="co-title">Select companies</span>
-      <span class="co-count" id="co-count"></span>
-      <a class="co-action" onclick="coShowAll()">Select all</a>
-      <a class="co-action" onclick="coHideAll()">Clear</a>
-      <button class="co-done" onclick="closeCompanySelect()">Done</button>
-    </div>
-    <div class="co-grid">
-      <label class="co-cb" title="Ballet Arizona"><input type="checkbox" data-company="ARIZONA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Arizona</span></label>
-      <label class="co-cb" title="Ballet Austin"><input type="checkbox" data-company="AUSTIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#558b2f"></span><span class="co-name"> Austin</span></label>
-      <label class="co-cb" title="Ballet Hispanico"><input type="checkbox" data-company="HISPANICO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Hispanico</span></label>
-      <label class="co-cb" title="Ballet Idaho"><input type="checkbox" data-company="IDAHO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Idaho</span></label>
-      <label class="co-cb" title="Ballet Memphis"><input type="checkbox" data-company="MEMPHIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#e65100"></span><span class="co-name"> Memphis</span></label>
-      <label class="co-cb" title="A.I.M. by Kyle Abraham"><input type="checkbox" data-company="AIM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">A.I.M.</span></label>
-      <label class="co-cb" title="American Ballet Theatre"><input type="checkbox" data-company="ABT" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#b71c1c"></span><span class="co-name">ABT</span></label>
-      <label class="co-cb" title="Alvin Ailey American Dance Theater"><input type="checkbox" data-company="AILEY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#8B0000"></span><span class="co-name">Ailey</span></label>
-      <label class="co-cb" title="Alabama Ballet"><input type="checkbox" data-company="ALABAMA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Alabama </span></label>
-      <label class="co-cb" title="American Repertory Ballet"><input type="checkbox" data-company="ARB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">American Rep</span></label>
-      <label class="co-cb" title="Atlanta Ballet"><input type="checkbox" data-company="ATLANTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#ad1457"></span><span class="co-name">Atlanta </span></label>
-      <label class="co-cb" title="The Australian Ballet"><input type="checkbox" data-company="AUSTRALIAN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Australian</span></label>
-      <label class="co-cb" title="BAM"><input type="checkbox" data-company="BAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BAM</span></label>
-      <label class="co-cb" title="Ballet West"><input type="checkbox" data-company="B_WEST" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#37474f"></span><span class="co-name">Ballet West</span></label>
-      <label class="co-cb" title="BalletMet"><input type="checkbox" data-company="BALLETMET" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4527a0"></span><span class="co-name">BalletMet</span></label>
-      <label class="co-cb" title="BalletX"><input type="checkbox" data-company="BALLETX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BalletX</span></label>
-      <label class="co-cb" title="Boston Ballet"><input type="checkbox" data-company="BOSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#0277bd"></span><span class="co-name">Boston </span></label>
-      <label class="co-cb" title="Capital One Hall"><input type="checkbox" data-company="CAPITAL_ONE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Capital One Hall</span></label>
-      <label class="co-cb" title="Carolina Ballet"><input type="checkbox" data-company="CAROLINA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Carolina </span></label>
-      <label class="co-cb" title="Charlotte Ballet"><input type="checkbox" data-company="CHARLOTTE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2d6a4f"></span><span class="co-name">Charlotte </span></label>
-      <label class="co-cb" title="Cincinnati Ballet"><input type="checkbox" data-company="CINCINNATI" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6d4c41"></span><span class="co-name">Cincinnati </span></label>
-      <label class="co-cb" title="New York City Center"><input type="checkbox" data-company="NYCC" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">City Center</span></label>
-      <label class="co-cb" title="Cleveland Ballet"><input type="checkbox" data-company="CLEVELAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Cleveland </span></label>
-      <label class="co-cb" title="Collage Dance Collective"><input type="checkbox" data-company="COLLAGE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Collage</span></label>
-      <label class="co-cb" title="Colorado Ballet"><input type="checkbox" data-company="COLORADO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1B4F8A"></span><span class="co-name">Colorado </span></label>
-      <label class="co-cb" title="Complexions Contemporary Ballet"><input type="checkbox" data-company="COMPLEXIONS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Complexions</span></label>
-      <label class="co-cb" title="Dance Theatre of Harlem"><input type="checkbox" data-company="DTOH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">DTOH</span></label>
-      <label class="co-cb" title="Eugene Ballet"><input type="checkbox" data-company="EUGENE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Eugene </span></label>
-      <label class="co-cb" title="Martha Graham Dance Company"><input type="checkbox" data-company="GRAHAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Graham</span></label>
-      <label class="co-cb" title="Grand Rapids Ballet"><input type="checkbox" data-company="GRAND_RAPIDS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Grand Rapids </span></label>
-      <label class="co-cb" title="Houston Ballet"><input type="checkbox" data-company="HOUSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2e7d32"></span><span class="co-name">Houston </span></label>
-      <label class="co-cb" title="Hubbard Street Dance Chicago"><input type="checkbox" data-company="HUBBARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hubbard Street</span></label>
-      <label class="co-cb" title="Hylton Performing Arts Center"><input type="checkbox" data-company="HYLTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hylton PAC</span></label>
-      <label class="co-cb" title="Jacob&#x27;s Pillow"><input type="checkbox" data-company="PILLOW" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Jacob&#x27;s Pillow</span></label>
-      <label class="co-cb" title="Joffrey Ballet"><input type="checkbox" data-company="JOFFREY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#bf360c"></span><span class="co-name">Joffrey </span></label>
-      <label class="co-cb" title="Joyce Theater"><input type="checkbox" data-company="JOYCE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Joyce</span></label>
-      <label class="co-cb" title="Juilliard School"><input type="checkbox" data-company="JUILLIARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Juilliard School</span></label>
-      <label class="co-cb" title="Kansas City Ballet"><input type="checkbox" data-company="KCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00838f"></span><span class="co-name">Kansas City </span></label>
-      <label class="co-cb" title="Alonzo King LINES Ballet"><input type="checkbox" data-company="LINES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">LINES </span></label>
-      <label class="co-cb" title="Limon Dance Company"><input type="checkbox" data-company="LIMON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Limon</span></label>
-      <label class="co-cb" title="Los Angeles Ballet"><input type="checkbox" data-company="LOS_ANGELES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Los Angeles </span></label>
-      <label class="co-cb" title="Louisville Ballet"><input type="checkbox" data-company="LOUISVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#78350f"></span><span class="co-name">Louisville </span></label>
-      <label class="co-cb" title="Mark Morris Dance"><input type="checkbox" data-company="MORRIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mark Morris</span></label>
-      <label class="co-cb" title="George Mason University Center for the Arts"><input type="checkbox" data-company="GMU_CFA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mason CFA</span></label>
-      <label class="co-cb" title="Miami City Ballet"><input type="checkbox" data-company="MCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#007c91"></span><span class="co-name">Miami City </span></label>
-      <label class="co-cb" title="Milwaukee Ballet"><input type="checkbox" data-company="MILWAUKEE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#283593"></span><span class="co-name">Milwaukee </span></label>
-      <label class="co-cb" title="Momix"><input type="checkbox" data-company="MOMIX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Momix</span></label>
-      <label class="co-cb" title="New York City Ballet"><input type="checkbox" data-company="NYCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1a237e"></span><span class="co-name">NYCB</span></label>
-      <label class="co-cb" title="Nashville Ballet"><input type="checkbox" data-company="NASHVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nashville </span></label>
-      <label class="co-cb" title="Nevada Ballet Theatre"><input type="checkbox" data-company="NEVADA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nevada</span></label>
-      <label class="co-cb" title="Oklahoma City Ballet"><input type="checkbox" data-company="OK_CITY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4a148c"></span><span class="co-name">OK City </span></label>
-      <label class="co-cb" title="Oregon Ballet Theatre"><input type="checkbox" data-company="OREGON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#880e4f"></span><span class="co-name">Oregon</span></label>
-      <label class="co-cb" title="Orlando Ballet"><input type="checkbox" data-company="ORLANDO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Orlando </span></label>
-      <label class="co-cb" title="Pacific Northwest Ballet"><input type="checkbox" data-company="PNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#004d40"></span><span class="co-name">PNB</span></label>
-      <label class="co-cb" title="Performing Arts Houston"><input type="checkbox" data-company="PAH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Perf Arts Houston</span></label>
-      <label class="co-cb" title="Philadelphia Ballet"><input type="checkbox" data-company="PHILADELPHIA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1565c0"></span><span class="co-name">Philadelphia </span></label>
-      <label class="co-cb" title="Pilobolus Dance Theater"><input type="checkbox" data-company="PILOBOLUS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Pilobolus</span></label>
-      <label class="co-cb" title="Pittsburgh Ballet Theatre"><input type="checkbox" data-company="PITTSBURGH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#c62828"></span><span class="co-name">Pittsburgh</span></label>
-      <label class="co-cb" title="Portland Ballet"><input type="checkbox" data-company="PORTLAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Portland </span></label>
-      <label class="co-cb" title="Ragamala Dance Company"><input type="checkbox" data-company="RAGAMALA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Ragamala</span></label>
-      <label class="co-cb" title="Richmond Ballet"><input type="checkbox" data-company="RICHMOND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4e342e"></span><span class="co-name">Richmond </span></label>
-      <label class="co-cb" title="Sacramento Ballet"><input type="checkbox" data-company="SACRAMENTO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sacramento </span></label>
-      <label class="co-cb" title="San Francisco Ballet"><input type="checkbox" data-company="SFB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6a1b9a"></span><span class="co-name">San Francisco </span></label>
-      <label class="co-cb" title="Sarasota Ballet"><input type="checkbox" data-company="SARASOTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sarasota </span></label>
-      <label class="co-cb" title="Smuin Contemporary
-Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Smuin</span></label>
-      <label class="co-cb" title="Music Center at Strathmore"><input type="checkbox" data-company="STRATHMORE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Strathmore</span></label>
-      <label class="co-cb" title="Paul Taylor Dance Company"><input type="checkbox" data-company="TAYLOR" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Taylor</span></label>
-      <label class="co-cb" title="Texas Ballet Theater"><input type="checkbox" data-company="TEXAS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Texas</span></label>
-      <label class="co-cb" title="Trisha Brown Dance Company"><input type="checkbox" data-company="TRISHA_BROWN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Trisha Brown</span></label>
-      <label class="co-cb" title="Tulsa Ballet"><input type="checkbox" data-company="TULSA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Tulsa </span></label>
-      <label class="co-cb" title="Virginia National Ballet"><input type="checkbox" data-company="VNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">VA National Ballet</span></label>
-      <label class="co-cb" title="Vail Dance Festival"><input type="checkbox" data-company="VAIL" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Vail</span></label>
-      <label class="co-cb" title="Washington Ballet"><input type="checkbox" data-company="WASHINGTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Washington </span></label>
-      <label class="co-cb" title="Wolf Trap"><input type="checkbox" data-company="WOLF_TRAP" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Wolf Trap</span></label>
-    </div>
-  </div>
-</div>
 <p class="legend-note">Company and program shown at start of run. Hover any bar for the program title. Faded&nbsp;= date range only; exact dates TBD. Mon&ndash;Wed column hidden for date-range programs (except Nutcracker).</p>
-<div class="month-section" id="June-2026">
+<div class="month-section" id="June-2026" data-hide-from="2026-06-29">
 <div class="month-heading">June 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-06-01">
@@ -466,7 +386,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="July-2026">
+<div class="month-section" id="July-2026" data-hide-from="2026-07-27">
 <div class="month-heading">July 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-06-29">
@@ -499,14 +419,14 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 <div class="week-block" data-week-start="2026-07-20">
 <div class="week-grid" style="grid-template-rows:26px;">
 <div class="dn dn-mw in-mo" style="grid-column:1;grid-row:1;">20&thinsp;&middot;&thinsp;21&thinsp;&middot;&thinsp;22</div>
-<div class="dn in-mo" style="grid-column:2;grid-row:1;"><span class="today-circle">23</span></div>
+<div class="dn in-mo" style="grid-column:2;grid-row:1;">23</div>
 <div class="dn in-mo" style="grid-column:3;grid-row:1;">24</div>
 <div class="dn in-mo wknd" style="grid-column:4;grid-row:1;">25</div>
-<div class="dn in-mo wknd" style="grid-column:5;grid-row:1;">26</div>
+<div class="dn in-mo wknd" style="grid-column:5;grid-row:1;"><span class="today-circle">26</span></div>
 </div>
 </div>
 </div>
-<div class="month-section" id="August-2026">
+<div class="month-section" id="August-2026" data-hide-from="2026-08-31">
 <div class="month-heading">August 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-07-27">
@@ -555,7 +475,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="September-2026">
+<div class="month-section" id="September-2026" data-hide-from="2026-09-28">
 <div class="month-heading">September 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-08-31">
@@ -595,7 +515,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="October-2026">
+<div class="month-section" id="October-2026" data-hide-from="2026-10-26">
 <div class="month-heading">October 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-09-28">
@@ -635,7 +555,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="November-2026">
+<div class="month-section" id="November-2026" data-hide-from="2026-11-30">
 <div class="month-heading">November 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-10-26">
@@ -684,7 +604,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="December-2026">
+<div class="month-section" id="December-2026" data-hide-from="2026-12-28">
 <div class="month-heading">December 2026</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-11-30">
@@ -724,7 +644,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="January-2027">
+<div class="month-section" id="January-2027" data-hide-from="2027-02-01">
 <div class="month-heading">January 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2026-12-28">
@@ -773,7 +693,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="February-2027">
+<div class="month-section" id="February-2027" data-hide-from="2027-03-01">
 <div class="month-heading">February 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2027-02-01">
@@ -813,7 +733,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="March-2027">
+<div class="month-section" id="March-2027" data-hide-from="2027-03-29">
 <div class="month-heading">March 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2027-03-01">
@@ -853,7 +773,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="April-2027">
+<div class="month-section" id="April-2027" data-hide-from="2027-04-26">
 <div class="month-heading">April 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2027-03-29">
@@ -893,7 +813,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="May-2027">
+<div class="month-section" id="May-2027" data-hide-from="2027-05-31">
 <div class="month-heading">May 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2027-04-26">
@@ -942,7 +862,7 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
 </div>
 </div>
 </div>
-<div class="month-section" id="June-2027">
+<div class="month-section" id="June-2027" data-hide-from="2027-06-28">
 <div class="month-heading">June 2027</div>
 <div class="dow-row"><div class="dow-cell">MON&ndash;WED</div><div class="dow-cell">THU</div><div class="dow-cell">FRI</div><div class="dow-cell wknd">SAT</div><div class="dow-cell wknd">SUN</div></div>
 <div class="week-block" data-week-start="2027-05-31">
@@ -994,6 +914,12 @@ function parseDate(s) {
     // Parse ISO date "YYYY-MM-DD" as LOCAL noon to avoid UTC/DST issues.
     const [y, m, d] = s.split('-').map(Number);
     return new Date(y, m - 1, d, 12, 0, 0);
+}
+function parseDateMidnight(s) {
+    // Same as parseDate but at local midnight, so it compares correctly
+    // against `today` (which is also normalized to midnight).
+    const [y, m, d] = s.split('-').map(Number);
+    return new Date(y, m - 1, d, 0, 0, 0);
 }
 function addDays(d, n) {
     return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n, 12, 0, 0);
@@ -1105,6 +1031,21 @@ function renderBars() {
         return true;
     });
     const laneMap  = assignLanes(visible);
+
+    // Hide whole month blocks that are entirely in the past when "Show past
+    // programs" is off. A block's `data-hide-from` is the Monday of the week
+    // containing next month's 1st — once today reaches that date, this
+    // block's remaining days are already covered by the next block (see
+    // Python build_month_html for the full explanation), so it's safe to
+    // hide rather than leaving an empty grid on screen.
+    document.querySelectorAll('.month-section').forEach(sec => {
+        const hideFrom = sec.dataset.hideFrom;
+        if (!past && hideFrom && today >= parseDateMidnight(hideFrom)) {
+            sec.style.display = 'none';
+        } else {
+            sec.style.display = '';
+        }
+    });
 
     document.querySelectorAll('.week-block').forEach(block => {
         const weekMon = parseDate(block.dataset.weekStart);
@@ -1293,6 +1234,15 @@ window.applyPerfView = function () { renderBars(); };
         });
         var pc = document.getElementById('pc-past-cb');
         if (pc) pc.checked = window.perfPast;
+        // Shared lede text on the pages that share the company-selection
+        // model (By Month, By Company, Grid) — same wording everywhere,
+        // kept in one place so it can't drift between pages.
+        var lede = document.getElementById('perf-lede');
+        if (lede) {
+            lede.textContent = (window.perfView === 'selected')
+                ? 'Showing selected companies. Use Settings to show all companies.'
+                : 'Showing all companies. Use Settings to limit to selected companies.';
+        }
         updateCount();
     }
     window.setPerfView = function (v) {
@@ -1344,14 +1294,22 @@ window.applyPerfView = function () { renderBars(); };
         window.perfSelected = new Set(readArr(K_CO));
         window.perfView = (localStorage.getItem(K_VIEW) === 'selected') ? 'selected' : 'all';
         window.perfPast = (localStorage.getItem(K_PAST) === '1');
-        var valid = new Set();
-        document.querySelectorAll('.co-cb input[type=checkbox]').forEach(function (cb) {
-            valid.add(cb.dataset.company);
-            cb.checked = window.perfSelected.has(cb.dataset.company);
-        });
-        window.perfSelected = new Set([...window.perfSelected].filter(function (c) {
-            return valid.has(c);
-        }));
+        // The company checkboxes now live only on settings.html (2026-07-26 —
+        // controls moved off the content pages). Only prune perfSelected
+        // against them when they're actually on this page; otherwise the
+        // content pages (agenda/company/grid) would have nothing to check
+        // against and would silently wipe the stored selection to empty.
+        var boxes = document.querySelectorAll('.co-cb input[type=checkbox]');
+        if (boxes.length) {
+            var valid = new Set();
+            boxes.forEach(function (cb) {
+                valid.add(cb.dataset.company);
+                cb.checked = window.perfSelected.has(cb.dataset.company);
+            });
+            window.perfSelected = new Set([...window.perfSelected].filter(function (c) {
+                return valid.has(c);
+            }));
+        }
         syncUI();
         apply();
     }
