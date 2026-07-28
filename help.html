@@ -322,15 +322,129 @@ a:hover {
     color: #333;
     text-decoration: none;
 }
-.lede { color: #555; margin-top: 4px; margin-bottom: 24px; }
-.help-section { max-width: 640px; margin-bottom: 30px; }
-.help-section h2 { font-size: 19px; margin-bottom: 8px; }
-.help-section p { color: #333; line-height: 1.55; margin: 0 0 10px; }
-.help-section ul { margin: 0 0 10px; padding-left: 22px; }
-.help-section li { color: #333; line-height: 1.55; margin-bottom: 4px; }
+.lede { color: #555; margin-top: 4px; margin-bottom: 14px; max-width: 680px; }
+
+/* --- expand/collapse all --- */
+.help-allctl { margin: 0 0 10px; font-size: 13px; color: #888; }
+.help-allctl a { color: #1a73e8; text-decoration: none; font-weight: bold; cursor: pointer; }
+.help-allctl a:hover { text-decoration: underline; }
+.help-allctl .sep { margin: 0 8px; color: #ccc; }
+
+/* --- accordion --- */
+.help-list { max-width: 680px; border-top: 1px solid #e3e3e3; }
+.help-topic { border-bottom: 1px solid #e3e3e3; }
+.help-topic > summary {
+    list-style: none;
+    cursor: pointer;
+    position: relative;
+    padding: 14px 36px 14px 2px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #222;
+}
+.help-topic > summary::-webkit-details-marker { display: none; }
+.help-topic > summary::marker { content: ""; }
+.help-topic > summary:hover { color: #1a73e8; }
+.help-topic > summary::after {
+    content: "+";
+    position: absolute;
+    right: 8px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px; font-weight: normal; line-height: 1;
+    color: #1a73e8;
+}
+.help-topic[open] > summary::after { content: "\2212"; }
+.help-body { padding: 0 2px 20px; }
+.help-body p { color: #333; line-height: 1.55; margin: 0 0 12px; }
+.help-body ul { margin: 0 0 12px; padding-left: 22px; }
+.help-body li { color: #333; line-height: 1.55; margin-bottom: 5px; }
+.help-sub {
+    font-size: 13px; font-weight: bold; color: #666;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin: 18px 0 10px;
+}
+.help-sub:first-child { margin-top: 4px; }
+
+/* --- label / description rows ---
+   Two columns on desktop; stacked below 650px so a long badge label never
+   squeezes its description into a ribbon on a phone. */
+.help-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 4px 16px;
+    align-items: baseline;
+    margin-bottom: 11px;
+}
+.help-item-label { line-height: 1.5; }
+.help-item-desc { color: #333; line-height: 1.55; }
+
+/* Plain-text label (for things that aren't a styled badge) */
+.lbl { font-weight: bold; color: #222; }
+.lbl-link { color: #1a73e8; font-weight: bold; }
+
+/* --- sample controls (mirrors of the real ones on other pages) --- */
+.help-item-label .profile-badge,
+.help-item-label .patreon-badge,
+.help-item-label .youtube-badge,
+.help-item-label .instagram-badge,
+.help-item-label .desc-button,
+.help-item-label .dates-toggle,
+.help-item-label .nav-all-btn,
+.help-item-label .cross-link,
+.help-item-label .badge { cursor: default; }
+
+/* Performance-page controls: those pages build their own <head>, so these
+   rules are copies, not shared. Keep in sync if the originals change. */
+.dates-toggle, .nav-all-btn {
+    font-size: 12px; background: none; border-radius: 3px;
+    padding: 2px 8px; white-space: nowrap;
+    display: inline-block;
+}
+.dates-toggle { color: #1a73e8; border: 1px solid #1a73e8; }
+.nav-all-btn  { color: #555;    border: 1px solid #bbb; }
+.cross-link {
+    display: inline-block; font-size: 12px; font-weight: normal;
+    padding: 2px 7px; border: 1px solid #1a73e8; border-radius: 3px;
+    color: #1a73e8; text-decoration: none; vertical-align: middle;
+}
+.badge {
+    display: inline-block; font-size: 11px; font-weight: bold; color: white;
+    padding: 2px 8px; border-radius: 3px; letter-spacing: 0.03em;
+}
+.dates-note-inline { font-size: 12px; color: #999; font-style: italic; }
+
+/* Icon samples: the "?" is circled on the real pages (.icon-btn-circle), the
+   gear is not (.icon-btn-gear is empty) — mirror that here. The gear uses the
+   real inline SVG, not the Unicode glyph, for the same reason the site does:
+   the glyph renders inconsistently across platforms. */
+.help-icon-q, .help-icon-gear {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; color: #555;
+    vertical-align: middle;
+}
+.help-icon-q { border: 1px solid #ccc; border-radius: 50%; font-weight: bold; }
+.help-icon-gear svg { width: 20px; height: 20px; }
+
+/* Quiet aside text, inline or as its own paragraph. */
+.help-body .note, .help-item-desc .note { color: #777; font-size: 0.92em; }
+.help-body p.note { margin-top: -4px; }
+
+/* --- contact block --- */
+.help-email {
+    display: inline-block; font-size: 17px; font-weight: bold;
+    color: #1a73e8; text-decoration: none;
+    padding: 10px 16px; border: 1px solid #1a73e8; border-radius: 4px;
+    background: #f4f8ff; margin: 4px 0 14px;
+}
+.help-email:hover { background: #e8f0fe; }
+
 @media (max-width: 650px) {
-    .help-section h2 { font-size: 21px; }
-    .help-section p, .help-section li { font-size: 17px; }
+    .help-topic > summary { font-size: 19px; padding: 15px 36px 15px 2px; }
+    .help-body p, .help-body li, .help-item-desc { font-size: 17px; }
+    .help-allctl { font-size: 15px; }
+    .help-item { grid-template-columns: 1fr; gap: 2px; margin-bottom: 15px; }
+    .help-item-label { margin-bottom: 2px; }
+    .help-email { font-size: 18px; }
 }
 </style>
 <script>
@@ -373,22 +487,55 @@ function toggleHomeNav(btn) {
 <div class="index">
 <span class="home-nav"><a href="danceexplorer.html">&#8592;&nbsp;Home</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="podcasts.html">Podcasts</a><a href="performances.html">Performances</a></div></span>
 </div>
-<p class="lede">A quick guide to finding your way around Dance Explorer.</p>
-<div class="help-section">
-<h2>Podcasts</h2>
-<p>Browse every guest who's appeared on Conversations on Dance from the Podcasts menu — by guest, by dancer, by choreographer, by company, and more. Themed collections (Vail Dance Festival, Live Events, Balanchine dancers, and others) group episodes a different way.</p>
-<p>Each guest entry links out to their company profile page, Instagram, and — where available — the YouTube clip for that appearance.</p>
-</div>
-<div class="help-section">
-<h2>Performances</h2>
-<p>The Performances menu tracks the 2026–27 season for major dance companies across the country. Four views cover the same data: By Month (chronological), By Company, By Choreographer, and By Work. The Grid gives a visual season-at-a-glance calendar.</p>
-<p>By Month, By Company, and the Grid can all be limited to just the companies you care about — open <strong>Settings</strong> and turn on <strong>Show only selected companies</strong>, then use <strong>Choose the selected companies</strong> to pick them. Your selection is remembered across all three pages.</p>
-</div>
-<div class="help-section">
-<h2>Settings</h2>
-<p>The gear icon opens a Settings page for options you won't need often: choosing which companies show up on the Performances pages, and whether to show programs that have already ended. More options will land there as new features ship.</p>
+<p class="lede">A guide to Dance Explorer and to every link and button on its pages. Choose a topic to open it.</p>
+<p class="help-allctl"><a id="help-expand" href="#">Expand all</a><span class="sep">|</span><a id="help-collapse" href="#">Collapse all</a></p>
+<div class="help-list">
+<details class="help-topic">
+<summary>Comments, Suggestions, Questions, and Support</summary>
+<div class="help-body"><p>We'd like to hear from you. Send comments, suggestions, corrections, questions, or anything that isn't working to:</p><p><a class="help-email" href="mailto:danceexplorer.org@gmail.com">danceexplorer.org@gmail.com</a></p><p>Things that are especially useful to report:</p><ul><li>A performance, company, or episode that's missing, or listed wrong.</li><li>A link that goes to the wrong place or doesn't work.</li><li>A name spelled wrong, or a dancer listed with the wrong company or rank.</li><li>Anything confusing — if a button isn't clear, that's worth telling us about.</li><li>A company or presenter you'd like to see added.</li></ul><p>If you're reporting a problem, the page name and — where relevant — the guest, company, or program involved helps us find it quickly.</p></div>
+</details>
+<details class="help-topic">
+<summary>Getting around Dance Explorer</summary>
+<div class="help-body"><p>Dance Explorer has two main sections: <strong>Podcasts</strong> (the Conversations on Dance archive) and <strong>Performances</strong> (the current dance season). Every page carries the same small set of navigation controls.</p><div class="help-item"><div class="help-item-label"><span class="lbl-link">← Home</span> / <span class="lbl-link">Podcasts</span> / <span class="lbl-link">Performances</span></div><div class="help-item-desc">Top-left of every page. The label tells you which section you're in. Click it for a menu that takes you home or across to the other section.</div></div><div class="help-item"><div class="help-item-label"><span class="help-icon-q">?</span></div><div class="help-item-desc">This help page. It's on every page, top-right.</div></div><div class="help-item"><div class="help-item-label"><span class="help-icon-gear"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span></div><div class="help-item-desc">Settings — including which companies you want the Performances pages to show. Come back whenever you want to change what you're seeing. See the Settings topic below.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">&#10005; Close</span></div><div class="help-item-desc">On Help and Settings only. Returns you to the page you came from.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">A B C D …</span></div><div class="help-item-desc">An A–Z bar near the top of most list pages. Jumps straight to that letter without scrolling.</div></div><p class="note">Links that leave Dance Explorer — company websites, Instagram, YouTube, Patreon, episode pages — always open in a new tab, so you never lose your place.</p></div>
+</details>
+<details class="help-topic">
+<summary>Podcast pages — links and buttons</summary>
+<div class="help-body"><p>These are the links and buttons on the podcast list pages — <strong>All Guests</strong> and the themed pages (Dancers, Choreographers, Artistic Directors, Companies, Works, By Year, Vail, Balanchine, Live Events, Best Of, Video Episodes).</p><div class="help-sub">On the person's line</div><div class="help-item"><div class="help-item-label"><span class="lbl">Name — Role — Company</span></div><div class="help-item-desc">The heading for each person. The <strong>company name</strong> is a link to that company's own website.</div></div><div class="help-item"><div class="help-item-label"><a class="profile-badge">Upcoming Performances</a></div><div class="help-item-desc">Jumps to this person's <strong>choreography</strong> in the 2026&ndash;27 season, on the By Choreographer page. It appears only for people who have work being performed this season. <span class="note">It doesn't tell you when a dancer will be on stage — casting isn't something we track.</span></div></div><div class="help-item"><div class="help-item-label"><a class="profile-badge">Profile Page</a></div><div class="help-item-desc">The company's own biography page for a dancer. <span class="note">Currently dancers only, so it won't appear for most other guests.</span></div></div><div class="help-item"><div class="help-item-label"><a class="instagram-badge">Instagram</a></div><div class="help-item-desc">Their Instagram profile.</div></div><div class="help-sub">On each episode line</div><div class="help-item"><div class="help-item-label"><span class="lbl">Oct 15, 2025 &mdash; (469)</span></div><div class="help-item-desc">The date the episode was published and its episode number.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">Episode title</span></div><div class="help-item-desc">Opens the episode's page on the Conversations on Dance website, where you can listen. Guest names are shown in bold inside the title.</div></div><div class="help-item"><div class="help-item-label"><a class="youtube-badge">YouTube Video</a></div><div class="help-item-desc">A video version of the episode on YouTube, when one exists.</div></div><div class="help-item"><div class="help-item-label"><a class="patreon-badge">Patreon</a></div><div class="help-item-desc">The ad-free version of the episode. A Patreon subscription is $5 a month and goes to Conversations on Dance.</div></div><div class="help-item"><div class="help-item-label"><button class="desc-button" type="button" aria-hidden="true" tabindex="-1">Show description</button></div><div class="help-item-desc">Opens the show notes for that episode underneath the line. Click again to close it. Guest names are bolded in the description too.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">See Just Rebecca and Michael</span></div><div class="help-item-desc">On Rebecca King Ferraro's and Michael Sean Breeden's entries. Their hosts-only episodes are collected on their own page rather than repeated under each of them.</div></div><div class="help-sub">About the podcast</div><p><strong>Conversations on Dance</strong> is hosted by Rebecca King Ferraro and Michael Sean Breeden. Dance Explorer indexes the archive so you can find episodes by guest, company, choreographer, work, or theme — but the podcast itself, including new episodes, subscription links, and the hosts' own notes, lives at <a href="https://conversationsondancepod.com" target="_blank" rel="noopener noreferrer">conversationsondancepod.com</a>.</p><p>Every episode title on Dance Explorer links back to that site.</p></div>
+</details>
+<details class="help-topic">
+<summary>Performance pages — links and buttons</summary>
+<div class="help-body"><p>These are the links and buttons on the performance pages — <strong>By Month</strong>, <strong>By Company</strong>, <strong>By Choreographer</strong>, <strong>By Work</strong>, and the <strong>Grid</strong>. They all show the same 2026&ndash;27 season data, sorted differently.</p><div class="help-sub">On a program listing</div><div class="help-item"><div class="help-item-label"><span class="badge" style="background:#2c5aa0">NYCB</span></div><div class="help-item-desc">The colored company tag. Click it to jump to that company's own section on the By Company page. The same color is used for that company everywhere, including on the Grid.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">Program title</span></div><div class="help-item-desc">Opens the company's own page for that program — tickets, casting, and full details come from the company, not from us.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl">Sep 20 &ndash; Oct 5</span></div><div class="help-item-desc">The run of the program. On By Month it sits in the left column; elsewhere it follows the title.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl">Choreography: … &middot; Music: …</span></div><div class="help-item-desc">The works on the program, with choreographer and composer credits.</div></div><div class="help-item"><div class="help-item-label"><button class="dates-toggle" type="button" aria-hidden="true" tabindex="-1">Show Dates</button></div><div class="help-item-desc">Opens a small calendar showing every individual performance in the run, with curtain times. Click again to close it.</div></div><div class="help-item"><div class="help-item-label"><span class="dates-note-inline">Individual dates not yet announced</span></div><div class="help-item-desc">Shown instead of Show Dates when the company has published a run but not the specific performances yet.</div></div><div class="help-item"><div class="help-item-label"><button class="nav-all-btn" type="button" aria-hidden="true" tabindex="-1">Open All Dates</button> <button class="nav-all-btn" type="button" aria-hidden="true" tabindex="-1">Close All Dates</button></div><div class="help-item-desc">In the navigation bar at the top. Opens or closes every date calendar on the page at once.</div></div><div class="help-sub">Navigating a performance page</div><div class="help-item"><div class="help-item-label"><span class="lbl-link">Sep 26 &nbsp; Oct 26 &nbsp; Nov 26 …</span></div><div class="help-item-desc">The month bar on By Month and the Grid. Jumps to that month.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">A B C D …</span></div><div class="help-item-desc">The letter bar on By Work and By Choreographer — and on By Company when you're on a phone. Jumps to that letter.</div></div><div class="help-item"><div class="help-item-label"><span class="badge" style="background:#8a3b3b">ABT</span> <span class="badge" style="background:#3b7a5a">Boston</span></div><div class="help-item-desc">On By Company on a desktop screen, the company tags across the top are a shortcut to each company's section. Phones show the A–Z letter bar instead, since the full tag bar is too tall to be useful.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl-link">Company name</span> <span class="note">(section heading)</span></div><div class="help-item-desc">On By Company, the heading is a link to the company's own season page when they publish one.</div></div><div class="help-item"><div class="help-item-label"><a class="cross-link">COD Interviews</a></div><div class="help-item-desc">On By Choreographer. Jumps to that person's Conversations on Dance episodes on the All Guests page.</div></div><div class="help-sub">The Grid</div><p>The Grid is the season at a glance: one row per week, one colored bar per program, laid out on a calendar.</p><div class="help-item"><div class="help-item-label"><span class="lbl">A colored bar</span></div><div class="help-item-desc">One program. The company name and program title appear at the start of the run. Click the bar to open the company's page for that program, or the By Month entry if there's no company link.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl">A faded bar</span></div><div class="help-item-desc">The company has announced a date range but not the individual performances yet.</div></div></div>
+</details>
+<details class="help-topic">
+<summary>Showing only the companies you follow</summary>
+<div class="help-body"><p>The season covers dozens of companies across the country, which is a lot if you only follow a few. You can narrow every performance page down to just the companies you care about.</p><ol><li>Open <strong>Settings</strong> (the <span class="help-icon-gear"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span> icon, top-right of any page).</li><li>Turn on <strong>Show only selected companies</strong>.</li><li>Click <strong>Choose the selected companies</strong> and tick the ones you want. <strong>Select all</strong> and <strong>Clear</strong> are there to start from either end.</li><li>Click <strong>Done</strong>, then <strong>Close</strong>.</li></ol><p>Your choice applies to <strong>By Month</strong>, <strong>By Company</strong>, and the <strong>Grid</strong> together, and it's remembered the next time you visit. To see everything again, turn <strong>Show only selected companies</strong> back off — your list is kept, so you can switch back and forth without re-picking.</p><p class="note">By Choreographer and By Work always show every company.</p><p><span class="note">The selection is stored in your browser, so it's per device — choosing companies on your laptop won't carry over to your phone.</span></p></div>
+</details>
+<details class="help-topic">
+<summary>Settings</summary>
+<div class="help-body"><p>The <span class="help-icon-gear"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span> icon in the top-right corner of every page opens Settings. It's kept off the main pages to leave them uncluttered, but it's meant to be used — come back and change what you're seeing as often as you like.</p><div class="help-item"><div class="help-item-label"><span class="lbl">Show only selected companies</span></div><div class="help-item-desc">Limits the performance pages to companies you pick. See the topic above.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl">Choose the selected companies</span></div><div class="help-item-desc">Opens the company list for that setting.</div></div><div class="help-item"><div class="help-item-label"><span class="lbl">Show past programs</span></div><div class="help-item-desc">Off by default, so the performance pages show what's still to come. Turn it on to include programs that have already finished. A program drops off once its last performance has passed, not partway through a run.</div></div><p>Settings are saved in your browser, on that device. Changes take effect the next time a performance page loads.</p></div>
+</details>
+<details class="help-topic">
+<summary>Using Dance Explorer on a phone</summary>
+<div class="help-body"><p>Every page works on a phone — same content, same buttons, laid out for a narrow screen. A few differences worth knowing:</p><ul><li><strong>By Company</strong> shows an A–Z letter bar instead of the row of company tags.</li><li>On program listings, the dates and the <strong>Show Dates</strong> button share the top line, with the title and details below.</li><li>There's no hover, so where a desktop shows a tooltip — the full company name behind a short tag in the company-selection list, for instance — a phone doesn't.</li><li>The <strong>Grid</strong> keeps its full calendar width rather than reflowing; turn your phone sideways for a better view of it.</li><li>Featured videos suggest rotating to landscape when you start them.</li></ul><p>Settings and company selections are stored per browser, so your phone and your computer each keep their own.</p></div>
+</details>
+<details class="help-topic">
+<summary>Where the information comes from</summary>
+<div class="help-body"><p><strong>Podcast episodes</strong> come from the Conversations on Dance feed and are added as new episodes are published. Guests, their roles, and their companies are identified for each episode so they can be browsed every which way.</p><p><strong>Performances</strong> are gathered from the companies' and presenters' own season announcements, and refreshed as those pages change. The 2026&ndash;27 season is the season currently covered.</p><p><strong>Dancer rosters</strong> come from each company's own roster page, including rank where the company publishes it.</p><p>Dance Explorer points at the source rather than replacing it: for tickets, casting, exact times, and changes, always follow the link to the company's own page. Companies announce and revise on their own schedule, so if you spot something out of date, <a href="mailto:danceexplorer.org@gmail.com">tell us</a> — that's often how we find out.</p></div>
+</details>
 </div>
 
+<script>
+(function () {
+    function setAll(open) {
+        var list = document.querySelectorAll('.help-topic');
+        for (var i = 0; i < list.length; i++) { list[i].open = open; }
+    }
+    var ex = document.getElementById('help-expand');
+    var co = document.getElementById('help-collapse');
+    if (ex) ex.addEventListener('click', function (e) { e.preventDefault(); setAll(true); });
+    if (co) co.addEventListener('click', function (e) { e.preventDefault(); setAll(false); });
+})();
+</script>
 <script>
 (function () {
     // Best-effort: tell Chrome not to restore a stale scroll position.
