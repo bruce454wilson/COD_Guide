@@ -113,6 +113,21 @@ h1 {
     color: #333;
     line-height: 1.4;
     white-space: pre-wrap;
+    overflow: hidden;   /* contain the floated episode thumbnail */
+}
+
+.ep-thumb-link {
+    float: left;
+    margin: 2px 12px 4px 0;
+    line-height: 0;
+}
+
+.ep-thumb {
+    display: block;
+    width: 280px;
+    height: auto;
+    border-radius: 3px;
+    background: #e8e8e8;
 }
 
 a {
@@ -260,6 +275,13 @@ a:hover {
     .home-nav-dropdown a {
         font-size: 16px;
         padding: 11px 16px;
+    }
+    .ep-thumb-link {
+        float: none;
+        margin: 0 0 8px 0;
+    }
+    .ep-thumb {
+        width: 100%;
     }
 }
 
