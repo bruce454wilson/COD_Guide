@@ -1051,6 +1051,12 @@ window.applyPerfView = function () {
         });
         sec.style.display = any ? '' : 'none';
     });
+    // By-Company page: a cross-reference stub ("X — see under Y") follows the
+    // visibility of the section it points at, so it never dangles.
+    document.querySelectorAll('.company-xref').forEach(function (x) {
+        var t = document.getElementById(x.getAttribute('data-target') || '');
+        x.style.display = (t && t.style.display !== 'none') ? '' : 'none';
+    });
     // Agenda page: hide month headings with no visible program beneath them
     document.querySelectorAll('.month-heading').forEach(function (h) {
         var n = h.nextElementSibling, any = false;
