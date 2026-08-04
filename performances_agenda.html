@@ -318,8 +318,11 @@ h1 { margin-bottom: 6px; }
     /* sticky nav bars */
     .month-jump, .month-jump a,
     .alpha-nav, .alpha-nav a,
-    .company-nav, .company-nav a { font-size: 16px; }
-    .nav-badge { font-size: 13px; }
+    .company-nav-letters, .company-nav-letters a { font-size: 16px; }
+    /* cross-reference stub tracks .company-heading's mobile size */
+    .company-xref .xref-name,
+    .company-xref .xref-sep,
+    .company-xref a { font-size: 24px; }
     /* primary titles */
     .program-title, .program-title-plain,
     .work-title, .choreo-name { font-size: 20px; }
@@ -949,7 +952,7 @@ function closeAllDates() {
     }
 
     function _navH() {
-        var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+        var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
         return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
     }
 
@@ -974,7 +977,7 @@ function closeAllDates() {
             requestAnimationFrame(function () {
                 var target = document.getElementById(_h.slice(1));
                 if (!target) return;
-                var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+                var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
                 var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
                 target.style.scrollMarginTop = (rawNavH + 8) + 'px';
                 target.scrollIntoView({ behavior: 'instant', block: 'start' });

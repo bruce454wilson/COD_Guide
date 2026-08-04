@@ -21,22 +21,24 @@ body {
 h1 { margin-bottom: 6px; }
 .lede { color: #555; margin-top: 4px; margin-bottom: 28px; }
 
-/* ---- sticky company nav ---- */
-.company-nav {
+/* ---- sticky A-Z letter nav ----
+   2026-08-04: this replaced the company-name badge bar on ALL viewports.
+   The badge bar listed every tracked company and had grown unreadable; it was
+   already hidden below 650px in favour of this. */
+.company-nav-letters {
+    display: flex;
     position: sticky;
     top: 0;
     background: white;
     padding: 8px 0;
     border-bottom: 1px solid #ddd;
-    font-size: 13px;
     z-index: 100;
     margin-bottom: 8px;
-    display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 5px 6px;
+    gap: 6px 10px;
 }
-.company-nav .home-link {
+.company-nav-letters .home-link {
     color: #555;
     text-decoration: none;
     font-weight: normal;
@@ -46,55 +48,19 @@ h1 { margin-bottom: 6px; }
     margin-right: 2px;
     font-size: 13px;
 }
-.company-nav .home-link:hover { text-decoration: underline; }
-.nav-badge {
-    display: inline-block;
-    font-size: 11px;
+.company-nav-letters .home-link:hover { text-decoration: underline; }
+.letter-nav-link {
+    font-size: 16px;
     font-weight: bold;
-    color: white;
-    padding: 3px 9px;
-    border-radius: 3px;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
+    color: #1a73e8;
     text-decoration: none;
+    padding: 2px 4px;
 }
-.nav-badge:hover { opacity: 0.85; }
+.letter-nav-link:hover { text-decoration: underline; }
 
-/* ---- mobile letter nav (hidden on desktop; swapped in below 650px) ---- */
-.company-nav-letters { display: none; }
 @media (max-width: 650px) {
-    .company-nav { display: none; }
-    .company-nav-letters {
-        display: flex;
-        position: sticky;
-        top: 0;
-        background: white;
-        padding: 8px 0;
-        border-bottom: 1px solid #ddd;
-        z-index: 100;
-        margin-bottom: 8px;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 6px 10px;
-    }
-    .company-nav-letters .home-link {
-        color: #555;
-        text-decoration: none;
-        font-weight: normal;
-        padding-right: 10px;
-        border-right: 1px solid #ccc;
-        white-space: nowrap;
-        margin-right: 2px;
-        font-size: 16px;
-    }
-    .letter-nav-link {
-        font-size: 18px;
-        font-weight: bold;
-        color: #1a73e8;
-        text-decoration: none;
-        padding: 2px 4px;
-    }
-    .letter-nav-link:hover { text-decoration: underline; }
+    .company-nav-letters .home-link { font-size: 16px; }
+    .letter-nav-link { font-size: 18px; }
 }
 
 /* ---- company sections ---- */
@@ -110,17 +76,31 @@ h1 { margin-bottom: 6px; }
     padding-bottom: 6px;
     margin-bottom: 16px;
 }
-/* Cross-reference stub: "Paul Taylor Dance Company — see under Taylor" */
+/* Cross-reference stub: "Paul Taylor Dance Company — see under Taylor".
+   The name matches a real .company-heading in size/weight so it reads as a
+   company in the alphabetical run; it's blue (like a linked company name) but
+   NOT underlined, because the name itself isn't the link. The "see under X"
+   half is the link and carries the underline. */
 .company-xref {
     margin-top: 48px;
-    font-size: 18px;
-    color: #555;
-    border-bottom: 1px dotted #ddd;
+    border-bottom: 2px solid #ddd;
     padding-bottom: 6px;
+    margin-bottom: 16px;
 }
-.company-xref .xref-name { font-style: italic; }
-.company-xref a { color: #1a4d8f; text-decoration: none; }
-.company-xref a:hover { text-decoration: underline; }
+.company-xref .xref-name {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0000ee;
+    text-decoration: none;
+}
+.company-xref .xref-sep { font-size: 22px; font-weight: bold; color: #666; }
+.company-xref a {
+    font-size: 22px;
+    font-weight: bold;
+    color: #0000ee;
+    text-decoration: underline;
+}
+.company-xref a:hover { color: #1a4d8f; }
 .company-heading .badge-inline {
     display: inline-block;
     font-size: 12px;
@@ -377,8 +357,11 @@ h1 { margin-bottom: 6px; }
     /* sticky nav bars */
     .month-jump, .month-jump a,
     .alpha-nav, .alpha-nav a,
-    .company-nav, .company-nav a { font-size: 16px; }
-    .nav-badge { font-size: 13px; }
+    .company-nav-letters, .company-nav-letters a { font-size: 16px; }
+    /* cross-reference stub tracks .company-heading's mobile size */
+    .company-xref .xref-name,
+    .company-xref .xref-sep,
+    .company-xref a { font-size: 24px; }
     /* primary titles */
     .program-title, .program-title-plain,
     .work-title, .choreo-name { font-size: 20px; }
@@ -495,9 +478,8 @@ h1 { margin-bottom: 6px; }
 <body>
 <div class="title-row"><h1>By Company</h1><span class="nav-right"><a href="settings.html" class="icon-btn icon-btn-gear" title="Settings" aria-label="Settings"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a><a href="help.html" class="icon-btn icon-btn-circle" title="Help" aria-label="Help">?</a></span></div>
 <p class="lede" id="perf-lede">Showing all companies. Use Settings to limit to selected companies.</p>
-<div class="company-nav"><span class="home-nav"><a href="performances.html" class="home-link">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <a class="nav-badge" href="#AIM" style="background:#555">A.I.M.</a><a class="nav-badge" href="#AILEY" style="background:#8B0000">Ailey</a><a class="nav-badge" href="#ALABAMA" style="background:#555">Alabama </a><a class="nav-badge" href="#ABT" style="background:#b71c1c">ABT</a><a class="nav-badge" href="#ARB" style="background:#555">American Rep</a><a class="nav-badge" href="#ARIZONA" style="background:#555"> Arizona</a><a class="nav-badge" href="#ATLANTA" style="background:#555">Atlanta </a><a class="nav-badge" href="#AUSTIN" style="background:#555"> Austin</a><a class="nav-badge" href="#AUSTRALIAN" style="background:#555">Australian</a><a class="nav-badge" href="#B_WEST" style="background:#37474f">Ballet West</a><a class="nav-badge" href="#BALLETMET" style="background:#555">BalletMet</a><a class="nav-badge" href="#BALLETX" style="background:#555">BalletX</a><a class="nav-badge" href="#BAM" style="background:#555">BAM</a><a class="nav-badge" href="#BOSTON" style="background:#0277bd">Boston </a><a class="nav-badge" href="#TRISHA_BROWN" style="background:#555">Trisha Brown</a><a class="nav-badge" href="#CAPITAL_ONE" style="background:#555">Capital One Hall</a><a class="nav-badge" href="#CAROLINA" style="background:#555">Carolina </a><a class="nav-badge" href="#CHARLOTTE" style="background:#2d6a4f">Charlotte </a><a class="nav-badge" href="#CINCINNATI" style="background:#555">Cincinnati </a><a class="nav-badge" href="#CLEVELAND" style="background:#555">Cleveland </a><a class="nav-badge" href="#COLLAGE" style="background:#555">Collage</a><a class="nav-badge" href="#COLORADO" style="background:#1B4F8A">Colorado </a><a class="nav-badge" href="#COMPLEXIONS" style="background:#555">Complexions</a><a class="nav-badge" href="#DTOH" style="background:#555">DTOH</a><a class="nav-badge" href="#EUGENE" style="background:#555">Eugene </a><a class="nav-badge" href="#GMU_CFA" style="background:#555">Mason CFA</a><a class="nav-badge" href="#GRAHAM" style="background:#555">Graham</a><a class="nav-badge" href="#GRAND_RAPIDS" style="background:#555">Grand Rapids </a><a class="nav-badge" href="#HISPANICO" style="background:#555"> Hispanico</a><a class="nav-badge" href="#HOUSTON" style="background:#2e7d32">Houston </a><a class="nav-badge" href="#HUBBARD" style="background:#555">Hubbard Street</a><a class="nav-badge" href="#HYLTON" style="background:#555">Hylton PAC</a><a class="nav-badge" href="#IDAHO" style="background:#555"> Idaho</a><a class="nav-badge" href="#PILLOW" style="background:#555">Jacob&#x27;s Pillow</a><a class="nav-badge" href="#JOFFREY" style="background:#bf360c">Joffrey </a><a class="nav-badge" href="#JOYCE" style="background:#555">Joyce</a><a class="nav-badge" href="#JUILLIARD" style="background:#555">Juilliard School</a><a class="nav-badge" href="#KCB" style="background:#555">Kansas City </a><a class="nav-badge" href="#LIMON" style="background:#555">Limon</a><a class="nav-badge" href="#LINES" style="background:#555">LINES </a><a class="nav-badge" href="#LOS_ANGELES" style="background:#555">Los Angeles </a><a class="nav-badge" href="#LOUISVILLE" style="background:#555">Louisville </a><a class="nav-badge" href="#MEMPHIS" style="background:#e65100"> Memphis</a><a class="nav-badge" href="#MCB" style="background:#00838f">Miami City </a><a class="nav-badge" href="#MILWAUKEE" style="background:#555">Milwaukee </a><a class="nav-badge" href="#MOMIX" style="background:#555">Momix</a><a class="nav-badge" href="#MORRIS" style="background:#555">Mark Morris</a><a class="nav-badge" href="#NASHVILLE" style="background:#555">Nashville </a><a class="nav-badge" href="#NEVADA" style="background:#555">Nevada</a><a class="nav-badge" href="#NYCB" style="background:#1a237e">NYCB</a><a class="nav-badge" href="#NYCC" style="background:#555">City Center</a><a class="nav-badge" href="#OK_CITY" style="background:#555">OK City </a><a class="nav-badge" href="#OREGON" style="background:#555">Oregon</a><a class="nav-badge" href="#ORLANDO" style="background:#555">Orlando </a><a class="nav-badge" href="#PNB" style="background:#00695c">PNB</a><a class="nav-badge" href="#PALMBEACH" style="background:#555">Palm Beach</a><a class="nav-badge" href="#PAH" style="background:#555">Perf Arts Houston</a><a class="nav-badge" href="#PHILADELPHIA" style="background:#555">Philadelphia </a><a class="nav-badge" href="#PILOBOLUS" style="background:#555">Pilobolus</a><a class="nav-badge" href="#PITTSBURGH" style="background:#555">Pittsburgh</a><a class="nav-badge" href="#PORTLAND" style="background:#555">Portland </a><a class="nav-badge" href="#RAGAMALA" style="background:#555">Ragamala</a><a class="nav-badge" href="#RICHMOND" style="background:#555">Richmond </a><a class="nav-badge" href="#SACRAMENTO" style="background:#555">Sacramento </a><a class="nav-badge" href="#SFB" style="background:#6a1b9a">San Francisco </a><a class="nav-badge" href="#SARASOTA" style="background:#555">Sarasota </a><a class="nav-badge" href="#SMUIN" style="background:#555">Smuin</a><a class="nav-badge" href="#STRATHMORE" style="background:#555">Strathmore</a><a class="nav-badge" href="#TAYLOR" style="background:#555">Taylor</a><a class="nav-badge" href="#TEXAS" style="background:#555">Texas</a><a class="nav-badge" href="#TULSA" style="background:#555">Tulsa </a><a class="nav-badge" href="#VAIL" style="background:#555">Vail</a><a class="nav-badge" href="#VNB" style="background:#555">VA National Ballet</a><a class="nav-badge" href="#WASHINGTON" style="background:#555">Washington </a><a class="nav-badge" href="#WOLF_TRAP" style="background:#555">Wolf Trap</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
 <div class="company-nav-letters"><span class="home-nav"><a href="performances.html" class="home-link">Performances</a><button class="home-nav-arrow" onclick="toggleHomeNav(this)" aria-label="Site navigation">&#9662;</button><div class="home-nav-dropdown"><a href="danceexplorer.html">Home</a><a href="podcasts.html">Podcasts</a></div></span> <a class="letter-nav-link" href="#xref-AIM">A</a><a class="letter-nav-link" href="#B_WEST">B</a><a class="letter-nav-link" href="#CAPITAL_ONE">C</a><a class="letter-nav-link" href="#DTOH">D</a><a class="letter-nav-link" href="#EUGENE">E</a><a class="letter-nav-link" href="#GMU_CFA">G</a><a class="letter-nav-link" href="#HISPANICO">H</a><a class="letter-nav-link" href="#IDAHO">I</a><a class="letter-nav-link" href="#PILLOW">J</a><a class="letter-nav-link" href="#KCB">K</a><a class="letter-nav-link" href="#LIMON">L</a><a class="letter-nav-link" href="#xref-MORRIS">M</a><a class="letter-nav-link" href="#NASHVILLE">N</a><a class="letter-nav-link" href="#OK_CITY">O</a><a class="letter-nav-link" href="#PNB">P</a><a class="letter-nav-link" href="#RAGAMALA">R</a><a class="letter-nav-link" href="#SACRAMENTO">S</a><a class="letter-nav-link" href="#TAYLOR">T</a><a class="letter-nav-link" href="#VAIL">V</a><a class="letter-nav-link" href="#WASHINGTON">W</a> <span class="nav-all-btns"><button class="nav-all-btn" onclick="openAllDates()">Open All Dates</button><button class="nav-all-btn" onclick="closeAllDates()">Close All Dates</button></span></div>
-<div class="company-xref" id="xref-AIM" data-target="AIM"><span class="xref-name">A.I.M. by Kyle Abraham</span> — <a href="#AIM">see under Abraham</a></div>
+<div class="company-xref" id="xref-AIM" data-target="AIM"><span class="xref-name">A.I.M. by Kyle Abraham</span><span class="xref-sep"> — </span><a href="#AIM">see under Abraham</a></div>
 <div class="company-section" id="AIM">
 <div class="company-heading"><a href="https://www.aimbykyleabraham.org/tours-archive" target="_blank" rel="noopener noreferrer">A.I.M. by Kyle Abraham</a><span class="badge-inline" style="background:#555">A.I.M.</span></div>
 <div class="program" data-company="AIM" data-end="2026-07-19"><div class="date-col">Jul 15–19, 2026</div><div class="title-main"><a class="program-title" href="https://www.jacobspillow.org/whats-on/events/aim-by-kyle-abraham/" target="_blank" rel="noopener noreferrer">Jacob&#x27;s Pillow: White Space</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-AIM-jacob-s-pillow-white-space" onclick="toggleDates('prog-AIM-jacob-s-pillow-white-space')">Show Dates</button></div><div class="program-detail"><div id="dates-prog-AIM-jacob-s-pillow-white-space" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:71.43%"><tr><th style="width:14.29%">Wed</th><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td class="cal-has-perf"><span class="cal-date">Jul 15</span></td><td class="cal-has-perf"><span class="cal-date">Jul 16</span></td><td class="cal-has-perf"><span class="cal-date">Jul 17</span></td><td class="cal-has-perf"><span class="cal-date">Jul 18</span></td><td class="cal-has-perf"><span class="cal-date">Jul 19</span></td></tr></table></div></div></div>
@@ -519,8 +501,8 @@ h1 { margin-bottom: 6px; }
 <div class="program" data-company="ALABAMA" data-end="2027-03-07"><div class="date-col">Mar 5–7, 2027</div><div class="title-main"><a class="program-title" href="https://alabamaballet.org/performance/at-home/" target="_blank" rel="noopener noreferrer">At Home: New Voices</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-ALABAMA-at-home-new-voices" onclick="toggleDates('prog-ALABAMA-at-home-new-voices')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Alabama Ballet Company Dancers</div><div id="dates-prog-ALABAMA-at-home-new-voices" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Mar 5</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Mar 6</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Mar 7</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
 <div class="program" data-company="ALABAMA" data-end="2027-05-02"><div class="date-col">Apr 30 – May 2, 2027</div><div class="title-main"><a class="program-title" href="https://alabamaballet.org/performance/swan-lake/" target="_blank" rel="noopener noreferrer">Swan Lake</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-ALABAMA-swan-lake" onclick="toggleDates('prog-ALABAMA-swan-lake')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Christopher Stuart · Music: Pyotr Ilyich Tchaikovsky</div><div id="dates-prog-ALABAMA-swan-lake" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Apr 30</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 1</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 2</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
 </div>
-<div class="company-xref" id="xref-LINES" data-target="LINES"><span class="xref-name">Alonzo King LINES Ballet</span> — <a href="#LINES">see under LINES</a></div>
-<div class="company-xref" id="xref-AILEY" data-target="AILEY"><span class="xref-name">Alvin Ailey American Dance Theater</span> — <a href="#AILEY">see under Ailey</a></div>
+<div class="company-xref" id="xref-LINES" data-target="LINES"><span class="xref-name">Alonzo King LINES Ballet</span><span class="xref-sep"> — </span><a href="#LINES">see under LINES</a></div>
+<div class="company-xref" id="xref-AILEY" data-target="AILEY"><span class="xref-name">Alvin Ailey American Dance Theater</span><span class="xref-sep"> — </span><a href="#AILEY">see under Ailey</a></div>
 <div class="company-section" id="ABT">
 <div class="company-heading"><a href="https://www.abt.org/performances/" target="_blank" rel="noopener noreferrer">American Ballet Theatre</a><span class="badge-inline" style="background:#b71c1c">ABT</span></div>
 <div class="program" data-company="ABT" data-end="2026-07-18"><div class="date-col">Jun 17 – Jul 18, 2026</div><div class="title-main"><a class="program-title" href="https://www.abt.org/events/swan-lake/" target="_blank" rel="noopener noreferrer">Swan Lake</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-ABT-swan-lake" onclick="toggleDates('prog-ABT-swan-lake')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Marius Petipa / Lev Ivanov · Music: Pyotr Ilyich Tchaikovsky</div><div id="dates-prog-ABT-swan-lake" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:100.00%"><tr><th style="width:14.29%">Mon</th><th style="width:14.29%">Tue</th><th style="width:14.29%">Wed</th><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td></td><td class="cal-has-perf"><span class="cal-date">Jun 17</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jun 18</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jun 19</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jun 20</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td></td></tr><tr><td class="cal-has-perf"><span class="cal-date">Jul 13</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jul 14</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jul 15</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jul 16</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jul 17</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jul 18</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td></td></tr></table></div></div></div>
@@ -877,8 +859,8 @@ h1 { margin-bottom: 6px; }
 <div class="program" data-company="LOUISVILLE" data-end="2027-03-21"><div class="date-col">Mar 19–21, 2027</div><div class="title-main"><a class="program-title" href="https://louisvilleballet.org/bourbon-ballet/" target="_blank" rel="noopener noreferrer">Bourbon &amp; Ballet</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-LOUISVILLE-bourbon-ballet" onclick="toggleDates('prog-LOUISVILLE-bourbon-ballet')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Artists of Louisville Ballet</div><div id="dates-prog-LOUISVILLE-bourbon-ballet" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Mar 19</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Mar 20</span><span class="cal-time">1:30 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Mar 21</span><span class="cal-time">3:00 PM</span></td></tr></table></div></div></div>
 <div class="program" data-company="LOUISVILLE" data-end="2027-05-23"><div class="date-col">May 21–23, 2027</div><div class="title-main"><a class="program-title" href="https://louisvilleballet.org/momentum/" target="_blank" rel="noopener noreferrer">Momentum</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-LOUISVILLE-momentum" onclick="toggleDates('prog-LOUISVILLE-momentum')">Show Dates</button></div><div class="program-detail"><div class="works-line">Extremely Close <span class="choreo">— Alejandro Cerrudo</span> &ensp;·&ensp; K281 <span class="choreo">— Adam Hougland</span> &ensp;·&ensp; World Premiere <span class="choreo">— Commonwealth Choreography Award winner</span></div><div id="dates-prog-LOUISVILLE-momentum" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">May 21</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 22</span><span class="cal-time">1:30 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 23</span><span class="cal-time">3:00 PM</span></td></tr></table></div></div></div>
 </div>
-<div class="company-xref" id="xref-MORRIS" data-target="MORRIS"><span class="xref-name">Mark Morris Dance</span> — <a href="#MORRIS">see under Morris</a></div>
-<div class="company-xref" id="xref-GRAHAM" data-target="GRAHAM"><span class="xref-name">Martha Graham Dance Company</span> — <a href="#GRAHAM">see under Graham</a></div>
+<div class="company-xref" id="xref-MORRIS" data-target="MORRIS"><span class="xref-name">Mark Morris Dance</span><span class="xref-sep"> — </span><a href="#MORRIS">see under Morris</a></div>
+<div class="company-xref" id="xref-GRAHAM" data-target="GRAHAM"><span class="xref-name">Martha Graham Dance Company</span><span class="xref-sep"> — </span><a href="#GRAHAM">see under Graham</a></div>
 <div class="company-section" id="MEMPHIS">
 <div class="company-heading"><a href="https://balletmemphis.org/events" target="_blank" rel="noopener noreferrer">Ballet Memphis</a><span class="badge-inline" style="background:#e65100"> Memphis</span></div>
 <div class="program" data-company="MEMPHIS" data-end="2026-10-18"><div class="date-col">Oct 16–18, 2026</div><div class="title-main"><a class="program-title" href="https://balletmemphis.org/memphis-sounds" target="_blank" rel="noopener noreferrer">Memphis Sounds</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-MEMPHIS-memphis-sounds" onclick="toggleDates('prog-MEMPHIS-memphis-sounds')">Show Dates</button></div><div class="program-detail"><div class="works-line">In Dreams <span class="choreo">— Trey McIntyre</span> &ensp;·&ensp; Unapologetic <span class="choreo">— Steven McMahon</span> &ensp;·&ensp; (untitled) <span class="choreo">— Yusha-Marie Sorzano</span></div><div id="dates-prog-MEMPHIS-memphis-sounds" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Oct 16</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Oct 17</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Oct 18</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
@@ -920,7 +902,7 @@ h1 { margin-bottom: 6px; }
 <div class="program" data-company="MORRIS" data-end="2027-01-30"><div class="date-col">Jan 29–30, 2027</div><div class="title-main"><a class="program-title" href="https://markmorrisdancegroup.org/event/krannert-center-for-the-performing-arts-1-29-27/" target="_blank" rel="noopener noreferrer">Holidayland</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-MORRIS-holidayland" onclick="toggleDates('prog-MORRIS-holidayland')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Mark Morris · Music: Nico Muhly</div><div id="dates-prog-MORRIS-holidayland" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Dec 11</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Dec 12</span><span class="cal-time">2:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Dec 13</span><span class="cal-time">3:00 PM</span></td></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Jan 29</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Jan 30</span><span class="cal-time">7:30 PM</span></td><td></td></tr></table></div></div></div>
 <div class="program" data-company="MORRIS" data-end="2027-03-20"><div class="date-col">Mar 20, 2027</div><div class="title-main"><a class="program-title" href="https://markmorrisdancegroup.org/event/la-jolla-music-society-3-20-37/" target="_blank" rel="noopener noreferrer">V, Via Dolorosa</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-MORRIS-v-via-dolorosa" onclick="toggleDates('prog-MORRIS-v-via-dolorosa')">Show Dates</button></div><div class="program-detail"><div class="works-line">V <span class="choreo">— Mark Morris</span> &ensp;·&ensp; Via Dolorosa <span class="choreo">— Mark Morris</span></div><div id="dates-prog-MORRIS-v-via-dolorosa" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td></td><td class="cal-has-perf"><span class="cal-date">Mar 20</span><span class="cal-time">7:30 PM</span></td><td></td></tr></table></div></div></div>
 </div>
-<div class="company-xref" id="xref-STRATHMORE" data-target="STRATHMORE"><span class="xref-name">Music Center at Strathmore</span> — <a href="#STRATHMORE">see under Strathmore</a></div>
+<div class="company-xref" id="xref-STRATHMORE" data-target="STRATHMORE"><span class="xref-name">Music Center at Strathmore</span><span class="xref-sep"> — </span><a href="#STRATHMORE">see under Strathmore</a></div>
 <div class="company-section" id="NASHVILLE">
 <div class="company-heading"><a href="https://www.nashvilleballet.com/upcoming-events" target="_blank" rel="noopener noreferrer">Nashville Ballet</a><span class="badge-inline" style="background:#555">Nashville </span></div>
 <div class="program" data-company="NASHVILLE" data-end="2026-09-20"><div class="date-col">Sep 11–20, 2026</div><div class="title-main"><a class="program-title" href="https://www.nashvilleballet.com/live-in-studio-a" target="_blank" rel="noopener noreferrer">Live in Studio A</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-NASHVILLE-live-in-studio-a" onclick="toggleDates('prog-NASHVILLE-live-in-studio-a')">Show Dates</button></div><div class="program-detail"><div class="works-line">Allegro Brilliante <span class="choreo">— George Balanchine</span> &ensp;·&ensp; Excerpt from The Picture of Dorian Gray <span class="choreo">— Travis Bradley</span> &ensp;·&ensp; New Contemporary Works (TBA) <span class="choreo">— Artistic Team and Company Members</span></div><div id="dates-prog-NASHVILLE-live-in-studio-a" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Sep 11</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 12</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 13</span><span class="cal-time">2:00 PM</span></td></tr><tr><td class="cal-has-perf"><span class="cal-date">Sep 17</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 18</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 19</span><span class="cal-time">7:30 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 20</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
@@ -1016,7 +998,7 @@ h1 { margin-bottom: 6px; }
 <div class="program" data-company="PALMBEACH" data-end="2027-04-11"><div class="date-col">Apr 9–11, 2027</div><div class="title-main"><a class="program-title" href="https://balletpalmbeach.org/the-company/9321-2/" target="_blank" rel="noopener noreferrer">Cinderella</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-PALMBEACH-cinderella" onclick="toggleDates('prog-PALMBEACH-cinderella')">Show Dates</button></div><div class="program-detail"><div id="dates-prog-PALMBEACH-cinderella" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Apr 9</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Apr 10</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Apr 11</span><span class="cal-time">1:00 PM</span><span class="cal-time">5:00 PM</span></td></tr></table></div></div></div>
 <div class="program" data-company="PALMBEACH" data-end="2027-06-26"><div class="date-col">Jun 26, 2027</div><div class="title-main"><a class="program-title" href="https://balletpalmbeach.org/the-company/9321-2/" target="_blank" rel="noopener noreferrer">A Midsummer Night&#x27;s Dream</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-PALMBEACH-a-midsummer-night-s-dream" onclick="toggleDates('prog-PALMBEACH-a-midsummer-night-s-dream')">Show Dates</button></div><div class="program-detail"><div id="dates-prog-PALMBEACH-a-midsummer-night-s-dream" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td></td><td class="cal-has-perf"><span class="cal-date">Jun 26</span><span class="cal-time">7:00 PM</span></td><td></td></tr></table></div></div></div>
 </div>
-<div class="company-xref" id="xref-TAYLOR" data-target="TAYLOR"><span class="xref-name">Paul Taylor Dance Company</span> — <a href="#TAYLOR">see under Taylor</a></div>
+<div class="company-xref" id="xref-TAYLOR" data-target="TAYLOR"><span class="xref-name">Paul Taylor Dance Company</span><span class="xref-sep"> — </span><a href="#TAYLOR">see under Taylor</a></div>
 <div class="company-section" id="PAH">
 <div class="company-heading"><a href="https://performingartshouston.org/whats-on/dance/" target="_blank" rel="noopener noreferrer">Performing Arts Houston</a><span class="badge-inline" style="background:#555">Perf Arts Houston</span></div>
 <div class="program" data-company="PAH" data-end="2026-06-13"><div class="date-col">Jun 12–13, 2026</div><div class="title-main"><a class="program-title" href="https://performingartshouston.org/events/ballets-jazz-montreal-dance-me-the-music-of-leonard-cohen-2026-06-12-730-pm" target="_blank" rel="noopener noreferrer">Dance Me: The Music of Leonard Cohen</a></div><div class="title-right"><span class="dates-note-inline">Individual dates not yet announced</span></div><div class="program-detail"></div></div>
@@ -1129,7 +1111,7 @@ Ballet</a><span class="badge-inline" style="background:#555">Smuin</span></div>
 <div class="program" data-company="TEXAS" data-end="2027-02-28"><div class="date-col">Feb 19–28, 2027</div><div class="title-main"><a class="program-title" href="https://texasballettheater.org/performance/unbound/" target="_blank" rel="noopener noreferrer">Unbound</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-TEXAS-unbound" onclick="toggleDates('prog-TEXAS-unbound')">Show Dates</button></div><div class="program-detail"><div class="works-line">World Premiere <span class="choreo">— Silas Farley</span> &ensp;·&ensp; World Premiere <span class="choreo">— Brett Ishida</span> &ensp;·&ensp; Celts <span class="choreo">— Lila York</span></div><div id="dates-prog-TEXAS-unbound" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Feb 19</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Feb 20</span><span class="cal-time">2:00 PM</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Feb 21</span><span class="cal-time">2:00 PM</span></td></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Feb 26</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Feb 27</span><span class="cal-time">2:00 PM</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Feb 28</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
 <div class="program" data-company="TEXAS" data-end="2027-05-23"><div class="date-col">May 14–23, 2027</div><div class="title-main"><a class="program-title" href="https://texasballettheater.org/performance/coppelia/" target="_blank" rel="noopener noreferrer">Coppelia</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-TEXAS-coppelia" onclick="toggleDates('prog-TEXAS-coppelia')">Show Dates</button></div><div class="program-detail"><div class="works-line">Choreography: Ben Stevenson · Music: Leo Delibes</div><div id="dates-prog-TEXAS-coppelia" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">May 14</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 15</span><span class="cal-time">2:00 PM</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 16</span><span class="cal-time">2:00 PM</span></td></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">May 21</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 22</span><span class="cal-time">2:00 PM</span><span class="cal-time">8:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">May 23</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
 </div>
-<div class="company-xref" id="xref-TRISHA_BROWN" data-target="TRISHA_BROWN"><span class="xref-name">Trisha Brown Dance Company</span> — <a href="#TRISHA_BROWN">see under Brown</a></div>
+<div class="company-xref" id="xref-TRISHA_BROWN" data-target="TRISHA_BROWN"><span class="xref-name">Trisha Brown Dance Company</span><span class="xref-sep"> — </span><a href="#TRISHA_BROWN">see under Brown</a></div>
 <div class="company-section" id="TULSA">
 <div class="company-heading"><a href="https://tulsaballet.org/performances/" target="_blank" rel="noopener noreferrer">Tulsa Ballet</a><span class="badge-inline" style="background:#555">Tulsa </span></div>
 <div class="program" data-company="TULSA" data-end="2026-09-20"><div class="date-col">Sep 10–20, 2026</div><div class="title-main"><a class="program-title" href="https://tulsaballet.org/event/creations-in-studio-k-2026/" target="_blank" rel="noopener noreferrer">Creations in Studio K</a></div><div class="title-right"><button class="dates-toggle" id="btn-prog-TULSA-creations-in-studio-k" onclick="toggleDates('prog-TULSA-creations-in-studio-k')">Show Dates</button></div><div class="program-detail"><div id="dates-prog-TULSA-creations-in-studio-k" class="perf-cal-wrap" style="display:none"><table class="perf-cal" style="width:57.14%"><tr><th style="width:14.29%">Thu</th><th style="width:14.29%">Fri</th><th style="width:14.29%">Sat</th><th style="width:14.29%">Sun</th></tr><tr><td></td><td class="cal-has-perf"><span class="cal-date">Sep 11</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 12</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 13</span><span class="cal-time">2:00 PM</span></td></tr><tr><td class="cal-has-perf"><span class="cal-date">Sep 17</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 18</span><span class="cal-time">2:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 19</span><span class="cal-time">2:00 PM</span><span class="cal-time">7:00 PM</span></td><td class="cal-has-perf"><span class="cal-date">Sep 20</span><span class="cal-time">2:00 PM</span></td></tr></table></div></div></div>
@@ -1220,7 +1202,7 @@ function closeAllDates() {
     }
 
     function _navH() {
-        var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+        var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
         return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
     }
 
@@ -1245,7 +1227,7 @@ function closeAllDates() {
             requestAnimationFrame(function () {
                 var target = document.getElementById(_h.slice(1));
                 if (!target) return;
-                var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+                var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
                 var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
                 target.style.scrollMarginTop = (rawNavH + 8) + 'px';
                 target.scrollIntoView({ behavior: 'instant', block: 'start' });

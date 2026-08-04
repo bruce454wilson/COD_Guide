@@ -3337,7 +3337,7 @@ function toggleHomeNav(btn) {
     }
 
     function _navH() {
-        var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+        var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
         return nav ? Math.ceil(nav.getBoundingClientRect().height) + 8 : 60;
     }
 
@@ -3362,7 +3362,7 @@ function toggleHomeNav(btn) {
             requestAnimationFrame(function () {
                 var target = document.getElementById(_h.slice(1));
                 if (!target) return;
-                var nav = document.querySelector('.index, .alpha-nav, .company-nav');
+                var nav = document.querySelector('.index, .alpha-nav, .company-nav, .company-nav-letters');
                 var rawNavH = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
                 target.style.scrollMarginTop = (rawNavH + 8) + 'px';
                 target.scrollIntoView({ behavior: 'instant', block: 'start' });
