@@ -66,6 +66,30 @@ h1 {
     font-weight: normal;
 }
 
+/* Cross-reference stub — "Paul Taylor Dance Company — see under Taylor".
+   Rendered with the same h3 tag the real company headings use, so size and
+   weight match without restating them. The name is blue like a linked company
+   name but NOT underlined (it isn't the link); the "see under X" half is the
+   link and carries the underline. Mirrors .company-xref in
+   generate_performances_company.py — keep the two in step. */
+.company-xref .xref-name {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+.company-xref .xref-sep {
+    color: #666;
+}
+
+.company-xref a {
+    color: #0000ee;
+    text-decoration: underline;
+}
+
+.company-xref a:hover {
+    color: #1a4d8f;
+}
+
 .letter-heading,
 .year-heading {
     margin-top: 40px;

@@ -66,6 +66,30 @@ h1 {
     font-weight: normal;
 }
 
+/* Cross-reference stub — "Paul Taylor Dance Company — see under Taylor".
+   Rendered with the same h3 tag the real company headings use, so size and
+   weight match without restating them. The name is blue like a linked company
+   name but NOT underlined (it isn't the link); the "see under X" half is the
+   link and carries the underline. Mirrors .company-xref in
+   generate_performances_company.py — keep the two in step. */
+.company-xref .xref-name {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+.company-xref .xref-sep {
+    color: #666;
+}
+
+.company-xref a {
+    color: #0000ee;
+    text-decoration: underline;
+}
+
+.company-xref a:hover {
+    color: #1a4d8f;
+}
+
 .letter-heading,
 .year-heading {
     margin-top: 40px;
@@ -438,6 +462,12 @@ a:hover {
     color: #1a73e8; cursor: pointer; font-size: 13px; text-decoration: none;
 }
 .co-action:hover { text-decoration: underline; }
+.co-region {
+    font-family: inherit; font-size: 13px; color: #1a73e8;
+    border: 1px solid #c9d7ea; border-radius: 5px; background: #f5f8fd;
+    padding: 4px 6px; cursor: pointer; max-width: 170px;
+}
+.co-region:hover { background: #eaf1fb; }
 .co-done {
     margin-left: auto; background: #1a73e8; color: #fff; border: none;
     border-radius: 5px; padding: 6px 15px; font-size: 14px;
@@ -459,7 +489,7 @@ a:hover {
 .co-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 @media (max-width: 650px) {
     .perf-top-controls { font-size: 16px; }
-    .pc-btn, .pc-view-toggle, .co-done { font-size: 16px; }
+    .pc-btn, .pc-view-toggle, .co-done, .co-region { font-size: 16px; }
 }
 </style>
 <script>
@@ -526,87 +556,91 @@ function toggleHomeNav(btn) {
     <div class="co-head">
       <span class="co-title">Select companies</span>
       <span class="co-count" id="co-count"></span>
+      <select class="co-region" id="co-region" aria-label="Add all companies in a region" onchange="coAddRegion(this)">
+        <option value="">Add region&hellip;</option>
+        <option value="New York City">New York City</option><option value="Washington">Washington</option><option value="North East">North East</option><option value="Florida">Florida</option><option value="South">South</option><option value="Midwest">Midwest</option><option value="Texas">Texas</option><option value="West">West</option><option value="Northwest">Northwest</option><option value="California">California</option><option value="Pennsylvania">Pennsylvania</option>
+      </select>
       <a class="co-action" onclick="coShowAll()">Select all</a>
       <a class="co-action" onclick="coHideAll()">Clear</a>
       <button class="co-done" onclick="closeCompanySelect()">Done</button>
     </div>
     <div class="co-grid">
-      <label class="co-cb" title="A.I.M. by Kyle Abraham"><input type="checkbox" data-company="AIM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">A.I.M.</span></label>
-      <label class="co-cb" title="American Ballet Theatre"><input type="checkbox" data-company="ABT" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#b71c1c"></span><span class="co-name">ABT</span></label>
-      <label class="co-cb" title="Alvin Ailey American Dance Theater"><input type="checkbox" data-company="AILEY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#8B0000"></span><span class="co-name">Ailey</span></label>
-      <label class="co-cb" title="Alabama Ballet"><input type="checkbox" data-company="ALABAMA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Alabama </span></label>
-      <label class="co-cb" title="American Repertory Ballet"><input type="checkbox" data-company="ARB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">American Rep</span></label>
-      <label class="co-cb" title="Ballet Arizona"><input type="checkbox" data-company="ARIZONA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Arizona</span></label>
-      <label class="co-cb" title="Atlanta Ballet"><input type="checkbox" data-company="ATLANTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#ad1457"></span><span class="co-name">Atlanta </span></label>
-      <label class="co-cb" title="Ballet Austin"><input type="checkbox" data-company="AUSTIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#558b2f"></span><span class="co-name"> Austin</span></label>
-      <label class="co-cb" title="The Australian Ballet"><input type="checkbox" data-company="AUSTRALIAN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Australian</span></label>
-      <label class="co-cb" title="Ballet West"><input type="checkbox" data-company="B_WEST" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#37474f"></span><span class="co-name">Ballet West</span></label>
-      <label class="co-cb" title="BalletMet"><input type="checkbox" data-company="BALLETMET" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4527a0"></span><span class="co-name">BalletMet</span></label>
-      <label class="co-cb" title="BalletX"><input type="checkbox" data-company="BALLETX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BalletX</span></label>
-      <label class="co-cb" title="BAM"><input type="checkbox" data-company="BAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BAM</span></label>
-      <label class="co-cb" title="Boston Ballet"><input type="checkbox" data-company="BOSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#0277bd"></span><span class="co-name">Boston </span></label>
-      <label class="co-cb" title="Capital One Hall"><input type="checkbox" data-company="CAPITAL_ONE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Capital One Hall</span></label>
-      <label class="co-cb" title="Carolina Ballet"><input type="checkbox" data-company="CAROLINA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Carolina </span></label>
-      <label class="co-cb" title="Charlotte Ballet"><input type="checkbox" data-company="CHARLOTTE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2d6a4f"></span><span class="co-name">Charlotte </span></label>
-      <label class="co-cb" title="Cincinnati Ballet"><input type="checkbox" data-company="CINCINNATI" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6d4c41"></span><span class="co-name">Cincinnati </span></label>
-      <label class="co-cb" title="New York City Center"><input type="checkbox" data-company="NYCC" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">City Center</span></label>
-      <label class="co-cb" title="Cleveland Ballet"><input type="checkbox" data-company="CLEVELAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Cleveland </span></label>
-      <label class="co-cb" title="Collage Dance Collective"><input type="checkbox" data-company="COLLAGE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Collage</span></label>
-      <label class="co-cb" title="Colorado Ballet"><input type="checkbox" data-company="COLORADO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1B4F8A"></span><span class="co-name">Colorado </span></label>
-      <label class="co-cb" title="Complexions Contemporary Ballet"><input type="checkbox" data-company="COMPLEXIONS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Complexions</span></label>
-      <label class="co-cb" title="Dance Theatre of Harlem"><input type="checkbox" data-company="DTOH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">DTOH</span></label>
-      <label class="co-cb" title="Eugene Ballet"><input type="checkbox" data-company="EUGENE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Eugene </span></label>
-      <label class="co-cb" title="Martha Graham Dance Company"><input type="checkbox" data-company="GRAHAM" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Graham</span></label>
-      <label class="co-cb" title="Grand Rapids Ballet"><input type="checkbox" data-company="GRAND_RAPIDS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Grand Rapids </span></label>
-      <label class="co-cb" title="Ballet Hispanico"><input type="checkbox" data-company="HISPANICO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Hispanico</span></label>
-      <label class="co-cb" title="Houston Ballet"><input type="checkbox" data-company="HOUSTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2e7d32"></span><span class="co-name">Houston </span></label>
-      <label class="co-cb" title="Hubbard Street Dance Chicago"><input type="checkbox" data-company="HUBBARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hubbard Street</span></label>
-      <label class="co-cb" title="Hylton Performing Arts Center"><input type="checkbox" data-company="HYLTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hylton PAC</span></label>
-      <label class="co-cb" title="Ballet Idaho"><input type="checkbox" data-company="IDAHO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Idaho</span></label>
-      <label class="co-cb" title="Jacob&#x27;s Pillow"><input type="checkbox" data-company="PILLOW" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Jacob&#x27;s Pillow</span></label>
-      <label class="co-cb" title="Joffrey Ballet"><input type="checkbox" data-company="JOFFREY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#bf360c"></span><span class="co-name">Joffrey </span></label>
-      <label class="co-cb" title="Joyce Theater"><input type="checkbox" data-company="JOYCE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Joyce</span></label>
-      <label class="co-cb" title="Juilliard School"><input type="checkbox" data-company="JUILLIARD" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Juilliard School</span></label>
-      <label class="co-cb" title="Kansas City Ballet"><input type="checkbox" data-company="KCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00838f"></span><span class="co-name">Kansas City </span></label>
-      <label class="co-cb" title="Limon Dance Company"><input type="checkbox" data-company="LIMON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Limon</span></label>
-      <label class="co-cb" title="Alonzo King LINES Ballet"><input type="checkbox" data-company="LINES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">LINES </span></label>
-      <label class="co-cb" title="Los Angeles Ballet"><input type="checkbox" data-company="LOS_ANGELES" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Los Angeles </span></label>
-      <label class="co-cb" title="Louisville Ballet"><input type="checkbox" data-company="LOUISVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#78350f"></span><span class="co-name">Louisville </span></label>
-      <label class="co-cb" title="Mark Morris Dance"><input type="checkbox" data-company="MORRIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mark Morris</span></label>
-      <label class="co-cb" title="George Mason University Center for the Arts"><input type="checkbox" data-company="GMU_CFA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mason CFA</span></label>
-      <label class="co-cb" title="Ballet Memphis"><input type="checkbox" data-company="MEMPHIS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#e65100"></span><span class="co-name"> Memphis</span></label>
-      <label class="co-cb" title="Miami City Ballet"><input type="checkbox" data-company="MCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#007c91"></span><span class="co-name">Miami City </span></label>
-      <label class="co-cb" title="Milwaukee Ballet"><input type="checkbox" data-company="MILWAUKEE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#283593"></span><span class="co-name">Milwaukee </span></label>
-      <label class="co-cb" title="Momix"><input type="checkbox" data-company="MOMIX" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Momix</span></label>
-      <label class="co-cb" title="Nashville Ballet"><input type="checkbox" data-company="NASHVILLE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nashville </span></label>
-      <label class="co-cb" title="Nevada Ballet Theatre"><input type="checkbox" data-company="NEVADA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nevada</span></label>
-      <label class="co-cb" title="New York City Ballet"><input type="checkbox" data-company="NYCB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1a237e"></span><span class="co-name">NYCB</span></label>
-      <label class="co-cb" title="Oklahoma City Ballet"><input type="checkbox" data-company="OK_CITY" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4a148c"></span><span class="co-name">OK City </span></label>
-      <label class="co-cb" title="Oregon Ballet Theatre"><input type="checkbox" data-company="OREGON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#880e4f"></span><span class="co-name">Oregon</span></label>
-      <label class="co-cb" title="Orlando Ballet"><input type="checkbox" data-company="ORLANDO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Orlando </span></label>
-      <label class="co-cb" title="Ballet Palm Beach"><input type="checkbox" data-company="PALMBEACH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Palm Beach</span></label>
-      <label class="co-cb" title="Performing Arts Houston"><input type="checkbox" data-company="PAH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Perf Arts Houston</span></label>
-      <label class="co-cb" title="Philadelphia Ballet"><input type="checkbox" data-company="PHILADELPHIA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1565c0"></span><span class="co-name">Philadelphia </span></label>
-      <label class="co-cb" title="Pilobolus Dance Theater"><input type="checkbox" data-company="PILOBOLUS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Pilobolus</span></label>
-      <label class="co-cb" title="Pittsburgh Ballet Theatre"><input type="checkbox" data-company="PITTSBURGH" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#c62828"></span><span class="co-name">Pittsburgh</span></label>
-      <label class="co-cb" title="Pacific Northwest Ballet"><input type="checkbox" data-company="PNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#004d40"></span><span class="co-name">PNB</span></label>
-      <label class="co-cb" title="Portland Ballet"><input type="checkbox" data-company="PORTLAND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Portland </span></label>
-      <label class="co-cb" title="Ragamala Dance Company"><input type="checkbox" data-company="RAGAMALA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Ragamala</span></label>
-      <label class="co-cb" title="Richmond Ballet"><input type="checkbox" data-company="RICHMOND" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4e342e"></span><span class="co-name">Richmond </span></label>
-      <label class="co-cb" title="Sacramento Ballet"><input type="checkbox" data-company="SACRAMENTO" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sacramento </span></label>
-      <label class="co-cb" title="San Francisco Ballet"><input type="checkbox" data-company="SFB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6a1b9a"></span><span class="co-name">San Francisco </span></label>
-      <label class="co-cb" title="Sarasota Ballet"><input type="checkbox" data-company="SARASOTA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sarasota </span></label>
+      <label class="co-cb" title="A.I.M. by Kyle Abraham"><input type="checkbox" data-company="AIM" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">A.I.M.</span></label>
+      <label class="co-cb" title="American Ballet Theatre"><input type="checkbox" data-company="ABT" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#b71c1c"></span><span class="co-name">ABT</span></label>
+      <label class="co-cb" title="Alvin Ailey American Dance Theater"><input type="checkbox" data-company="AILEY" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#8B0000"></span><span class="co-name">Ailey</span></label>
+      <label class="co-cb" title="Alabama Ballet"><input type="checkbox" data-company="ALABAMA" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Alabama </span></label>
+      <label class="co-cb" title="American Repertory Ballet"><input type="checkbox" data-company="ARB" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">American Rep</span></label>
+      <label class="co-cb" title="Ballet Arizona"><input type="checkbox" data-company="ARIZONA" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Arizona</span></label>
+      <label class="co-cb" title="Atlanta Ballet"><input type="checkbox" data-company="ATLANTA" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#ad1457"></span><span class="co-name">Atlanta </span></label>
+      <label class="co-cb" title="Ballet Austin"><input type="checkbox" data-company="AUSTIN" data-regions="Texas" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#558b2f"></span><span class="co-name"> Austin</span></label>
+      <label class="co-cb" title="The Australian Ballet"><input type="checkbox" data-company="AUSTRALIAN" data-regions="" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Australian</span></label>
+      <label class="co-cb" title="Ballet West"><input type="checkbox" data-company="B_WEST" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#37474f"></span><span class="co-name">Ballet West</span></label>
+      <label class="co-cb" title="BalletMet"><input type="checkbox" data-company="BALLETMET" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4527a0"></span><span class="co-name">BalletMet</span></label>
+      <label class="co-cb" title="BalletX"><input type="checkbox" data-company="BALLETX" data-regions="Pennsylvania" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BalletX</span></label>
+      <label class="co-cb" title="BAM"><input type="checkbox" data-company="BAM" data-regions="" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">BAM</span></label>
+      <label class="co-cb" title="Boston Ballet"><input type="checkbox" data-company="BOSTON" data-regions="North East" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#0277bd"></span><span class="co-name">Boston </span></label>
+      <label class="co-cb" title="Capital One Hall"><input type="checkbox" data-company="CAPITAL_ONE" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Capital One Hall</span></label>
+      <label class="co-cb" title="Carolina Ballet"><input type="checkbox" data-company="CAROLINA" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Carolina </span></label>
+      <label class="co-cb" title="Charlotte Ballet"><input type="checkbox" data-company="CHARLOTTE" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2d6a4f"></span><span class="co-name">Charlotte </span></label>
+      <label class="co-cb" title="Cincinnati Ballet"><input type="checkbox" data-company="CINCINNATI" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6d4c41"></span><span class="co-name">Cincinnati </span></label>
+      <label class="co-cb" title="New York City Center"><input type="checkbox" data-company="NYCC" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">City Center</span></label>
+      <label class="co-cb" title="Cleveland Ballet"><input type="checkbox" data-company="CLEVELAND" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Cleveland </span></label>
+      <label class="co-cb" title="Collage Dance Collective"><input type="checkbox" data-company="COLLAGE" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Collage</span></label>
+      <label class="co-cb" title="Colorado Ballet"><input type="checkbox" data-company="COLORADO" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1B4F8A"></span><span class="co-name">Colorado </span></label>
+      <label class="co-cb" title="Complexions Contemporary Ballet"><input type="checkbox" data-company="COMPLEXIONS" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Complexions</span></label>
+      <label class="co-cb" title="Dance Theatre of Harlem"><input type="checkbox" data-company="DTOH" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">DTOH</span></label>
+      <label class="co-cb" title="Eugene Ballet"><input type="checkbox" data-company="EUGENE" data-regions="Northwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Eugene </span></label>
+      <label class="co-cb" title="Martha Graham Dance Company"><input type="checkbox" data-company="GRAHAM" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Graham</span></label>
+      <label class="co-cb" title="Grand Rapids Ballet"><input type="checkbox" data-company="GRAND_RAPIDS" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Grand Rapids </span></label>
+      <label class="co-cb" title="Ballet Hispanico"><input type="checkbox" data-company="HISPANICO" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Hispanico</span></label>
+      <label class="co-cb" title="Houston Ballet"><input type="checkbox" data-company="HOUSTON" data-regions="Texas" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#2e7d32"></span><span class="co-name">Houston </span></label>
+      <label class="co-cb" title="Hubbard Street Dance Chicago"><input type="checkbox" data-company="HUBBARD" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hubbard Street</span></label>
+      <label class="co-cb" title="Hylton Performing Arts Center"><input type="checkbox" data-company="HYLTON" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Hylton PAC</span></label>
+      <label class="co-cb" title="Ballet Idaho"><input type="checkbox" data-company="IDAHO" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name"> Idaho</span></label>
+      <label class="co-cb" title="Jacob&#x27;s Pillow"><input type="checkbox" data-company="PILLOW" data-regions="North East" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Jacob&#x27;s Pillow</span></label>
+      <label class="co-cb" title="Joffrey Ballet"><input type="checkbox" data-company="JOFFREY" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#bf360c"></span><span class="co-name">Joffrey </span></label>
+      <label class="co-cb" title="Joyce Theater"><input type="checkbox" data-company="JOYCE" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Joyce</span></label>
+      <label class="co-cb" title="Juilliard School"><input type="checkbox" data-company="JUILLIARD" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Juilliard School</span></label>
+      <label class="co-cb" title="Kansas City Ballet"><input type="checkbox" data-company="KCB" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00838f"></span><span class="co-name">Kansas City </span></label>
+      <label class="co-cb" title="Limon Dance Company"><input type="checkbox" data-company="LIMON" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Limon</span></label>
+      <label class="co-cb" title="Alonzo King LINES Ballet"><input type="checkbox" data-company="LINES" data-regions="California" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">LINES </span></label>
+      <label class="co-cb" title="Los Angeles Ballet"><input type="checkbox" data-company="LOS_ANGELES" data-regions="California" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Los Angeles </span></label>
+      <label class="co-cb" title="Louisville Ballet"><input type="checkbox" data-company="LOUISVILLE" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#78350f"></span><span class="co-name">Louisville </span></label>
+      <label class="co-cb" title="Mark Morris Dance"><input type="checkbox" data-company="MORRIS" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mark Morris</span></label>
+      <label class="co-cb" title="George Mason University Center for the Arts"><input type="checkbox" data-company="GMU_CFA" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Mason CFA</span></label>
+      <label class="co-cb" title="Ballet Memphis"><input type="checkbox" data-company="MEMPHIS" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#e65100"></span><span class="co-name"> Memphis</span></label>
+      <label class="co-cb" title="Miami City Ballet"><input type="checkbox" data-company="MCB" data-regions="Florida" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#007c91"></span><span class="co-name">Miami City </span></label>
+      <label class="co-cb" title="Milwaukee Ballet"><input type="checkbox" data-company="MILWAUKEE" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#283593"></span><span class="co-name">Milwaukee </span></label>
+      <label class="co-cb" title="Momix"><input type="checkbox" data-company="MOMIX" data-regions="North East" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Momix</span></label>
+      <label class="co-cb" title="Nashville Ballet"><input type="checkbox" data-company="NASHVILLE" data-regions="South" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nashville </span></label>
+      <label class="co-cb" title="Nevada Ballet Theatre"><input type="checkbox" data-company="NEVADA" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Nevada</span></label>
+      <label class="co-cb" title="New York City Ballet"><input type="checkbox" data-company="NYCB" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1a237e"></span><span class="co-name">NYCB</span></label>
+      <label class="co-cb" title="Oklahoma City Ballet"><input type="checkbox" data-company="OK_CITY" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4a148c"></span><span class="co-name">OK City </span></label>
+      <label class="co-cb" title="Oregon Ballet Theatre"><input type="checkbox" data-company="OREGON" data-regions="Northwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#880e4f"></span><span class="co-name">Oregon</span></label>
+      <label class="co-cb" title="Orlando Ballet"><input type="checkbox" data-company="ORLANDO" data-regions="Florida" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#00695c"></span><span class="co-name">Orlando </span></label>
+      <label class="co-cb" title="Ballet Palm Beach"><input type="checkbox" data-company="PALMBEACH" data-regions="Florida" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Palm Beach</span></label>
+      <label class="co-cb" title="Performing Arts Houston"><input type="checkbox" data-company="PAH" data-regions="Texas" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Perf Arts Houston</span></label>
+      <label class="co-cb" title="Philadelphia Ballet"><input type="checkbox" data-company="PHILADELPHIA" data-regions="Pennsylvania" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#1565c0"></span><span class="co-name">Philadelphia </span></label>
+      <label class="co-cb" title="Pilobolus Dance Theater"><input type="checkbox" data-company="PILOBOLUS" data-regions="North East" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Pilobolus</span></label>
+      <label class="co-cb" title="Pittsburgh Ballet Theatre"><input type="checkbox" data-company="PITTSBURGH" data-regions="Pennsylvania" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#c62828"></span><span class="co-name">Pittsburgh</span></label>
+      <label class="co-cb" title="Pacific Northwest Ballet"><input type="checkbox" data-company="PNB" data-regions="Northwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#004d40"></span><span class="co-name">PNB</span></label>
+      <label class="co-cb" title="Portland Ballet"><input type="checkbox" data-company="PORTLAND" data-regions="Northwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Portland </span></label>
+      <label class="co-cb" title="Ragamala Dance Company"><input type="checkbox" data-company="RAGAMALA" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Ragamala</span></label>
+      <label class="co-cb" title="Richmond Ballet"><input type="checkbox" data-company="RICHMOND" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#4e342e"></span><span class="co-name">Richmond </span></label>
+      <label class="co-cb" title="Sacramento Ballet"><input type="checkbox" data-company="SACRAMENTO" data-regions="California" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sacramento </span></label>
+      <label class="co-cb" title="San Francisco Ballet"><input type="checkbox" data-company="SFB" data-regions="California" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#6a1b9a"></span><span class="co-name">San Francisco </span></label>
+      <label class="co-cb" title="Sarasota Ballet"><input type="checkbox" data-company="SARASOTA" data-regions="Florida" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Sarasota </span></label>
       <label class="co-cb" title="Smuin Contemporary
-Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Smuin</span></label>
-      <label class="co-cb" title="Music Center at Strathmore"><input type="checkbox" data-company="STRATHMORE" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Strathmore</span></label>
-      <label class="co-cb" title="Paul Taylor Dance Company"><input type="checkbox" data-company="TAYLOR" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Taylor</span></label>
-      <label class="co-cb" title="Texas Ballet Theater"><input type="checkbox" data-company="TEXAS" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Texas</span></label>
-      <label class="co-cb" title="Trisha Brown Dance Company"><input type="checkbox" data-company="TRISHA_BROWN" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Trisha Brown</span></label>
-      <label class="co-cb" title="Tulsa Ballet"><input type="checkbox" data-company="TULSA" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Tulsa </span></label>
-      <label class="co-cb" title="Virginia National Ballet"><input type="checkbox" data-company="VNB" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">VA National Ballet</span></label>
-      <label class="co-cb" title="Vail Dance Festival"><input type="checkbox" data-company="VAIL" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Vail</span></label>
-      <label class="co-cb" title="Washington Ballet"><input type="checkbox" data-company="WASHINGTON" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Washington </span></label>
-      <label class="co-cb" title="Wolf Trap"><input type="checkbox" data-company="WOLF_TRAP" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Wolf Trap</span></label>
+Ballet"><input type="checkbox" data-company="SMUIN" data-regions="California" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Smuin</span></label>
+      <label class="co-cb" title="Music Center at Strathmore"><input type="checkbox" data-company="STRATHMORE" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Strathmore</span></label>
+      <label class="co-cb" title="Paul Taylor Dance Company"><input type="checkbox" data-company="TAYLOR" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Taylor</span></label>
+      <label class="co-cb" title="Texas Ballet Theater"><input type="checkbox" data-company="TEXAS" data-regions="Texas" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Texas</span></label>
+      <label class="co-cb" title="Trisha Brown Dance Company"><input type="checkbox" data-company="TRISHA_BROWN" data-regions="New York City" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Trisha Brown</span></label>
+      <label class="co-cb" title="Tulsa Ballet"><input type="checkbox" data-company="TULSA" data-regions="Midwest" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Tulsa </span></label>
+      <label class="co-cb" title="Virginia National Ballet"><input type="checkbox" data-company="VNB" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">VA National Ballet</span></label>
+      <label class="co-cb" title="Vail Dance Festival"><input type="checkbox" data-company="VAIL" data-regions="West" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Vail</span></label>
+      <label class="co-cb" title="Washington Ballet"><input type="checkbox" data-company="WASHINGTON" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Washington </span></label>
+      <label class="co-cb" title="Wolf Trap"><input type="checkbox" data-company="WOLF_TRAP" data-regions="Washington" onchange="onCompanyToggle()"><span class="co-swatch" style="background:#555555"></span><span class="co-name">Wolf Trap</span></label>
     </div>
   </div>
 </div>
@@ -698,6 +732,25 @@ Ballet"><input type="checkbox" data-company="SMUIN" onchange="onCompanyToggle()"
     window.coHideAll = function () {
         document.querySelectorAll('.co-cb input[type=checkbox]')
             .forEach(function (cb) { cb.checked = false; });
+        window.onCompanyToggle();
+    };
+    // "Add region…" dropdown: ADDS every company in the chosen region to the
+    // current selection. Additive on purpose — regions combine, so you can
+    // build "Washington + New York City" by picking each in turn. Nothing is
+    // ever unchecked here; Clear is the way to start over. data-regions is a
+    // comma-separated list, so a company in several regions is picked up by
+    // each of them.
+    window.coAddRegion = function (sel) {
+        var region = sel && sel.value;
+        if (!region) return;
+        document.querySelectorAll('.co-cb input[type=checkbox]')
+            .forEach(function (cb) {
+                var list = (cb.dataset.regions || '').split(',');
+                for (var i = 0; i < list.length; i++) {
+                    if (list[i].trim() === region) { cb.checked = true; return; }
+                }
+            });
+        sel.selectedIndex = 0;   // snap back to the "Add region…" placeholder
         window.onCompanyToggle();
     };
     document.addEventListener('keydown', function (e) {
