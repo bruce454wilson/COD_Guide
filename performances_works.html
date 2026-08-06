@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--DE_CACHE_GUARD-->
+<meta name="de-build" content="20260806-155109">
+<script>
+(function () {
+  var B = "20260806-155109";
+  var KEY = "de_cache_reload";
+
+  // Tidy the address bar: drop the ?v= we may have arrived with.
+  try {
+    var here = new URL(location.href);
+    if (here.searchParams.get("v")) {
+      here.searchParams.delete("v");
+      history.replaceState(null, "", here.pathname + here.search + here.hash);
+    }
+  } catch (e) {}
+
+  function check() {
+    fetch("version.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.build || d.build === B) return;
+        // Only ever attempt one reload per server build — no loops.
+        try {
+          if (sessionStorage.getItem(KEY) === d.build) return;
+          sessionStorage.setItem(KEY, d.build);
+        } catch (e) {}
+        var u = new URL(location.href);
+        u.searchParams.set("v", d.build);
+        location.replace(u.toString());
+      })
+      .catch(function () {});
+  }
+
+  check();
+  // Back/forward restores from bfcache without re-running scripts.
+  window.addEventListener("pageshow", function (e) { if (e.persisted) check(); });
+})();
+</script>
+<!--/DE_CACHE_GUARD-->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026–27 Dance Season — By Work</title>
@@ -349,19 +389,19 @@ h1 { margin-bottom: 6px; }
   </div>
 </div>
 <div class="work-block" id="work-alice-in-wonderland">
-  <div class="work-title">ALICE (in wonderland)<span class="work-credit">(Septime Webre · Music: Matthew Pierce)</span></div>
-  <div class="company-row">
-    <span class="badge" style="background:#555"><a href="performances_company.html#OREGON" class="badge-link">Oregon Ballet Theatre</a></span>
-    <a class="prog-link" href="https://www.obt.org/event/alice-in-wonderland-2026-27/" target="_blank" rel="noopener noreferrer">ALICE (in wonderland)</a>
-    <span class="date-range">Feb 13–21, 2027</span>
-  </div>
-</div>
-<div class="work-block" id="work-alice-in-wonderland">
   <div class="work-title">Alice (in Wonderland)<span class="work-credit">(Septime Webre · Music: Matthew Pierce)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#555"><a href="performances_company.html#NEVADA" class="badge-link">Nevada Ballet Theatre</a></span>
     <a class="prog-link" href="https://nevadaballet.org/performances/alice-in-wonderland-26-27/" target="_blank" rel="noopener noreferrer">Alice (in Wonderland)</a>
     <span class="date-range">Apr 9–18, 2027</span>
+  </div>
+</div>
+<div class="work-block" id="work-alice-in-wonderland">
+  <div class="work-title">ALICE (in wonderland)<span class="work-credit">(Septime Webre · Music: Matthew Pierce)</span></div>
+  <div class="company-row">
+    <span class="badge" style="background:#555"><a href="performances_company.html#OREGON" class="badge-link">Oregon Ballet Theatre</a></span>
+    <a class="prog-link" href="https://www.obt.org/event/alice-in-wonderland-2026-27/" target="_blank" rel="noopener noreferrer">ALICE (in wonderland)</a>
+    <span class="date-range">Feb 13–21, 2027</span>
   </div>
 </div>
 <div class="work-block" id="work-alice-in-wonderland">
@@ -3325,7 +3365,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="work-block" id="work-rodeo-four-dance-episodes">
-  <div class="work-title">Rodeo: Four Dance Episodes<span class="work-credit">(Tiler Peck · Music: Aaron Copland)</span></div>
+  <div class="work-title">Rodeo: Four Dance Episodes<span class="work-credit">(Justin Peck · Music: Aaron Copland)</span></div>
   <div class="company-row">
     <span class="badge" style="background:#00838f"><a href="performances_company.html#MCB" class="badge-link">Miami City Ballet</a></span>
     <a class="prog-link" href="https://www.miamicityballet.org/tickets-and-events/202627-season/spring/" target="_blank" rel="noopener noreferrer">Spring Mix</a>

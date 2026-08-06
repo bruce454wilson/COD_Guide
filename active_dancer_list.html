@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--DE_CACHE_GUARD-->
+<meta name="de-build" content="20260806-155109">
+<script>
+(function () {
+  var B = "20260806-155109";
+  var KEY = "de_cache_reload";
+
+  // Tidy the address bar: drop the ?v= we may have arrived with.
+  try {
+    var here = new URL(location.href);
+    if (here.searchParams.get("v")) {
+      here.searchParams.delete("v");
+      history.replaceState(null, "", here.pathname + here.search + here.hash);
+    }
+  } catch (e) {}
+
+  function check() {
+    fetch("version.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.build || d.build === B) return;
+        // Only ever attempt one reload per server build — no loops.
+        try {
+          if (sessionStorage.getItem(KEY) === d.build) return;
+          sessionStorage.setItem(KEY, d.build);
+        } catch (e) {}
+        var u = new URL(location.href);
+        u.searchParams.set("v", d.build);
+        location.replace(u.toString());
+      })
+      .catch(function () {});
+  }
+
+  check();
+  // Back/forward restores from bfcache without re-running scripts.
+  window.addEventListener("pageshow", function (e) { if (e.persisted) check(); });
+})();
+</script>
+<!--/DE_CACHE_GUARD-->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Active Dancers</title>

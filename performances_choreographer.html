@@ -1,6 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--DE_CACHE_GUARD-->
+<meta name="de-build" content="20260806-155109">
+<script>
+(function () {
+  var B = "20260806-155109";
+  var KEY = "de_cache_reload";
+
+  // Tidy the address bar: drop the ?v= we may have arrived with.
+  try {
+    var here = new URL(location.href);
+    if (here.searchParams.get("v")) {
+      here.searchParams.delete("v");
+      history.replaceState(null, "", here.pathname + here.search + here.hash);
+    }
+  } catch (e) {}
+
+  function check() {
+    fetch("version.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        if (!d || !d.build || d.build === B) return;
+        // Only ever attempt one reload per server build — no loops.
+        try {
+          if (sessionStorage.getItem(KEY) === d.build) return;
+          sessionStorage.setItem(KEY, d.build);
+        } catch (e) {}
+        var u = new URL(location.href);
+        u.searchParams.set("v", d.build);
+        location.replace(u.toString());
+      })
+      .catch(function () {});
+  }
+
+  check();
+  // Back/forward restores from bfcache without re-running scripts.
+  window.addEventListener("pageshow", function (e) { if (e.persisted) check(); });
+})();
+</script>
+<!--/DE_CACHE_GUARD-->
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>2026–27 Dance Season — By Choreographer</title>
@@ -646,14 +686,14 @@ Ballet</a></span>
     <span class="date-range">Dec 11–27, 2026</span>
   </div>
   <div class="work-entry">
-    <span class="badge" style="background:#555"><a href="performances_company.html#NEVADA" class="badge-link">Nevada Ballet Theatre</a></span>
-    <a class="prog-link" href="https://nevadaballet.org/performances/nutcracker-26-27/" target="_blank" rel="noopener noreferrer">George Balanchine&#x27;s The Nutcracker</a>
-    <span class="date-range">Dec 12–27, 2026</span>
-  </div>
-  <div class="work-entry">
     <span class="badge" style="background:#555"><a href="performances_company.html#ALABAMA" class="badge-link">Alabama Ballet</a></span>
     <a class="prog-link" href="https://alabamaballet.org/performance/nutcracker/" target="_blank" rel="noopener noreferrer">George Balanchine&#x27;s The Nutcracker</a>
     <span class="date-range">Dec 12–22, 2026</span>
+  </div>
+  <div class="work-entry">
+    <span class="badge" style="background:#555"><a href="performances_company.html#NEVADA" class="badge-link">Nevada Ballet Theatre</a></span>
+    <a class="prog-link" href="https://nevadaballet.org/performances/nutcracker-26-27/" target="_blank" rel="noopener noreferrer">George Balanchine&#x27;s The Nutcracker</a>
+    <span class="date-range">Dec 12–27, 2026</span>
   </div>
   <div class="work-entry">
     <span class="work-title">Donizetti Variations</span>
@@ -2716,7 +2756,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="choreo-block" id="choreo-justin-peck">
-  <div class="choreo-name">Justin Peck<span class="choreo-count">(11 works)</span> <a class="cross-link" href="guest_list.html#choreo-justin-peck">COD Interviews</a></div>
+  <div class="choreo-name">Justin Peck<span class="choreo-count">(12 works)</span> <a class="cross-link" href="guest_list.html#choreo-justin-peck">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Pulcinella Variations</span>
     <span class="badge" style="background:#1a237e"><a href="performances_company.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -2746,6 +2786,12 @@ Ballet</a></span>
     <span class="badge" style="background:#1a237e"><a href="performances_company.html#NYCB" class="badge-link">New York City Ballet</a></span>
     <a class="prog-link" href="https://www.nycballet.com/season-and-tickets/winter-2027/contemporary-choreography-iii" target="_blank" rel="noopener noreferrer">Contemporary Choreography III</a>
     <span class="date-range">Feb 18–27, 2027</span>
+  </div>
+  <div class="work-entry">
+    <span class="work-title">Rodeo: Four Dance Episodes</span>
+    <span class="badge" style="background:#00838f"><a href="performances_company.html#MCB" class="badge-link">Miami City Ballet</a></span>
+    <a class="prog-link" href="https://www.miamicityballet.org/tickets-and-events/202627-season/spring/" target="_blank" rel="noopener noreferrer">Spring Mix</a>
+    <span class="date-range">Mar 26 – Apr 18, 2027</span>
   </div>
   <div class="work-entry">
     <span class="work-title">In The Countenance of Kings</span>
@@ -2783,7 +2829,7 @@ Ballet</a></span>
   </div>
 </div>
 <div class="choreo-block" id="choreo-tiler-peck">
-  <div class="choreo-name">Tiler Peck<span class="choreo-count">(4 works)</span> <a class="cross-link" href="guest_list.html#choreo-tiler-peck">COD Interviews</a></div>
+  <div class="choreo-name">Tiler Peck<span class="choreo-count">(3 works)</span> <a class="cross-link" href="guest_list.html#choreo-tiler-peck">COD Interviews</a></div>
   <div class="work-entry">
     <span class="work-title">Concerto for Two Pianos</span>
     <span class="badge" style="background:#1a237e"><a href="performances_company.html#NYCB" class="badge-link">New York City Ballet</a></span>
@@ -2792,12 +2838,6 @@ Ballet</a></span>
   </div>
   <div class="work-entry">
     <span class="work-title">New Peck (world premiere)</span>
-    <span class="badge" style="background:#00838f"><a href="performances_company.html#MCB" class="badge-link">Miami City Ballet</a></span>
-    <a class="prog-link" href="https://www.miamicityballet.org/tickets-and-events/202627-season/spring/" target="_blank" rel="noopener noreferrer">Spring Mix</a>
-    <span class="date-range">Mar 26 – Apr 18, 2027</span>
-  </div>
-  <div class="work-entry">
-    <span class="work-title">Rodeo: Four Dance Episodes</span>
     <span class="badge" style="background:#00838f"><a href="performances_company.html#MCB" class="badge-link">Miami City Ballet</a></span>
     <a class="prog-link" href="https://www.miamicityballet.org/tickets-and-events/202627-season/spring/" target="_blank" rel="noopener noreferrer">Spring Mix</a>
     <span class="date-range">Mar 26 – Apr 18, 2027</span>
